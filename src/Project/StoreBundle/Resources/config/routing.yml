@@ -1,0 +1,3 @@
+project_store_homepage:
+    path:     /
+    defaults: { _controller: ProjectStoreBundle:Default:index }

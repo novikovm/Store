@@ -1,0 +1,4 @@
+project_store:
+    resource: "@ProjectStoreBundle/Resources/config/routing.yml"
+    prefix:   /
+
