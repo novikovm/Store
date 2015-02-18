@@ -1,4 +1,7 @@
 project_store_homepage:
     path:     /
-    defaults: { _controller: ProjectStoreBundle:Default:index }
+    defaults: { _controller: ProjectStoreBundle:Movie:index }
 
+project_store_movies:
+    path:     /
+    defaults: { _controller: ProjectStoreBundle:Movie:index }

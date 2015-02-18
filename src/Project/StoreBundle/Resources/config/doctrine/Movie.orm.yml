@@ -1,0 +1,21 @@
+Project\StoreBundle\Entity\Movie:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: 255
+        description:
+            type: text
+        actors:
+            type: text
+        genre:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

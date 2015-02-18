@@ -133,7 +133,16 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return $this->redirect($pathinfo.'/', 'project_store_homepage');
             }
 
-            return array (  '_controller' => 'Project\\StoreBundle\\Controller\\DefaultController::indexAction',  '_route' => 'project_store_homepage',);
+            return array (  '_controller' => 'Project\\StoreBundle\\Controller\\MovieController::indexAction',  '_route' => 'project_store_homepage',);
+        }
+
+        // project_store_movies
+        if (rtrim($pathinfo, '/') === '') {
+            if (substr($pathinfo, -1) !== '/') {
+                return $this->redirect($pathinfo.'/', 'project_store_movies');
+            }
+
+            return array (  '_controller' => 'Project\\StoreBundle\\Controller\\MovieController::indexAction',  '_route' => 'project_store_movies',);
         }
 
         if (0 === strpos($pathinfo, '/log')) {
