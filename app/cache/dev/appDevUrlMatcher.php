@@ -136,13 +136,14 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'Project\\StoreBundle\\Controller\\MovieController::indexAction',  '_route' => 'project_store_homepage',);
         }
 
-        // project_store_movies
-        if (rtrim($pathinfo, '/') === '') {
-            if (substr($pathinfo, -1) !== '/') {
-                return $this->redirect($pathinfo.'/', 'project_store_movies');
-            }
+        // project_store_genre
+        if (0 === strpos($pathinfo, '/genres') && preg_match('#^/genres/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'project_store_genre')), array (  '_controller' => 'Project\\StoreBundle\\Controller\\MovieController::genreAction',));
+        }
 
-            return array (  '_controller' => 'Project\\StoreBundle\\Controller\\MovieController::indexAction',  '_route' => 'project_store_movies',);
+        // project_store_movie
+        if (0 === strpos($pathinfo, '/movie') && preg_match('#^/movie/(?P<slug>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'project_store_movie')), array (  '_controller' => 'Project\\StoreBundle\\Controller\\MovieController::movieAction',));
         }
 
         if (0 === strpos($pathinfo, '/log')) {

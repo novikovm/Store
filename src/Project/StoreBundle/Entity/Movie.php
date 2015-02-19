@@ -30,9 +30,20 @@ class Movie
     private $actors;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Genre", inversedBy="movies")
+     * @ORM\JoinColumn(name="genre_id", referencedColumnName="id")
+     */
+    protected $genre;
+
+    /**
      * @var string
      */
-    private $genre;
+    private $cover;
+
+    /**
+     * @var decimal
+     */
+    private $price;
 
 
     /**
@@ -115,12 +126,58 @@ class Movie
     }
 
     /**
-     * Set genre
+     * Set cover
      *
-     * @param string $genre
+     * @param string $cover
      * @return Movie
      */
-    public function setGenre($genre)
+    public function setCover($cover)
+    {
+        $this->cover = $cover;
+
+        return $this;
+    }
+
+    /**
+     * Get cover
+     *
+     * @return string 
+     */
+    public function getCover()
+    {
+        return $this->cover;
+    }
+
+    /**
+     * Get price
+     *
+     * @return decimal 
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * Set price
+     *
+     * @param string $price
+     * @return Movie
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Set genre
+     *
+     * @param \Project\StoreBundle\Entity\Genre $genre
+     * @return Movie
+     */
+    public function setGenre(\Project\StoreBundle\Entity\Genre $genre = null)
     {
         $this->genre = $genre;
 
@@ -130,7 +187,7 @@ class Movie
     /**
      * Get genre
      *
-     * @return string 
+     * @return \Project\StoreBundle\Entity\Genre 
      */
     public function getGenre()
     {

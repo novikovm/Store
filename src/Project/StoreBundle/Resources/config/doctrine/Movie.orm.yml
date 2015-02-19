@@ -15,7 +15,18 @@ Project\StoreBundle\Entity\Movie:
             type: text
         actors:
             type: text
-        genre:
+        cover:
             type: string
             length: 255
+        price:
+            type: decimal
+            scale: 2
+    manyToOne:
+        genre:
+            targetEntity: Genre
+            inversedBy: movies
+            joinColumn:
+                name: genre_id
+                referencedColumnName: id
+
     lifecycleCallbacks: {  }

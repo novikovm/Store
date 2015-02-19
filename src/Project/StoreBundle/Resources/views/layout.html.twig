@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Filmy</title>
+
+	<!--Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/projectstore/css/bootstrap.min.css') }}">
+	<!-- Custom styles for this template -->
+    <link href="{{ asset('bundles/projectstore/css/signin.css') }}" rel="stylesheet">
+	<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <script src="{{ asset('bundles/projectstore/js/ie-emulation-modes-warning.js') }}"></script>
+
+  </head>
+
+  <body>
+
+	<div class="container">
+		<div class="header">
+			{% block header %}
+			{% endblock %}
+		</div>
+
+		{% block content %}
+		{% endblock %}	
+	      
+	</div>
+
+  </body>
+</html>

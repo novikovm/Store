@@ -2,6 +2,10 @@ project_store_homepage:
     path:     /
     defaults: { _controller: ProjectStoreBundle:Movie:index }
 
-project_store_movies:
-    path:     /
-    defaults: { _controller: ProjectStoreBundle:Movie:index }
+project_store_genre:
+    path:     /genres/{name}
+    defaults: { _controller: ProjectStoreBundle:Movie:genre }
+
+project_store_movie:
+    path:     /movie/{slug}
+    defaults: { _controller: ProjectStoreBundle:Movie:movie }

@@ -1,0 +1,26 @@
+{% extends 'ProjectStoreBundle::layout.html.twig' %}
+
+{% block header %}
+	<h2>{{ movie.title }}</h2>
+{% endblock %}
+
+{% block content %}
+		<div class="row">
+			<div class="col-md-2">
+				<img src="{{ movie.cover }}"><br>
+			</div>
+			<div class="col-md-5">
+				<p>{{ movie.description }}</p><br>
+				<p>Aktorzy:<br>{{ movie.actors }}</p>
+			</div>
+			<div class="col-md-2">
+				<p>Cena: {{ movie.price }} zł</p><br>
+				<button type="button" class="btn btn-default">Wypożycz</button>
+
+				{% if is_granted('ROLE_USER') %}
+					<button type="button" class="btn btn-default">Dodaj recenzję</button>
+				{% endif %}
+
+			</div>
+		</div>
+{% endblock %}
