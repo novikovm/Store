@@ -1,31 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
+{% extends '::base.html.twig' %}
 
-    <title>Filmy</title>
+{% block title %}Filmy{% endblock %}
 
-	<!--Bootstrap core CSS -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/projectstore/css/bootstrap.min.css') }}">
-	<!-- Custom styles for this template -->
-    <link href="{{ asset('bundles/projectstore/css/signin.css') }}" rel="stylesheet">
-	<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <script src="{{ asset('bundles/projectstore/js/ie-emulation-modes-warning.js') }}"></script>
+{% block body %}
+	
 
-  </head>
-
-  <body>
+	<nav class="navbar navbar-default navbar-static-top">
+	      <div class="container">
+	        <div class="navbar-header">
+         	<a class="navbar-brand" href="{{path('project_store_homepage')}}">{% block header %}Filmy{% endblock %}</a>
+        </div>
+	        <div id="navbar" class="navbar-collapse collapse">
+	          <form class="navbar-form navbar-right">
+	          	{% block navbar %}
+		          	{% if is_granted('ROLE_USER') %}
+					<div class="row">
+						<p>
+							Jesteś zalogowany jako {{app.user.username}}. 
+							<a href="{{path('fos_user_security_logout')}}" class="btn btn-primary">Wyloguj</a>
+						</p>
+					</div>
+					{% else %}
+						<p>
+							Nie jesteś zalogowany - 
+							<a href="{{path('fos_user_security_login')}}" class="btn btn-primary">Zaloguj</a>
+							Jeśli nie masz konta - <a href="{{path('fos_user_registration_register')}}" class="btn btn-primary">Zarejestruj się</a>
+						</p>
+					{% endif %}
+				{% endblock %}
+	          </form>
+	        </div><!--/.navbar-collapse -->
+	      </div>
+	    </nav>
 
 	<div class="container">
-		<div class="header">
-			{% block header %}
-			{% endblock %}
-		</div>
 
 		{% block content %}
 		{% endblock %}	
 	      
 	</div>
 
-  </body>
-</html>
+	{{ block('fos_user_content') }}
+
+{% endblock %}

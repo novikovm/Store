@@ -36,49 +36,45 @@ class __TwigTemplate_80b814c498f066f22024eb69b6e8830f760f232debbdb97a6600cc303d8
     // line 3
     public function block_header($context, array $blocks = array())
     {
-        // line 4
-        echo "\t<h2>";
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["movie"]) ? $context["movie"] : $this->getContext($context, "movie")), "title", array()), "html", null, true);
-        echo "</h2>
-";
     }
 
-    // line 7
+    // line 5
     public function block_content($context, array $blocks = array())
     {
-        // line 8
+        // line 6
         echo "\t\t<div class=\"row\">
 \t\t\t<div class=\"col-md-2\">
 \t\t\t\t<img src=\"";
-        // line 10
+        // line 8
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["movie"]) ? $context["movie"] : $this->getContext($context, "movie")), "cover", array()), "html", null, true);
         echo "\"><br>
 \t\t\t</div>
 \t\t\t<div class=\"col-md-5\">
 \t\t\t\t<p>";
-        // line 13
+        // line 11
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["movie"]) ? $context["movie"] : $this->getContext($context, "movie")), "description", array()), "html", null, true);
         echo "</p><br>
 \t\t\t\t<p>Aktorzy:<br>";
-        // line 14
+        // line 12
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["movie"]) ? $context["movie"] : $this->getContext($context, "movie")), "actors", array()), "html", null, true);
         echo "</p>
 \t\t\t</div>
 \t\t\t<div class=\"col-md-2\">
 \t\t\t\t<p>Cena: ";
-        // line 17
+        // line 15
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["movie"]) ? $context["movie"] : $this->getContext($context, "movie")), "price", array()), "html", null, true);
         echo " zł</p><br>
 \t\t\t\t<button type=\"button\" class=\"btn btn-default\">Wypożycz</button>
 
 \t\t\t\t";
-        // line 20
+        // line 18
         if ($this->env->getExtension('security')->isGranted("ROLE_USER")) {
-            // line 21
+            // line 19
             echo "\t\t\t\t\t<button type=\"button\" class=\"btn btn-default\">Dodaj recenzję</button>
 \t\t\t\t";
         }
-        // line 23
+        // line 21
         echo "
 \t\t\t</div>
 \t\t</div>
@@ -97,6 +93,6 @@ class __TwigTemplate_80b814c498f066f22024eb69b6e8830f760f232debbdb97a6600cc303d8
 
     public function getDebugInfo()
     {
-        return array (  82 => 23,  78 => 21,  76 => 20,  70 => 17,  64 => 14,  60 => 13,  54 => 10,  50 => 8,  47 => 7,  40 => 4,  37 => 3,  11 => 1,);
+        return array (  78 => 21,  74 => 19,  72 => 18,  66 => 15,  60 => 12,  56 => 11,  50 => 8,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
     }
 }

@@ -1,8 +1,6 @@
 {% extends 'ProjectStoreBundle::layout.html.twig' %}
 
-{% block header %}
-	<h2>{{ movie.title }}</h2>
-{% endblock %}
+{% block header %}{{ movie.title }}{% endblock %}
 
 {% block content %}
 		<div class="row">

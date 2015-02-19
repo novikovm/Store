@@ -4,7 +4,12 @@
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <!--Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/projectstore/css/bootstrap.min.css') }}">
+    <!-- Custom styles for this template -->
+    <link href="{{ asset('bundles/projectstore/css/signin.css') }}" rel="stylesheet">
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <script src="{{ asset('bundles/projectstore/js/ie-emulation-modes-warning.js') }}"></script>
     </head>
     <body>
         {% block body %}{% endblock %}
