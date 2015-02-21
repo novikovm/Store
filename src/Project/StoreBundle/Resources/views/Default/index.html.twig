@@ -14,6 +14,14 @@
 				</select>
 				<br>
 			</div>
+			<div class="col-md-2">
+				<select class="form-control" onchange="location = this.options[this.selectedIndex].value;">
+					<option value="0">Sortuj</option>
+					<option value="{{path('project_store_homepage')}}">Najczesciej wypożyczane</option>
+		  			<option value="{{path('project_store_homepage')}}">Najczęsciej recenzowane</option>
+				</select>
+				<br>
+			</div>
 		</div>
 
 		<div class="row">

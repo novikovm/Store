@@ -1,6 +1,6 @@
 <?php
 
-/* FOSUserBundle::layout.html.twig */
+/* ProjectStoreBundle::layout.html.twig */
 class __TwigTemplate_12be0d3fa4261e3b6bf7c28e6d32c93164f116e048032a75ab2f394fe3a59443 extends Twig_Template
 {
     public function __construct(Twig_Environment $env)
@@ -20,8 +20,8 @@ class __TwigTemplate_12be0d3fa4261e3b6bf7c28e6d32c93164f116e048032a75ab2f394fe3a
         $this->blocks = array(
             'title' => array($this, 'block_title'),
             'body' => array($this, 'block_body'),
-            'header' => array($this, 'block_header'),
             'navbar' => array($this, 'block_navbar'),
+            'header' => array($this, 'block_header'),
             'content' => array($this, 'block_content'),
         );
     }
@@ -50,13 +50,11 @@ class __TwigTemplate_12be0d3fa4261e3b6bf7c28e6d32c93164f116e048032a75ab2f394fe3a
 
 \t<nav class=\"navbar navbar-default navbar-static-top\">
 \t      <div class=\"container\">
-\t        <div class=\"navbar-header\">
+\t        <div class=\"navbar-header\"><h4>
          \t<a class=\"navbar-brand\" href=\"";
         // line 11
         echo $this->env->getExtension('routing')->getPath("project_store_homepage");
-        echo "\">";
-        $this->displayBlock('header', $context, $blocks);
-        echo "</a>
+        echo "\">Filmy</h4></a>
         </div>
 \t        <div id=\"navbar\" class=\"navbar-collapse collapse\">
 \t          <form class=\"navbar-form navbar-right\">
@@ -71,26 +69,25 @@ class __TwigTemplate_12be0d3fa4261e3b6bf7c28e6d32c93164f116e048032a75ab2f394fe3a
 
 \t<div class=\"container\">
 
-\t\t";
+\t\t<h3>";
         // line 38
+        $this->displayBlock('header', $context, $blocks);
+        echo "</h3>
+
+\t\t";
+        // line 40
         $this->displayBlock('content', $context, $blocks);
-        // line 39
+        // line 41
         echo "\t
 \t      
 \t</div>
 
 \t";
-        // line 43
+        // line 45
         $this->displayBlock("fos_user_content", $context, $blocks);
         echo "
 
 ";
-    }
-
-    // line 11
-    public function block_header($context, array $blocks = array())
-    {
-        echo "Filmy";
     }
 
     // line 15
@@ -133,15 +130,21 @@ class __TwigTemplate_12be0d3fa4261e3b6bf7c28e6d32c93164f116e048032a75ab2f394fe3a
     }
 
     // line 38
+    public function block_header($context, array $blocks = array())
+    {
+        echo "Filmy";
+    }
+
+    // line 40
     public function block_content($context, array $blocks = array())
     {
-        // line 39
+        // line 41
         echo "\t\t";
     }
 
     public function getTemplateName()
     {
-        return "FOSUserBundle::layout.html.twig";
+        return "ProjectStoreBundle::layout.html.twig";
     }
 
     public function isTraitable()
@@ -151,6 +154,6 @@ class __TwigTemplate_12be0d3fa4261e3b6bf7c28e6d32c93164f116e048032a75ab2f394fe3a
 
     public function getDebugInfo()
     {
-        return array (  139 => 39,  136 => 38,  132 => 30,  126 => 27,  122 => 26,  118 => 24,  111 => 20,  107 => 19,  103 => 17,  100 => 16,  97 => 15,  91 => 11,  84 => 43,  78 => 39,  76 => 38,  67 => 31,  65 => 15,  56 => 11,  49 => 6,  46 => 5,  40 => 3,  11 => 1,);
+        return array (  142 => 41,  139 => 40,  133 => 38,  129 => 30,  123 => 27,  119 => 26,  115 => 24,  108 => 20,  104 => 19,  100 => 17,  97 => 16,  94 => 15,  87 => 45,  81 => 41,  79 => 40,  74 => 38,  65 => 31,  63 => 15,  56 => 11,  49 => 6,  46 => 5,  40 => 3,  11 => 1,);
     }
 }

@@ -45,6 +45,11 @@ class Movie
      */
     private $price;
 
+	/**
+     *
+     * @ORM\OneToMany(targetEntity="Recenzja", mappedBy="movie")
+     */
+    protected $recenzje;
 
     /**
      * Get id
@@ -192,5 +197,45 @@ class Movie
     public function getGenre()
     {
         return $this->genre;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->recenzje = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add recenzje
+     *
+     * @param \Project\StoreBundle\Entity\Recenzja $recenzje
+     * @return Movie
+     */
+    public function addRecenzje(\Project\StoreBundle\Entity\Recenzja $recenzje)
+    {
+        $this->recenzje[] = $recenzje;
+
+        return $this;
+    }
+
+    /**
+     * Remove recenzje
+     *
+     * @param \Project\StoreBundle\Entity\Recenzja $recenzje
+     */
+    public function removeRecenzje(\Project\StoreBundle\Entity\Recenzja $recenzje)
+    {
+        $this->recenzje->removeElement($recenzje);
+    }
+
+    /**
+     * Get recenzje
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRecenzje()
+    {
+        return $this->recenzje;
     }
 }

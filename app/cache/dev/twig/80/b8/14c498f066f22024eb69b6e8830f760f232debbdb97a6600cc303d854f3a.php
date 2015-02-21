@@ -43,38 +43,66 @@ class __TwigTemplate_80b814c498f066f22024eb69b6e8830f760f232debbdb97a6600cc303d8
     public function block_content($context, array $blocks = array())
     {
         // line 6
-        echo "\t\t<div class=\"row\">
+        echo "\t\t
+\t\t";
+        // line 7
+        if ($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "session", array()), "flashBag", array()), "has", array(0 => "success"), "method")) {
+            // line 8
+            echo "\t        <div class=\"alert alert-success\">
+\t            ";
+            // line 9
+            $context['_parent'] = (array) $context;
+            $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "session", array()), "flashBag", array()), "get", array(0 => "success"), "method"));
+            foreach ($context['_seq'] as $context["_key"] => $context["msg"]) {
+                // line 10
+                echo "\t                ";
+                echo twig_escape_filter($this->env, $context["msg"], "html", null, true);
+                echo "
+\t            ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['msg'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 12
+            echo "\t        </div>
+\t    ";
+        }
+        // line 14
+        echo "
+\t\t<div class=\"row\">
 \t\t\t<div class=\"col-md-2\">
 \t\t\t\t<img src=\"";
-        // line 8
+        // line 17
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["movie"]) ? $context["movie"] : $this->getContext($context, "movie")), "cover", array()), "html", null, true);
         echo "\"><br>
 \t\t\t</div>
 \t\t\t<div class=\"col-md-5\">
 \t\t\t\t<p>";
-        // line 11
+        // line 20
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["movie"]) ? $context["movie"] : $this->getContext($context, "movie")), "description", array()), "html", null, true);
         echo "</p><br>
 \t\t\t\t<p>Aktorzy:<br>";
-        // line 12
+        // line 21
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["movie"]) ? $context["movie"] : $this->getContext($context, "movie")), "actors", array()), "html", null, true);
         echo "</p>
 \t\t\t</div>
 \t\t\t<div class=\"col-md-2\">
 \t\t\t\t<p>Cena: ";
-        // line 15
+        // line 24
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["movie"]) ? $context["movie"] : $this->getContext($context, "movie")), "price", array()), "html", null, true);
         echo " zł</p><br>
-\t\t\t\t<button type=\"button\" class=\"btn btn-default\">Wypożycz</button>
+\t\t\t\t<button type=\"button\" class=\"btn btn-default\">Wypożycz</button><br>
 
 \t\t\t\t";
-        // line 18
+        // line 27
         if ($this->env->getExtension('security')->isGranted("ROLE_USER")) {
-            // line 19
-            echo "\t\t\t\t\t<button type=\"button\" class=\"btn btn-default\">Dodaj recenzję</button>
+            // line 28
+            echo "\t\t\t\t\t<a href=\"";
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("project_store_recenzja_add", array("slug" => $this->getAttribute((isset($context["movie"]) ? $context["movie"] : $this->getContext($context, "movie")), "title", array()))), "html", null, true);
+            echo "\" class=\"btn btn-primary\">Dodaj recenzję</a>
 \t\t\t\t";
         }
-        // line 21
+        // line 30
         echo "
 \t\t\t</div>
 \t\t</div>
@@ -93,6 +121,6 @@ class __TwigTemplate_80b814c498f066f22024eb69b6e8830f760f232debbdb97a6600cc303d8
 
     public function getDebugInfo()
     {
-        return array (  78 => 21,  74 => 19,  72 => 18,  66 => 15,  60 => 12,  56 => 11,  50 => 8,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
+        return array (  106 => 30,  100 => 28,  98 => 27,  92 => 24,  86 => 21,  82 => 20,  76 => 17,  71 => 14,  67 => 12,  58 => 10,  54 => 9,  51 => 8,  49 => 7,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
     }
 }

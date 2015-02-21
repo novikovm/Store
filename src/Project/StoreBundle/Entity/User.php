@@ -11,6 +11,11 @@ use FOS\UserBundle\Model\User as BaseUser;
  */
 class User extends BaseUser
 {
+     /**
+     * @var integer
+     */
+    protected $id;
+
     /**
      * @ORM\Column(type="array")
      */
@@ -41,12 +46,7 @@ class User extends BaseUser
         parent::__construct();
         // your own logic
     }
-    /**
-     * @var integer
-     */
-    protected $id;
-
-
+   
     /**
      * Get id
      *

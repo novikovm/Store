@@ -83,18 +83,19 @@ class __TwigTemplate_2ebe768b89eb797c15a2471b946e90c50c495c59c76b1cd48838843b8f9
     public function block_fos_user_content($context, array $blocks = array())
     {
         // line 25
-        echo "\t";
+        echo "\t<div class=\"container\">
+
+\t";
+        // line 27
         if ((isset($context["error"]) ? $context["error"] : $this->getContext($context, "error"))) {
-            // line 26
-            echo "\t    <div>";
+            // line 28
+            echo "\t    <div color = \"red\">Error: ";
             echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans($this->getAttribute((isset($context["error"]) ? $context["error"] : $this->getContext($context, "error")), "messageKey", array()), $this->getAttribute((isset($context["error"]) ? $context["error"] : $this->getContext($context, "error")), "messageData", array()), "security"), "html", null, true);
             echo "</div>
 \t";
         }
-        // line 28
+        // line 30
         echo "
-
-\t<div class=\"container\">
 \t<form action=\"";
         // line 31
         echo $this->env->getExtension('routing')->getPath("fos_user_security_check");
@@ -139,6 +140,6 @@ class __TwigTemplate_2ebe768b89eb797c15a2471b946e90c50c495c59c76b1cd48838843b8f9
 
     public function getDebugInfo()
     {
-        return array (  121 => 40,  114 => 36,  109 => 34,  105 => 33,  100 => 31,  95 => 28,  89 => 26,  86 => 25,  83 => 24,  75 => 19,  72 => 18,  65 => 14,  61 => 13,  57 => 11,  54 => 10,  51 => 9,  45 => 7,  39 => 5,  11 => 1,);
+        return array (  122 => 40,  115 => 36,  110 => 34,  106 => 33,  101 => 31,  98 => 30,  92 => 28,  90 => 27,  86 => 25,  83 => 24,  75 => 19,  72 => 18,  65 => 14,  61 => 13,  57 => 11,  54 => 10,  51 => 9,  45 => 7,  39 => 5,  11 => 1,);
     }
 }

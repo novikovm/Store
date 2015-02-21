@@ -7,8 +7,8 @@
 
 	<nav class="navbar navbar-default navbar-static-top">
 	      <div class="container">
-	        <div class="navbar-header">
-         	<a class="navbar-brand" href="{{path('project_store_homepage')}}">{% block header %}Filmy{% endblock %}</a>
+	        <div class="navbar-header"><h4>
+         	<a class="navbar-brand" href="{{path('project_store_homepage')}}">Filmy</h4></a>
         </div>
 	        <div id="navbar" class="navbar-collapse collapse">
 	          <form class="navbar-form navbar-right">
@@ -34,6 +34,8 @@
 	    </nav>
 
 	<div class="container">
+
+		<h3>{% block header %}Filmy{% endblock %}</h3>
 
 		{% block content %}
 		{% endblock %}	

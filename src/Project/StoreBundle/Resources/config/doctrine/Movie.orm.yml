@@ -28,5 +28,9 @@ Project\StoreBundle\Entity\Movie:
             joinColumn:
                 name: genre_id
                 referencedColumnName: id
+    oneToMany:
+        recenzje:
+            targetEntity: Recenzja
+            mappedBy: movie"
 
     lifecycleCallbacks: {  }

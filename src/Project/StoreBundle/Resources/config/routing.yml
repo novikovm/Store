@@ -9,3 +9,11 @@ project_store_genre:
 project_store_movie:
     path:     /movie/{slug}
     defaults: { _controller: ProjectStoreBundle:Movie:movie }
+
+project_store_recenzja_add:
+    path:     /movie/{slug}/Review/add
+    defaults: { _controller: ProjectStoreBundle:Review:add }
+
+project_store_recenzja_add:
+    path:     /recenzowane
+    defaults: { _controller: ProjectStoreBundle:Movie:recenzowane }

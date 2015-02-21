@@ -1,0 +1,28 @@
+Project\StoreBundle\Entity\Recenzja:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        tytul:
+            type: string
+            length: 255
+        tresc:
+            type: text
+        autor:
+            type: string
+            length: 255
+        dataUtworzenia:
+            type: datetime
+    manyToOne:
+        movie:
+            targetEntity: Movie
+            inversedBy: recenzje
+            joinColumn:
+                name: movie_id
+                referencedColumnName: id
+    lifecycleCallbacks: {  }

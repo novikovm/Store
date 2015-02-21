@@ -3,6 +3,15 @@
 {% block header %}{{ movie.title }}{% endblock %}
 
 {% block content %}
+		
+		{% if app.session.flashBag.has('success') %}
+	        <div class="alert alert-success">
+	            {% for msg in app.session.flashBag.get('success') %}
+	                {{ msg }}
+	            {% endfor %}
+	        </div>
+	    {% endif %}
+
 		<div class="row">
 			<div class="col-md-2">
 				<img src="{{ movie.cover }}"><br>
@@ -13,10 +22,10 @@
 			</div>
 			<div class="col-md-2">
 				<p>Cena: {{ movie.price }} zł</p><br>
-				<button type="button" class="btn btn-default">Wypożycz</button>
+				<button type="button" class="btn btn-default">Wypożycz</button><br>
 
 				{% if is_granted('ROLE_USER') %}
-					<button type="button" class="btn btn-default">Dodaj recenzję</button>
+					<a href="{{path('project_store_recenzja_add', {'slug': movie.title})}}" class="btn btn-primary">Dodaj recenzję</a>
 				{% endif %}
 
 			</div>

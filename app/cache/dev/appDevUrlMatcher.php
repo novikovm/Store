@@ -141,9 +141,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'project_store_genre')), array (  '_controller' => 'Project\\StoreBundle\\Controller\\MovieController::genreAction',));
         }
 
-        // project_store_movie
-        if (0 === strpos($pathinfo, '/movie') && preg_match('#^/movie/(?P<slug>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'project_store_movie')), array (  '_controller' => 'Project\\StoreBundle\\Controller\\MovieController::movieAction',));
+        if (0 === strpos($pathinfo, '/movie')) {
+            // project_store_movie
+            if (preg_match('#^/movie/(?P<slug>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'project_store_movie')), array (  '_controller' => 'Project\\StoreBundle\\Controller\\MovieController::movieAction',));
+            }
+
+            // project_store_recenzja_add
+            if (preg_match('#^/movie/(?P<slug>[^/]++)/Review/add$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'project_store_recenzja_add')), array (  '_controller' => 'Project\\StoreBundle\\Controller\\ReviewController::addAction',));
+            }
+
         }
 
         if (0 === strpos($pathinfo, '/log')) {

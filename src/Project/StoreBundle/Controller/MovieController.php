@@ -38,6 +38,15 @@ class MovieController extends Controller
 	    return $this->render('ProjectStoreBundle:Default:movie.html.twig', array('movie' => $movie));
     }
 
+
+    public function recenzowaneAction($slug)
+    {
+		$genresRepository = $this->getDoctrine()->getRepository('ProjectStoreBundle:Genre');
+	    $genre = $genresRepository->findOneByName($name);
+	    $movies = $genre->getMovies();
+	    $genres = $genresRepository->findAll();
+		return $this->render('ProjectStoreBundle:Default:index.html.twig', array('movies' => $movies, 'genres' => $genres));
+    }
 	
 	
 }
