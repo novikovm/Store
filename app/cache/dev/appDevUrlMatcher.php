@@ -154,6 +154,16 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        // project_store_recenzowane
+        if ($pathinfo === '/recenzowane') {
+            return array (  '_controller' => 'Project\\StoreBundle\\Controller\\MovieController::recenzowaneAction',  '_route' => 'project_store_recenzowane',);
+        }
+
+        // project_store_koszyk
+        if ($pathinfo === '/koszyk') {
+            return array (  '_controller' => 'ProjectStoreBundle:Koszyk:koszyk',  '_route' => 'project_store_koszyk',);
+        }
+
         if (0 === strpos($pathinfo, '/log')) {
             if (0 === strpos($pathinfo, '/login')) {
                 // fos_user_security_login
@@ -315,6 +325,38 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'FOS\\UserBundle\\Controller\\ChangePasswordController::changePasswordAction',  '_route' => 'fos_user_change_password',);
         }
         not_fos_user_change_password:
+
+        if (0 === strpos($pathinfo, '/cart')) {
+            // sylius_cart_summary
+            if (rtrim($pathinfo, '/') === '/cart') {
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'sylius_cart_summary');
+                }
+
+                return array (  '_controller' => 'sylius.controller.cart:summaryAction',  '_route' => 'sylius_cart_summary',);
+            }
+
+            // sylius_cart_save
+            if ($pathinfo === '/cart/save') {
+                return array (  '_controller' => 'sylius.controller.cart:saveAction',  '_route' => 'sylius_cart_save',);
+            }
+
+            // sylius_cart_clear
+            if ($pathinfo === '/cart/clear') {
+                return array (  '_controller' => 'sylius.controller.cart:clearAction',  '_route' => 'sylius_cart_clear',);
+            }
+
+            // sylius_cart_item_add
+            if ($pathinfo === '/cart/add') {
+                return array (  '_controller' => 'sylius.controller.cart_item:addAction',  '_route' => 'sylius_cart_item_add',);
+            }
+
+            // sylius_cart_item_remove
+            if (preg_match('#^/cart/(?P<id>[^/]++)/remove$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'sylius_cart_item_remove')), array (  '_controller' => 'sylius.controller.cart_item:removeAction',));
+            }
+
+        }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
     }

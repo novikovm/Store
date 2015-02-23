@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>
+            {% block title %}
+                
+            {% endblock %}
+        </title>
+        <meta charset="UTF-8">
+
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Open+Sans:300italic,400,300,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css" type="text/css" />
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" type="text/css" />
+    </head>
+    <body>
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+            <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js"></script>
+        
+        
+        <div class="container">
+            {% block header %}
+                
+            {% endblock %}
+
+            {% block flashes %}
+                {% for type in ['success', 'error', 'fos_user_success', 'notice'] %}
+                    {% for flash in app.session.flashbag.get(type) %}
+                        <div class="alert alert-{{ type == 'fos_user_success' ? 'success' : type == 'error' ? 'danger' : type == 'notice' ? 'warning' : type }}">
+                            <a class="close" data-dismiss="alert" href="#">×</a>
+                            {{ flash|trans }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            {% endblock %}
+
+            {% block main %}
+                <hr>
+                {% block slideshow_full %}{% endblock %}
+                <div class="row">
+                    <div class="col-md-3" id="sidebar">
+                        
+                    </div>
+                    <div class="col-md-9">
+                        {% block content %}
+                            <div class="page-header">
+                            <h1>{{ 'sylius.cart.summary_header'|trans|raw }}</h1>
+                            </div>
+
+                            {% if not cart.empty %}
+                                {{ form_errors(form) }}
+
+                                <form action="{{ path('sylius_cart_save') }}" method="post" novalidate>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>{{ 'sylius.cart.summary.product'|trans }}</th>
+                                            <th>{{ 'sylius.cart.summary.quantity'|trans }}</th>
+                                            <th></th>
+                                            <th>{{ 'sylius.cart.summary.unit_price'|trans }}</th>
+                                            <th style="text-align: right;">{{ 'sylius.cart.summary.total'|trans }}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for item in cart.items %}
+                                            {% set product = item.variant.product %}
+                                            <tr>
+                                                <td class="col-md-1">{{ loop.index }}</td>
+                                                <td>
+                                                    {{ include('SyliusWebBundle:Frontend/Product:_variant.html.twig', {'variant': item.variant}) }}
+                                                </td>
+                                                <td class="col-md-2">
+                                                    {{ form_row(form.items[loop.index0].quantity, {'label': false}) }}
+                                                </td>
+                                                <td class="col-md-1">
+                                                    <a href="{{ path('sylius_cart_item_remove', {'id': item.id}) }}" class="btn btn-danger"><i class="icon-trash icon-white"></i></a>
+                                                </td>
+                                                <td class="col-md-1">
+                                                    {{ item.unitPrice }}
+                                                </td>
+                                                <td class="col-md-1" style="text-align: right">
+                                                    {{ item.total }}
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                    <tfoot>
+                                        {% if cart.adjustmentsTotal(promotionAdjustment) %}
+                                        <tr>
+                                            <td colspan="6" style="text-align: right;">
+                                                <strong>{{ 'sylius.order.promotion_total'|trans }}</strong>: -{{ (-1 * cart.adjustmentsTotal(promotionAdjustment)) }}
+                                            </td>
+                                        </tr>
+                                        {% endif %}
+                                        <tr>
+                                            <td colspan="6" style="text-align: right;">
+                                                <strong>{{ 'sylius.order.shipping_total'|trans }}</strong>: {{ cart.adjustmentsTotal(shippingAdjustment) }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="4">
+                                                <p><strong>{{ 'sylius.order.taxes'|trans }}</strong></p>
+                                                <ul>
+                                                {% for taxAdjustment in cart.adjustments(taxAdjustment) %}
+                                                    <li>{{ taxAdjustment.description }} {{ taxAdjustment.amount }} </li>
+                                                {% else %}
+                                                    <li><span class="label label-info">{{ 'sylius.order.no_taxes'|trans }}</span></li>
+                                                {% endfor %}
+                                                </ul>
+                                            </td>
+                                            <td colspan="2" style="text-align: right;">
+                                                <strong>{{ 'sylius.order.tax_total'|trans }}</strong>: {{ cart.adjustmentsTotal(taxAdjustment) }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6" style="text-align: right;">
+                                                <strong>{{ 'sylius.cart.summary.grand_total'|trans }}</strong>: {{ cart.total }}
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+
+                                <div id="sylius-cart-coupons" class="well well-sm" data-prototype="{{ form_row(form.promotionCoupons.vars.prototype)|e }}">
+                                    <div id="sylius-cart-coupons-collection">
+                                        {% for couponField in form.promotionCoupons %}
+                                        {{ form_row(couponField, {'label_attr': {'class': 'col-lg-12'}}) }}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+
+                                {{ form_rest(form) }}
+                                <div class="well">
+                                    <button type="submit" class="btn btn-primary btn-lg"><i class="icon-save"></i> {{ 'sylius.cart.summary.save'|trans }}</button>
+                                    <div class="pull-right">
+                                    <a href="{{ path('sylius_checkout_start') }}" class="btn btn-success btn-lg"><i class="icon-shopping-cart"></i> {{ 'sylius.cart.summary.checkout'|trans }}</a>
+                                    <a href="{{ path('sylius_cart_clear') }}" class="btn btn-danger btn-lg"><i class="icon-remove"></i> {{ 'sylius.cart.summary.clear'|trans }}</a>
+                                    </div>
+                                </div>
+                                </form>
+                            {% endif %}
+                        {% endblock %}
+                    </div>
+                </div>
+                <hr>
+            {% endblock %}
+
+            {# Confirmation modal #}
+            <div class="modal fade" id="confirmation-modal" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">{{ 'sylius.confirmation.title'|trans }}</h4>
+                        </div>
+
+                        <div class="modal-body">
+                            {{ 'sylius.confirmation.message'|trans }}
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-info" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> {{ 'sylius.cancel'|trans }}</button>
+                            <a class="btn btn-danger" id="confirmation-modal-confirm">
+                                <i class="glyphicon glyphicon-trash"></i><span>{{ message is defined ? message : 'sylius.delete'|trans }}</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% if is_granted('ROLE_SYLIUS_ADMIN') %}
+            {% render(controller(
+                "cmf_create.jsloader.controller:includeJSFilesAction",
+                {'_locale': app.request.locale, 'editor': 'hallo'}
+            )) %}
+        {% endif %}
+    </body>
+</html>

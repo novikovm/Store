@@ -14,6 +14,10 @@ project_store_recenzja_add:
     path:     /movie/{slug}/Review/add
     defaults: { _controller: ProjectStoreBundle:Review:add }
 
-project_store_recenzja_add:
+project_store_recenzowane:
     path:     /recenzowane
     defaults: { _controller: ProjectStoreBundle:Movie:recenzowane }
+
+project_store_koszyk:
+    path:     /koszyk
+    defaults: { _controller: ProjectStoreBundle:Koszyk:koszyk }

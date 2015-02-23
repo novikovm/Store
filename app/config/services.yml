@@ -7,3 +7,12 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+   get_set_method_normalizer:
+       class: Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer
+       tags:
+         - { name: serializer.normalizer }
+
+   app.cart_item_resolver:
+       class: Project\StoreBundle\Cart\ItemResolver
+       arguments: ["@doctrine.orm.entity_manager"]
+

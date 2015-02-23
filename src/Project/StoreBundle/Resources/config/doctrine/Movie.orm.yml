@@ -19,8 +19,7 @@ Project\StoreBundle\Entity\Movie:
             type: string
             length: 255
         price:
-            type: decimal
-            scale: 2
+            type: integer
     manyToOne:
         genre:
             targetEntity: Genre
@@ -31,6 +30,6 @@ Project\StoreBundle\Entity\Movie:
     oneToMany:
         recenzje:
             targetEntity: Recenzja
-            mappedBy: movie"
+            mappedBy: movie
 
     lifecycleCallbacks: {  }

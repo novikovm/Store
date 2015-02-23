@@ -4,39 +4,47 @@
 
 {% block body %}
 	
-
 	<nav class="navbar navbar-default navbar-static-top">
-	      <div class="container">
-	        <div class="navbar-header"><h4>
-         	<a class="navbar-brand" href="{{path('project_store_homepage')}}">Filmy</h4></a>
+      <div class="container">
+        <div class="navbar-header">
+          <br><a class="navbar-brand" href="{{path('project_store_homepage')}}">Filmy</a>
         </div>
-	        <div id="navbar" class="navbar-collapse collapse">
-	          <form class="navbar-form navbar-right">
-	          	{% block navbar %}
-		          	{% if is_granted('ROLE_USER') %}
-					<div class="row">
-						<p>
-							Jesteś zalogowany jako {{app.user.username}}. 
-							<a href="{{path('fos_user_security_logout')}}" class="btn btn-primary">Wyloguj</a>
-						</p>
-					</div>
-					{% else %}
-						<p>
-							Nie jesteś zalogowany - 
-							<a href="{{path('fos_user_security_login')}}" class="btn btn-primary">Zaloguj</a>
-							Jeśli nie masz konta - <a href="{{path('fos_user_registration_register')}}" class="btn btn-primary">Zarejestruj się</a>
-						</p>
-					{% endif %}
+        <div id="navbar" class="navbar-collapse collapse">
+		<ul class="nav navbar-nav">
+		<br><li><p><strong>{{ sylius_cart_get().totalItems }}</strong> items
+				<a href="{{ path('sylius_cart_summary') }}" class="btn btn-primary">Koszyk</a>
+				</p></li>
+		</ul>
+          <ul class="nav navbar-nav navbar-right">
+          	{% block navbar %}
+		          	
+					<br>{% if is_granted('ROLE_USER') %}
+			<div class="row">
+			<p>
+			Witaj, <strong>{{app.user.username}}</strong>
+			<a href="{{path('fos_user_security_logout')}}" class="btn btn-primary">Wyloguj</a>
+			</p>
+			</div>
+		{% else %}
+			<p>
+			<a href="{{path('fos_user_security_login')}}" class="btn btn-primary">Zaloguj</a>
+			<a href="{{path('fos_user_registration_register')}}" class="btn btn-primary">Zarejestruj się</a>
+			</p>
+		{% endif %}
 				{% endblock %}
-	          </form>
-	        </div><!--/.navbar-collapse -->
-	      </div>
-	    </nav>
+				</ul>
+            	
+          
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+	
+	
 
 	<div class="container">
 
 		<h3>{% block header %}Filmy{% endblock %}</h3>
-
+		
 		{% block content %}
 		{% endblock %}	
 	      

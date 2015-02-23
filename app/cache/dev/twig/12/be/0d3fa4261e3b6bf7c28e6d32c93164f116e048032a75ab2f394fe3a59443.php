@@ -47,98 +47,113 @@ class __TwigTemplate_12be0d3fa4261e3b6bf7c28e6d32c93164f116e048032a75ab2f394fe3a
     {
         // line 6
         echo "\t
-
 \t<nav class=\"navbar navbar-default navbar-static-top\">
-\t      <div class=\"container\">
-\t        <div class=\"navbar-header\"><h4>
-         \t<a class=\"navbar-brand\" href=\"";
-        // line 11
+      <div class=\"container\">
+        <div class=\"navbar-header\">
+          <br><a class=\"navbar-brand\" href=\"";
+        // line 10
         echo $this->env->getExtension('routing')->getPath("project_store_homepage");
-        echo "\">Filmy</h4></a>
+        echo "\">Filmy</a>
         </div>
-\t        <div id=\"navbar\" class=\"navbar-collapse collapse\">
-\t          <form class=\"navbar-form navbar-right\">
-\t          \t";
+        <div id=\"navbar\" class=\"navbar-collapse collapse\">
+\t\t<ul class=\"nav navbar-nav\">
+\t\t<br><li><p><strong>";
+        // line 14
+        echo twig_escape_filter($this->env, $this->getAttribute($this->env->getExtension('sylius_cart')->getCurrentCart(), "totalItems", array()), "html", null, true);
+        echo "</strong> items
+\t\t\t\t<a href=\"";
         // line 15
+        echo $this->env->getExtension('routing')->getPath("sylius_cart_summary");
+        echo "\" class=\"btn btn-primary\">Koszyk</a>
+\t\t\t\t</p></li>
+\t\t</ul>
+          <ul class=\"nav navbar-nav navbar-right\">
+          \t";
+        // line 19
         $this->displayBlock('navbar', $context, $blocks);
-        // line 31
-        echo "\t          </form>
-\t        </div><!--/.navbar-collapse -->
-\t      </div>
-\t    </nav>
+        // line 35
+        echo "\t\t\t\t</ul>
+            \t
+          
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+\t
+\t
 
 \t<div class=\"container\">
 
 \t\t<h3>";
-        // line 38
+        // line 46
         $this->displayBlock('header', $context, $blocks);
         echo "</h3>
-
+\t\t
 \t\t";
-        // line 40
+        // line 48
         $this->displayBlock('content', $context, $blocks);
-        // line 41
+        // line 49
         echo "\t
 \t      
 \t</div>
 
 \t";
-        // line 45
+        // line 53
         $this->displayBlock("fos_user_content", $context, $blocks);
         echo "
 
 ";
     }
 
-    // line 15
+    // line 19
     public function block_navbar($context, array $blocks = array())
     {
-        // line 16
-        echo "\t\t          \t";
+        // line 20
+        echo "\t\t          \t
+\t\t\t\t\t<br>";
+        // line 21
         if ($this->env->getExtension('security')->isGranted("ROLE_USER")) {
-            // line 17
-            echo "\t\t\t\t\t<div class=\"row\">
-\t\t\t\t\t\t<p>
-\t\t\t\t\t\t\tJesteś zalogowany jako ";
-            // line 19
+            // line 22
+            echo "\t\t\t<div class=\"row\">
+\t\t\t<p>
+\t\t\tWitaj, <strong>";
+            // line 24
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "username", array()), "html", null, true);
-            echo ". 
-\t\t\t\t\t\t\t<a href=\"";
-            // line 20
+            echo "</strong>
+\t\t\t<a href=\"";
+            // line 25
             echo $this->env->getExtension('routing')->getPath("fos_user_security_logout");
             echo "\" class=\"btn btn-primary\">Wyloguj</a>
-\t\t\t\t\t\t</p>
-\t\t\t\t\t</div>
-\t\t\t\t\t";
+\t\t\t</p>
+\t\t\t</div>
+\t\t";
         } else {
-            // line 24
-            echo "\t\t\t\t\t\t<p>
-\t\t\t\t\t\t\tNie jesteś zalogowany - 
-\t\t\t\t\t\t\t<a href=\"";
-            // line 26
+            // line 29
+            echo "\t\t\t<p>
+\t\t\t<a href=\"";
+            // line 30
             echo $this->env->getExtension('routing')->getPath("fos_user_security_login");
             echo "\" class=\"btn btn-primary\">Zaloguj</a>
-\t\t\t\t\t\t\tJeśli nie masz konta - <a href=\"";
-            // line 27
+\t\t\t<a href=\"";
+            // line 31
             echo $this->env->getExtension('routing')->getPath("fos_user_registration_register");
             echo "\" class=\"btn btn-primary\">Zarejestruj się</a>
-\t\t\t\t\t\t</p>
-\t\t\t\t\t";
+\t\t\t</p>
+\t\t";
         }
-        // line 30
+        // line 34
         echo "\t\t\t\t";
     }
 
-    // line 38
+    // line 46
     public function block_header($context, array $blocks = array())
     {
         echo "Filmy";
     }
 
-    // line 40
+    // line 48
     public function block_content($context, array $blocks = array())
     {
-        // line 41
+        // line 49
         echo "\t\t";
     }
 
@@ -154,6 +169,6 @@ class __TwigTemplate_12be0d3fa4261e3b6bf7c28e6d32c93164f116e048032a75ab2f394fe3a
 
     public function getDebugInfo()
     {
-        return array (  142 => 41,  139 => 40,  133 => 38,  129 => 30,  123 => 27,  119 => 26,  115 => 24,  108 => 20,  104 => 19,  100 => 17,  97 => 16,  94 => 15,  87 => 45,  81 => 41,  79 => 40,  74 => 38,  65 => 31,  63 => 15,  56 => 11,  49 => 6,  46 => 5,  40 => 3,  11 => 1,);
+        return array (  157 => 49,  154 => 48,  148 => 46,  144 => 34,  138 => 31,  134 => 30,  131 => 29,  124 => 25,  120 => 24,  116 => 22,  114 => 21,  111 => 20,  108 => 19,  101 => 53,  95 => 49,  93 => 48,  88 => 46,  75 => 35,  73 => 19,  66 => 15,  62 => 14,  55 => 10,  49 => 6,  46 => 5,  40 => 3,  11 => 1,);
     }
 }

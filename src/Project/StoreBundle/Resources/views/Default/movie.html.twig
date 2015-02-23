@@ -21,9 +21,9 @@
 				<p>Aktorzy:<br>{{ movie.actors }}</p>
 			</div>
 			<div class="col-md-2">
-				<p>Cena: {{ movie.price }} zł</p><br>
-				<button type="button" class="btn btn-default">Wypożycz</button><br>
-
+				<p>Cena: {{ movie.price }} zł<br></p>
+				<p><a href="{{ path('sylius_cart_item_add', {'productId': movie.id}) }}" " class="btn btn-primary">Wypożycz</a></p>
+				
 				{% if is_granted('ROLE_USER') %}
 					<a href="{{path('project_store_recenzja_add', {'slug': movie.title})}}" class="btn btn-primary">Dodaj recenzję</a>
 				{% endif %}

@@ -40,6 +40,7 @@ class appDevDebugProjectContainer extends Container
         $this->scopeChildren = array('request' => array());
         $this->methodMap = array(
             'annotation_reader' => 'getAnnotationReaderService',
+            'app.cart_item_resolver' => 'getApp_CartItemResolverService',
             'assetic.asset_factory' => 'getAssetic_AssetFactoryService',
             'assetic.asset_manager' => 'getAssetic_AssetManagerService',
             'assetic.cache' => 'getAssetic_CacheService',
@@ -118,6 +119,27 @@ class appDevDebugProjectContainer extends Container
             'form.type_extension.submit.validator' => 'getForm_TypeExtension_Submit_ValidatorService',
             'form.type_guesser.doctrine' => 'getForm_TypeGuesser_DoctrineService',
             'form.type_guesser.validator' => 'getForm_TypeGuesser_ValidatorService',
+            'fos_rest.body_listener' => 'getFosRest_BodyListenerService',
+            'fos_rest.decoder.json' => 'getFosRest_Decoder_JsonService',
+            'fos_rest.decoder.jsontoform' => 'getFosRest_Decoder_JsontoformService',
+            'fos_rest.decoder.xml' => 'getFosRest_Decoder_XmlService',
+            'fos_rest.decoder_provider' => 'getFosRest_DecoderProviderService',
+            'fos_rest.exception_format_negotiator' => 'getFosRest_ExceptionFormatNegotiatorService',
+            'fos_rest.format_negotiator' => 'getFosRest_FormatNegotiatorService',
+            'fos_rest.inflector.doctrine' => 'getFosRest_Inflector_DoctrineService',
+            'fos_rest.normalizer.camel_keys' => 'getFosRest_Normalizer_CamelKeysService',
+            'fos_rest.request.param_fetcher' => 'getFosRest_Request_ParamFetcherService',
+            'fos_rest.request.param_fetcher.reader' => 'getFosRest_Request_ParamFetcher_ReaderService',
+            'fos_rest.routing.loader.controller' => 'getFosRest_Routing_Loader_ControllerService',
+            'fos_rest.routing.loader.processor' => 'getFosRest_Routing_Loader_ProcessorService',
+            'fos_rest.routing.loader.reader.action' => 'getFosRest_Routing_Loader_Reader_ActionService',
+            'fos_rest.routing.loader.reader.controller' => 'getFosRest_Routing_Loader_Reader_ControllerService',
+            'fos_rest.routing.loader.xml_collection' => 'getFosRest_Routing_Loader_XmlCollectionService',
+            'fos_rest.routing.loader.yaml_collection' => 'getFosRest_Routing_Loader_YamlCollectionService',
+            'fos_rest.serializer.exception_wrapper_serialize_handler' => 'getFosRest_Serializer_ExceptionWrapperSerializeHandlerService',
+            'fos_rest.view.exception_wrapper_handler' => 'getFosRest_View_ExceptionWrapperHandlerService',
+            'fos_rest.view_handler' => 'getFosRest_ViewHandlerService',
+            'fos_rest.violation_formatter' => 'getFosRest_ViolationFormatterService',
             'fos_user.change_password.form.factory' => 'getFosUser_ChangePassword_Form_FactoryService',
             'fos_user.change_password.form.type' => 'getFosUser_ChangePassword_Form_TypeService',
             'fos_user.listener.authentication' => 'getFosUser_Listener_AuthenticationService',
@@ -143,6 +165,7 @@ class appDevDebugProjectContainer extends Container
             'fragment.renderer.hinclude' => 'getFragment_Renderer_HincludeService',
             'fragment.renderer.inline' => 'getFragment_Renderer_InlineService',
             'fragment.renderer.ssi' => 'getFragment_Renderer_SsiService',
+            'get_set_method_normalizer' => 'getGetSetMethodNormalizerService',
             'http_kernel' => 'getHttpKernelService',
             'kernel' => 'getKernelService',
             'locale_listener' => 'getLocaleListenerService',
@@ -201,6 +224,7 @@ class appDevDebugProjectContainer extends Container
             'sensio_framework_extra.security.listener' => 'getSensioFrameworkExtra_Security_ListenerService',
             'sensio_framework_extra.view.guesser' => 'getSensioFrameworkExtra_View_GuesserService',
             'sensio_framework_extra.view.listener' => 'getSensioFrameworkExtra_View_ListenerService',
+            'serializer' => 'getSerializerService',
             'service_container' => 'getServiceContainerService',
             'session' => 'getSessionService',
             'session.save_listener' => 'getSession_SaveListenerService',
@@ -217,6 +241,49 @@ class appDevDebugProjectContainer extends Container
             'swiftmailer.mailer.default.transport' => 'getSwiftmailer_Mailer_Default_TransportService',
             'swiftmailer.mailer.default.transport.eventdispatcher' => 'getSwiftmailer_Mailer_Default_Transport_EventdispatcherService',
             'swiftmailer.mailer.default.transport.real' => 'getSwiftmailer_Mailer_Default_Transport_RealService',
+            'sylius.callback.complete_order' => 'getSylius_Callback_CompleteOrderService',
+            'sylius.cart.purger' => 'getSylius_Cart_PurgerService',
+            'sylius.cart_provider.default' => 'getSylius_CartProvider_DefaultService',
+            'sylius.context.cart' => 'getSylius_Context_CartService',
+            'sylius.controller.adjustment' => 'getSylius_Controller_AdjustmentService',
+            'sylius.controller.cart' => 'getSylius_Controller_CartService',
+            'sylius.controller.cart_item' => 'getSylius_Controller_CartItemService',
+            'sylius.controller.comment' => 'getSylius_Controller_CommentService',
+            'sylius.controller.configuration_factory' => 'getSylius_Controller_ConfigurationFactoryService',
+            'sylius.controller.order' => 'getSylius_Controller_OrderService',
+            'sylius.controller.order_item' => 'getSylius_Controller_OrderItemService',
+            'sylius.controller.parameters' => 'getSylius_Controller_ParametersService',
+            'sylius.controller.parameters_parser' => 'getSylius_Controller_ParametersParserService',
+            'sylius.event_subscriber.kernel_controller' => 'getSylius_EventSubscriber_KernelControllerService',
+            'sylius.event_subscriber.load_odm_metadata' => 'getSylius_EventSubscriber_LoadOdmMetadataService',
+            'sylius.event_subscriber.load_orm_metadata' => 'getSylius_EventSubscriber_LoadOrmMetadataService',
+            'sylius.expresssion_language' => 'getSylius_ExpresssionLanguageService',
+            'sylius.form.extension.collection' => 'getSylius_Form_Extension_CollectionService',
+            'sylius.form.type.adjustment' => 'getSylius_Form_Type_AdjustmentService',
+            'sylius.form.type.cart' => 'getSylius_Form_Type_CartService',
+            'sylius.form.type.cart_item' => 'getSylius_Form_Type_CartItemService',
+            'sylius.form.type.comment' => 'getSylius_Form_Type_CommentService',
+            'sylius.form.type.entity_hidden' => 'getSylius_Form_Type_EntityHiddenService',
+            'sylius.form.type.money' => 'getSylius_Form_Type_MoneyService',
+            'sylius.form.type.order' => 'getSylius_Form_Type_OrderService',
+            'sylius.form.type.order_item' => 'getSylius_Form_Type_OrderItemService',
+            'sylius.listener.cart' => 'getSylius_Listener_CartService',
+            'sylius.listener.cart_flash' => 'getSylius_Listener_CartFlashService',
+            'sylius.listener.cart_refresh' => 'getSylius_Listener_CartRefreshService',
+            'sylius.listener.order_update' => 'getSylius_Listener_OrderUpdateService',
+            'sylius.originator' => 'getSylius_OriginatorService',
+            'sylius.repository.adjustment' => 'getSylius_Repository_AdjustmentService',
+            'sylius.repository.comment' => 'getSylius_Repository_CommentService',
+            'sylius.repository.order' => 'getSylius_Repository_OrderService',
+            'sylius.repository.order_identity' => 'getSylius_Repository_OrderIdentityService',
+            'sylius.repository.order_item' => 'getSylius_Repository_OrderItemService',
+            'sylius.routing.loader.api' => 'getSylius_Routing_Loader_ApiService',
+            'sylius.templating.helper.cart' => 'getSylius_Templating_Helper_CartService',
+            'sylius.templating.helper.money' => 'getSylius_Templating_Helper_MoneyService',
+            'sylius.translatable.listener' => 'getSylius_Translatable_ListenerService',
+            'sylius.translatable.listener.locale' => 'getSylius_Translatable_Listener_LocaleService',
+            'sylius.twig.extension.resource' => 'getSylius_Twig_Extension_ResourceService',
+            'sylius_entity_to_identifier' => 'getSyliusEntityToIdentifierService',
             'templating' => 'getTemplatingService',
             'templating.asset.package_factory' => 'getTemplating_Asset_PackageFactoryService',
             'templating.filename_parser' => 'getTemplating_FilenameParserService',
@@ -290,6 +357,11 @@ class appDevDebugProjectContainer extends Container
             'doctrine.orm.default_result_cache' => 'doctrine_cache.providers.doctrine.orm.default_result_cache',
             'doctrine.orm.entity_manager' => 'doctrine.orm.default_entity_manager',
             'event_dispatcher' => 'debug.event_dispatcher',
+            'fos_rest.exception_handler' => 'fos_rest.view.exception_wrapper_handler',
+            'fos_rest.inflector' => 'fos_rest.inflector.doctrine',
+            'fos_rest.router' => 'router',
+            'fos_rest.serializer' => 'serializer',
+            'fos_rest.templating' => 'templating',
             'fos_user.util.username_canonicalizer' => 'fos_user.util.email_canonicalizer',
             'mailer' => 'swiftmailer.mailer.default',
             'sensio.distribution.webconfigurator' => 'sensio_distribution.webconfigurator',
@@ -299,6 +371,17 @@ class appDevDebugProjectContainer extends Container
             'swiftmailer.spool' => 'swiftmailer.mailer.default.spool',
             'swiftmailer.transport' => 'swiftmailer.mailer.default.transport',
             'swiftmailer.transport.real' => 'swiftmailer.mailer.default.transport.real',
+            'sylius.cart_provider' => 'sylius.cart_provider.default',
+            'sylius.cart_resolver' => 'app.cart_item_resolver',
+            'sylius.manager.adjustment' => 'doctrine.orm.default_entity_manager',
+            'sylius.manager.cart' => 'doctrine.orm.default_entity_manager',
+            'sylius.manager.cart_item' => 'doctrine.orm.default_entity_manager',
+            'sylius.manager.comment' => 'doctrine.orm.default_entity_manager',
+            'sylius.manager.order' => 'doctrine.orm.default_entity_manager',
+            'sylius.manager.order_identity' => 'doctrine.orm.default_entity_manager',
+            'sylius.manager.order_item' => 'doctrine.orm.default_entity_manager',
+            'sylius.repository.cart' => 'sylius.repository.order',
+            'sylius.repository.cart_item' => 'sylius.repository.order_item',
         );
     }
 
@@ -321,6 +404,19 @@ class appDevDebugProjectContainer extends Container
     protected function getAnnotationReaderService()
     {
         return $this->services['annotation_reader'] = new \Doctrine\Common\Annotations\FileCacheReader(new \Doctrine\Common\Annotations\AnnotationReader(), (__DIR__.'/annotations'), true);
+    }
+
+    /**
+     * Gets the 'app.cart_item_resolver' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Project\StoreBundle\Cart\ItemResolver A Project\StoreBundle\Cart\ItemResolver instance.
+     */
+    protected function getApp_CartItemResolverService()
+    {
+        return $this->services['app.cart_item_resolver'] = new \Project\StoreBundle\Cart\ItemResolver($this->get('doctrine.orm.default_entity_manager'));
     }
 
     /**
@@ -536,8 +632,16 @@ class appDevDebugProjectContainer extends Container
     {
         $this->services['debug.event_dispatcher'] = $instance = new \Symfony\Component\HttpKernel\Debug\TraceableEventDispatcher(new \Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher($this), $this->get('debug.stopwatch'), $this->get('monolog.logger.event', ContainerInterface::NULL_ON_INVALID_REFERENCE));
 
+        $instance->addListenerService('kernel.request', array(0 => 'sylius.twig.extension.resource', 1 => 'fetchRequest'), 0);
+        $instance->addListenerService('sylius.order.pre_update', array(0 => 'sylius.listener.order_update', 1 => 'recalculateOrderTotal'), 0);
+        $instance->addListenerService('sylius.cart_change', array(0 => 'sylius.listener.cart_refresh', 1 => 'refreshCart'), 255);
         $instance->addListenerService('kernel.controller', array(0 => 'data_collector.router', 1 => 'onKernelController'), 0);
         $instance->addListenerService('kernel.request', array(0 => 'assetic.request_listener', 1 => 'onKernelRequest'), 0);
+        $instance->addListenerService('kernel.request', array(0 => 'fos_rest.body_listener', 1 => 'onKernelRequest'), 10);
+        $instance->addSubscriberService('sylius.translatable.listener.locale', 'Sylius\\Bundle\\TranslationBundle\\EventListener\\LocaleListener');
+        $instance->addSubscriberService('sylius.event_subscriber.kernel_controller', 'Sylius\\Bundle\\ResourceBundle\\EventListener\\KernelControllerSubscriber');
+        $instance->addSubscriberService('sylius.listener.cart', 'Sylius\\Bundle\\CartBundle\\EventListener\\CartListener');
+        $instance->addSubscriberService('sylius.listener.cart_flash', 'Sylius\\Bundle\\CartBundle\\EventListener\\FlashListener');
         $instance->addSubscriberService('response_listener', 'Symfony\\Component\\HttpKernel\\EventListener\\ResponseListener');
         $instance->addSubscriberService('streamed_response_listener', 'Symfony\\Component\\HttpKernel\\EventListener\\StreamedResponseListener');
         $instance->addSubscriberService('locale_listener', 'Symfony\\Component\\HttpKernel\\EventListener\\LocaleListener');
@@ -596,7 +700,7 @@ class appDevDebugProjectContainer extends Container
         $this->services['debug.templating.engine.php'] = $instance = new \Symfony\Bundle\FrameworkBundle\Templating\TimedPhpEngine($this->get('templating.name_parser'), $this, $this->get('templating.loader'), $this->get('debug.stopwatch'), $this->get('templating.globals'));
 
         $instance->setCharset('UTF-8');
-        $instance->setHelpers(array('slots' => 'templating.helper.slots', 'assets' => 'templating.helper.assets', 'request' => 'templating.helper.request', 'session' => 'templating.helper.session', 'router' => 'templating.helper.router', 'actions' => 'templating.helper.actions', 'code' => 'templating.helper.code', 'translator' => 'templating.helper.translator', 'form' => 'templating.helper.form', 'stopwatch' => 'templating.helper.stopwatch', 'logout_url' => 'templating.helper.logout_url', 'security' => 'templating.helper.security', 'assetic' => 'assetic.helper.dynamic'));
+        $instance->setHelpers(array('sylius_money' => 'sylius.templating.helper.money', 'sylius_cart' => 'sylius.templating.helper.cart', 'slots' => 'templating.helper.slots', 'assets' => 'templating.helper.assets', 'request' => 'templating.helper.request', 'session' => 'templating.helper.session', 'router' => 'templating.helper.router', 'actions' => 'templating.helper.actions', 'code' => 'templating.helper.code', 'translator' => 'templating.helper.translator', 'form' => 'templating.helper.form', 'stopwatch' => 'templating.helper.stopwatch', 'logout_url' => 'templating.helper.logout_url', 'security' => 'templating.helper.security', 'assetic' => 'assetic.helper.dynamic'));
 
         return $instance;
     }
@@ -644,10 +748,22 @@ class appDevDebugProjectContainer extends Container
         $b = new \Doctrine\DBAL\Configuration();
         $b->setSQLLogger($a);
 
-        $c = new \Symfony\Bridge\Doctrine\ContainerAwareEventManager($this);
-        $c->addEventSubscriber(new \FOS\UserBundle\Doctrine\Orm\UserListener($this));
+        $c = new \Doctrine\ORM\Tools\ResolveTargetEntityListener();
+        $c->addResolveTargetEntity('Sylius\\Component\\Order\\Model\\AdjustmentInterface', 'Sylius\\Component\\Order\\Model\\Adjustment', array());
+        $c->addResolveTargetEntity('Sylius\\Component\\Order\\Model\\CommentInterface', 'Sylius\\Component\\Order\\Model\\Comment', array());
+        $c->addResolveTargetEntity('Sylius\\Component\\Order\\Model\\OrderInterface', 'Sylius\\Component\\Cart\\Model\\Cart', array());
+        $c->addResolveTargetEntity('Sylius\\Component\\Order\\Model\\OrderItemInterface', 'Project\\StoreBundle\\Entity\\CartItem', array());
+        $c->addResolveTargetEntity('Sylius\\Component\\Order\\Model\\IdentityInterface', 'Sylius\\Component\\Order\\Model\\Identity', array());
+        $c->addResolveTargetEntity('Sylius\\Component\\Cart\\Model\\CartInterface', 'Sylius\\Component\\Cart\\Model\\Cart', array());
+        $c->addResolveTargetEntity('Sylius\\Component\\Cart\\Model\\CartItemInterface', 'Project\\StoreBundle\\Entity\\CartItem', array());
 
-        return $this->services['doctrine.dbal.default_connection'] = $this->get('doctrine.dbal.connection_factory')->createConnection(array('driver' => 'pdo_mysql', 'host' => '10.254.94.2', 'port' => 3306, 'dbname' => 's172926', 'user' => 's172926', 'password' => 'EgZVbt6V', 'charset' => 'UTF8', 'driverOptions' => array()), $b, $c, array());
+        $d = new \Symfony\Bridge\Doctrine\ContainerAwareEventManager($this);
+        $d->addEventSubscriber($this->get('sylius.translatable.listener'));
+        $d->addEventSubscriber($this->get('sylius.event_subscriber.load_orm_metadata'));
+        $d->addEventSubscriber(new \FOS\UserBundle\Doctrine\Orm\UserListener($this));
+        $d->addEventListener(array(0 => 'loadClassMetadata'), $c);
+
+        return $this->services['doctrine.dbal.default_connection'] = $this->get('doctrine.dbal.connection_factory')->createConnection(array('driver' => 'pdo_mysql', 'host' => '10.254.94.2', 'port' => 3306, 'dbname' => 's172926', 'user' => 's172926', 'password' => 'EgZVbt6V', 'charset' => 'UTF8', 'driverOptions' => array()), $b, $d, array());
     }
 
     /**
@@ -678,6 +794,8 @@ class appDevDebugProjectContainer extends Container
 
         $b = new \Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain();
         $b->addDriver($a, 'Project\\StoreBundle\\Entity');
+        $b->addDriver(new \Doctrine\ORM\Mapping\Driver\XmlDriver(new \Doctrine\Common\Persistence\Mapping\Driver\SymfonyFileLocator(array(($this->targetDirs[3].'/vendor/sylius/order-bundle/Resources/config/doctrine/model') => 'Sylius\\Component\\Order\\Model'), '.orm.xml')), 'Sylius\\Component\\Order\\Model');
+        $b->addDriver(new \Doctrine\ORM\Mapping\Driver\XmlDriver(new \Doctrine\Common\Persistence\Mapping\Driver\SymfonyFileLocator(array(($this->targetDirs[3].'/vendor/sylius/cart-bundle/Resources/config/doctrine/model') => 'Sylius\\Component\\Cart\\Model'), '.orm.xml')), 'Sylius\\Component\\Cart\\Model');
         $b->addDriver(new \Doctrine\ORM\Mapping\Driver\XmlDriver(new \Doctrine\Common\Persistence\Mapping\Driver\SymfonyFileLocator(array(($this->targetDirs[3].'/vendor/friendsofsymfony/user-bundle/Resources/config/doctrine/model') => 'FOS\\UserBundle\\Model'), '.orm.xml')), 'FOS\\UserBundle\\Model');
 
         $c = new \Doctrine\ORM\Configuration();
@@ -853,7 +971,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getForm_RegistryService()
     {
-        return $this->services['form.registry'] = new \Symfony\Component\Form\FormRegistry(array(0 => new \Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension($this, array('form' => 'form.type.form', 'birthday' => 'form.type.birthday', 'checkbox' => 'form.type.checkbox', 'choice' => 'form.type.choice', 'collection' => 'form.type.collection', 'country' => 'form.type.country', 'date' => 'form.type.date', 'datetime' => 'form.type.datetime', 'email' => 'form.type.email', 'file' => 'form.type.file', 'hidden' => 'form.type.hidden', 'integer' => 'form.type.integer', 'language' => 'form.type.language', 'locale' => 'form.type.locale', 'money' => 'form.type.money', 'number' => 'form.type.number', 'password' => 'form.type.password', 'percent' => 'form.type.percent', 'radio' => 'form.type.radio', 'repeated' => 'form.type.repeated', 'search' => 'form.type.search', 'textarea' => 'form.type.textarea', 'text' => 'form.type.text', 'time' => 'form.type.time', 'timezone' => 'form.type.timezone', 'url' => 'form.type.url', 'button' => 'form.type.button', 'submit' => 'form.type.submit', 'reset' => 'form.type.reset', 'currency' => 'form.type.currency', 'entity' => 'form.type.entity', 'fos_user_username' => 'fos_user.username_form_type', 'fos_user_profile' => 'fos_user.profile.form.type', 'fos_user_registration' => 'fos_user.registration.form.type', 'fos_user_change_password' => 'fos_user.change_password.form.type', 'fos_user_resetting' => 'fos_user.resetting.form.type'), array('form' => array(0 => 'form.type_extension.form.http_foundation', 1 => 'form.type_extension.form.validator', 2 => 'form.type_extension.csrf', 3 => 'form.type_extension.form.data_collector'), 'repeated' => array(0 => 'form.type_extension.repeated.validator'), 'submit' => array(0 => 'form.type_extension.submit.validator')), array(0 => 'form.type_guesser.validator', 1 => 'form.type_guesser.doctrine'))), $this->get('form.resolved_type_factory'));
+        return $this->services['form.registry'] = new \Symfony\Component\Form\FormRegistry(array(0 => new \Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension($this, array('entity_hidden' => 'sylius.form.type.entity_hidden', 'sylius_money' => 'sylius.form.type.money', 'sylius_adjustment' => 'sylius.form.type.adjustment', 'sylius_comment' => 'sylius.form.type.comment', 'sylius_order' => 'sylius.form.type.order', 'sylius_order_item' => 'sylius.form.type.order_item', 'sylius_cart' => 'sylius.form.type.cart', 'sylius_cart_item' => 'sylius.form.type.cart_item', 'form' => 'form.type.form', 'birthday' => 'form.type.birthday', 'checkbox' => 'form.type.checkbox', 'choice' => 'form.type.choice', 'collection' => 'form.type.collection', 'country' => 'form.type.country', 'date' => 'form.type.date', 'datetime' => 'form.type.datetime', 'email' => 'form.type.email', 'file' => 'form.type.file', 'hidden' => 'form.type.hidden', 'integer' => 'form.type.integer', 'language' => 'form.type.language', 'locale' => 'form.type.locale', 'money' => 'form.type.money', 'number' => 'form.type.number', 'password' => 'form.type.password', 'percent' => 'form.type.percent', 'radio' => 'form.type.radio', 'repeated' => 'form.type.repeated', 'search' => 'form.type.search', 'textarea' => 'form.type.textarea', 'text' => 'form.type.text', 'time' => 'form.type.time', 'timezone' => 'form.type.timezone', 'url' => 'form.type.url', 'button' => 'form.type.button', 'submit' => 'form.type.submit', 'reset' => 'form.type.reset', 'currency' => 'form.type.currency', 'entity' => 'form.type.entity', 'fos_user_username' => 'fos_user.username_form_type', 'fos_user_profile' => 'fos_user.profile.form.type', 'fos_user_registration' => 'fos_user.registration.form.type', 'fos_user_change_password' => 'fos_user.change_password.form.type', 'fos_user_resetting' => 'fos_user.resetting.form.type', 'sylius_entity_to_identifier' => 'sylius_entity_to_identifier'), array('collection' => array(0 => 'sylius.form.extension.collection'), 'form' => array(0 => 'form.type_extension.form.http_foundation', 1 => 'form.type_extension.form.validator', 2 => 'form.type_extension.csrf', 3 => 'form.type_extension.form.data_collector'), 'repeated' => array(0 => 'form.type_extension.repeated.validator'), 'submit' => array(0 => 'form.type_extension.submit.validator')), array(0 => 'form.type_guesser.validator', 1 => 'form.type_guesser.doctrine'))), $this->get('form.resolved_type_factory'));
     }
 
     /**
@@ -1377,6 +1495,300 @@ class appDevDebugProjectContainer extends Container
     }
 
     /**
+     * Gets the 'fos_rest.body_listener' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \FOS\RestBundle\EventListener\BodyListener A FOS\RestBundle\EventListener\BodyListener instance.
+     */
+    protected function getFosRest_BodyListenerService()
+    {
+        $this->services['fos_rest.body_listener'] = $instance = new \FOS\RestBundle\EventListener\BodyListener($this->get('fos_rest.decoder_provider'), false);
+
+        $instance->setDefaultFormat(NULL);
+
+        return $instance;
+    }
+
+    /**
+     * Gets the 'fos_rest.decoder.json' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \FOS\RestBundle\Decoder\JsonDecoder A FOS\RestBundle\Decoder\JsonDecoder instance.
+     */
+    protected function getFosRest_Decoder_JsonService()
+    {
+        return $this->services['fos_rest.decoder.json'] = new \FOS\RestBundle\Decoder\JsonDecoder();
+    }
+
+    /**
+     * Gets the 'fos_rest.decoder.jsontoform' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \FOS\RestBundle\Decoder\JsonToFormDecoder A FOS\RestBundle\Decoder\JsonToFormDecoder instance.
+     */
+    protected function getFosRest_Decoder_JsontoformService()
+    {
+        return $this->services['fos_rest.decoder.jsontoform'] = new \FOS\RestBundle\Decoder\JsonToFormDecoder();
+    }
+
+    /**
+     * Gets the 'fos_rest.decoder.xml' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \FOS\RestBundle\Decoder\XmlDecoder A FOS\RestBundle\Decoder\XmlDecoder instance.
+     */
+    protected function getFosRest_Decoder_XmlService()
+    {
+        return $this->services['fos_rest.decoder.xml'] = new \FOS\RestBundle\Decoder\XmlDecoder();
+    }
+
+    /**
+     * Gets the 'fos_rest.decoder_provider' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \FOS\RestBundle\Decoder\ContainerDecoderProvider A FOS\RestBundle\Decoder\ContainerDecoderProvider instance.
+     */
+    protected function getFosRest_DecoderProviderService()
+    {
+        $this->services['fos_rest.decoder_provider'] = $instance = new \FOS\RestBundle\Decoder\ContainerDecoderProvider(array('json' => 'fos_rest.decoder.json', 'xml' => 'fos_rest.decoder.xml'));
+
+        $instance->setContainer($this);
+
+        return $instance;
+    }
+
+    /**
+     * Gets the 'fos_rest.exception_format_negotiator' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \FOS\RestBundle\Util\FormatNegotiator A FOS\RestBundle\Util\FormatNegotiator instance.
+     */
+    protected function getFosRest_ExceptionFormatNegotiatorService()
+    {
+        return $this->services['fos_rest.exception_format_negotiator'] = new \FOS\RestBundle\Util\FormatNegotiator();
+    }
+
+    /**
+     * Gets the 'fos_rest.format_negotiator' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \FOS\RestBundle\Util\FormatNegotiator A FOS\RestBundle\Util\FormatNegotiator instance.
+     */
+    protected function getFosRest_FormatNegotiatorService()
+    {
+        return $this->services['fos_rest.format_negotiator'] = new \FOS\RestBundle\Util\FormatNegotiator();
+    }
+
+    /**
+     * Gets the 'fos_rest.inflector.doctrine' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \FOS\RestBundle\Util\Inflector\DoctrineInflector A FOS\RestBundle\Util\Inflector\DoctrineInflector instance.
+     */
+    protected function getFosRest_Inflector_DoctrineService()
+    {
+        return $this->services['fos_rest.inflector.doctrine'] = new \FOS\RestBundle\Util\Inflector\DoctrineInflector();
+    }
+
+    /**
+     * Gets the 'fos_rest.normalizer.camel_keys' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \FOS\RestBundle\Normalizer\CamelKeysNormalizer A FOS\RestBundle\Normalizer\CamelKeysNormalizer instance.
+     */
+    protected function getFosRest_Normalizer_CamelKeysService()
+    {
+        return $this->services['fos_rest.normalizer.camel_keys'] = new \FOS\RestBundle\Normalizer\CamelKeysNormalizer();
+    }
+
+    /**
+     * Gets the 'fos_rest.request.param_fetcher' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \FOS\RestBundle\Request\ParamFetcher A FOS\RestBundle\Request\ParamFetcher instance.
+     * 
+     * @throws InactiveScopeException when the 'fos_rest.request.param_fetcher' service is requested while the 'request' scope is not active
+     */
+    protected function getFosRest_Request_ParamFetcherService()
+    {
+        if (!isset($this->scopedServices['request'])) {
+            throw new InactiveScopeException('fos_rest.request.param_fetcher', 'request');
+        }
+
+        return $this->services['fos_rest.request.param_fetcher'] = $this->scopedServices['request']['fos_rest.request.param_fetcher'] = new \FOS\RestBundle\Request\ParamFetcher($this->get('fos_rest.request.param_fetcher.reader'), $this->get('request'), $this->get('fos_rest.violation_formatter'), $this->get('validator', ContainerInterface::NULL_ON_INVALID_REFERENCE));
+    }
+
+    /**
+     * Gets the 'fos_rest.request.param_fetcher.reader' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \FOS\RestBundle\Request\ParamReader A FOS\RestBundle\Request\ParamReader instance.
+     */
+    protected function getFosRest_Request_ParamFetcher_ReaderService()
+    {
+        return $this->services['fos_rest.request.param_fetcher.reader'] = new \FOS\RestBundle\Request\ParamReader($this->get('annotation_reader'));
+    }
+
+    /**
+     * Gets the 'fos_rest.routing.loader.controller' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \FOS\RestBundle\Routing\Loader\RestRouteLoader A FOS\RestBundle\Routing\Loader\RestRouteLoader instance.
+     */
+    protected function getFosRest_Routing_Loader_ControllerService()
+    {
+        return $this->services['fos_rest.routing.loader.controller'] = new \FOS\RestBundle\Routing\Loader\RestRouteLoader($this, $this->get('file_locator'), $this->get('controller_name_converter'), $this->get('fos_rest.routing.loader.reader.controller'), NULL);
+    }
+
+    /**
+     * Gets the 'fos_rest.routing.loader.processor' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \FOS\RestBundle\Routing\Loader\RestRouteProcessor A FOS\RestBundle\Routing\Loader\RestRouteProcessor instance.
+     */
+    protected function getFosRest_Routing_Loader_ProcessorService()
+    {
+        return $this->services['fos_rest.routing.loader.processor'] = new \FOS\RestBundle\Routing\Loader\RestRouteProcessor();
+    }
+
+    /**
+     * Gets the 'fos_rest.routing.loader.reader.action' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \FOS\RestBundle\Routing\Loader\Reader\RestActionReader A FOS\RestBundle\Routing\Loader\Reader\RestActionReader instance.
+     */
+    protected function getFosRest_Routing_Loader_Reader_ActionService()
+    {
+        return $this->services['fos_rest.routing.loader.reader.action'] = new \FOS\RestBundle\Routing\Loader\Reader\RestActionReader($this->get('annotation_reader'), $this->get('fos_rest.request.param_fetcher.reader'), $this->get('fos_rest.inflector.doctrine'), true, array('json' => false, 'xml' => false, 'html' => true));
+    }
+
+    /**
+     * Gets the 'fos_rest.routing.loader.reader.controller' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \FOS\RestBundle\Routing\Loader\Reader\RestControllerReader A FOS\RestBundle\Routing\Loader\Reader\RestControllerReader instance.
+     */
+    protected function getFosRest_Routing_Loader_Reader_ControllerService()
+    {
+        return $this->services['fos_rest.routing.loader.reader.controller'] = new \FOS\RestBundle\Routing\Loader\Reader\RestControllerReader($this->get('fos_rest.routing.loader.reader.action'), $this->get('annotation_reader'));
+    }
+
+    /**
+     * Gets the 'fos_rest.routing.loader.xml_collection' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \FOS\RestBundle\Routing\Loader\RestXmlCollectionLoader A FOS\RestBundle\Routing\Loader\RestXmlCollectionLoader instance.
+     */
+    protected function getFosRest_Routing_Loader_XmlCollectionService()
+    {
+        return $this->services['fos_rest.routing.loader.xml_collection'] = new \FOS\RestBundle\Routing\Loader\RestXmlCollectionLoader($this->get('file_locator'), $this->get('fos_rest.routing.loader.processor'), true, array('json' => false, 'xml' => false, 'html' => true), NULL);
+    }
+
+    /**
+     * Gets the 'fos_rest.routing.loader.yaml_collection' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \FOS\RestBundle\Routing\Loader\RestYamlCollectionLoader A FOS\RestBundle\Routing\Loader\RestYamlCollectionLoader instance.
+     */
+    protected function getFosRest_Routing_Loader_YamlCollectionService()
+    {
+        return $this->services['fos_rest.routing.loader.yaml_collection'] = new \FOS\RestBundle\Routing\Loader\RestYamlCollectionLoader($this->get('file_locator'), $this->get('fos_rest.routing.loader.processor'), true, array('json' => false, 'xml' => false, 'html' => true), NULL);
+    }
+
+    /**
+     * Gets the 'fos_rest.serializer.exception_wrapper_serialize_handler' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \FOS\RestBundle\Serializer\ExceptionWrapperSerializeHandler A FOS\RestBundle\Serializer\ExceptionWrapperSerializeHandler instance.
+     */
+    protected function getFosRest_Serializer_ExceptionWrapperSerializeHandlerService()
+    {
+        return $this->services['fos_rest.serializer.exception_wrapper_serialize_handler'] = new \FOS\RestBundle\Serializer\ExceptionWrapperSerializeHandler();
+    }
+
+    /**
+     * Gets the 'fos_rest.view.exception_wrapper_handler' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \FOS\RestBundle\View\ExceptionWrapperHandler A FOS\RestBundle\View\ExceptionWrapperHandler instance.
+     */
+    protected function getFosRest_View_ExceptionWrapperHandlerService()
+    {
+        return $this->services['fos_rest.view.exception_wrapper_handler'] = new \FOS\RestBundle\View\ExceptionWrapperHandler();
+    }
+
+    /**
+     * Gets the 'fos_rest.view_handler' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \FOS\RestBundle\View\ViewHandler A FOS\RestBundle\View\ViewHandler instance.
+     */
+    protected function getFosRest_ViewHandlerService()
+    {
+        $this->services['fos_rest.view_handler'] = $instance = new \FOS\RestBundle\View\ViewHandler(array('json' => false, 'xml' => false, 'html' => true), 400, 204, false, array('html' => 302), 'twig');
+
+        $instance->setExclusionStrategyGroups('');
+        $instance->setExclusionStrategyVersion('');
+        $instance->setSerializeNullStrategy(false);
+        $instance->setContainer($this);
+
+        return $instance;
+    }
+
+    /**
+     * Gets the 'fos_rest.violation_formatter' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \FOS\RestBundle\Util\ViolationFormatter A FOS\RestBundle\Util\ViolationFormatter instance.
+     */
+    protected function getFosRest_ViolationFormatterService()
+    {
+        return $this->services['fos_rest.violation_formatter'] = new \FOS\RestBundle\Util\ViolationFormatter();
+    }
+
+    /**
      * Gets the 'fos_user.change_password.form.factory' service.
      *
      * This service is shared.
@@ -1724,6 +2136,19 @@ class appDevDebugProjectContainer extends Container
         $instance->setFragmentPath('/_fragment');
 
         return $instance;
+    }
+
+    /**
+     * Gets the 'get_set_method_normalizer' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer A Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer instance.
+     */
+    protected function getGetSetMethodNormalizerService()
+    {
+        return $this->services['get_set_method_normalizer'] = new \Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer();
     }
 
     /**
@@ -2179,6 +2604,7 @@ class appDevDebugProjectContainer extends Container
         $c = new \Sensio\Bundle\FrameworkExtraBundle\Routing\AnnotatedRouteControllerLoader($b);
 
         $d = new \Symfony\Component\Config\Loader\LoaderResolver();
+        $d->addLoader($this->get('sylius.routing.loader.api'));
         $d->addLoader(new \Symfony\Component\Routing\Loader\XmlFileLoader($a));
         $d->addLoader(new \Symfony\Component\Routing\Loader\YamlFileLoader($a));
         $d->addLoader(new \Symfony\Component\Routing\Loader\PhpFileLoader($a));
@@ -2186,6 +2612,9 @@ class appDevDebugProjectContainer extends Container
         $d->addLoader(new \Symfony\Component\Routing\Loader\AnnotationDirectoryLoader($a, $c));
         $d->addLoader(new \Symfony\Component\Routing\Loader\AnnotationFileLoader($a, $c));
         $d->addLoader($c);
+        $d->addLoader($this->get('fos_rest.routing.loader.controller'));
+        $d->addLoader($this->get('fos_rest.routing.loader.yaml_collection'));
+        $d->addLoader($this->get('fos_rest.routing.loader.xml_collection'));
 
         return $this->services['routing.loader'] = new \Symfony\Bundle\FrameworkBundle\Routing\DelegatingLoader($this->get('controller_name_converter'), $this->get('monolog.logger.router', ContainerInterface::NULL_ON_INVALID_REFERENCE), $d);
     }
@@ -2311,7 +2740,7 @@ class appDevDebugProjectContainer extends Container
         $o = new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler($e, $l, array(), $a);
         $o->setOptions(array('login_path' => '/login', 'failure_path' => NULL, 'failure_forward' => false, 'failure_path_parameter' => '_failure_path'));
 
-        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($k, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => $this->get('fos_user.user_manager')), 'main', $a, $c), 2 => $m, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($b, $f, $this->get('security.authentication.session_strategy'), $l, 'main', $n, $o, array('check_path' => '/login_check', 'use_forward' => false, 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'intention' => 'authenticate', 'post_only' => true), $a, $c, NULL), 4 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '54e9068014d09', $a, $f), 5 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, $this->get('security.access.decision_manager'), $k, $f)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $this->get('security.authentication.trust_resolver'), $l, 'main', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($e, $l, '/login', false), NULL, NULL, $a));
+        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($k, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => $this->get('fos_user.user_manager')), 'main', $a, $c), 2 => $m, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($b, $f, $this->get('security.authentication.session_strategy'), $l, 'main', $n, $o, array('check_path' => '/login_check', 'use_forward' => false, 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'intention' => 'authenticate', 'post_only' => true), $a, $c, NULL), 4 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '54ea5069c056e', $a, $f), 5 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, $this->get('security.access.decision_manager'), $k, $f)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $this->get('security.authentication.trust_resolver'), $l, 'main', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($e, $l, '/login', false), NULL, NULL, $a));
     }
 
     /**
@@ -2546,6 +2975,19 @@ class appDevDebugProjectContainer extends Container
     }
 
     /**
+     * Gets the 'serializer' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Symfony\Component\Serializer\Serializer A Symfony\Component\Serializer\Serializer instance.
+     */
+    protected function getSerializerService()
+    {
+        return $this->services['serializer'] = new \Symfony\Component\Serializer\Serializer(array(0 => $this->get('get_set_method_normalizer')), array(0 => new \Symfony\Component\Serializer\Encoder\XmlEncoder(), 1 => new \Symfony\Component\Serializer\Encoder\JsonEncoder()));
+    }
+
+    /**
      * Gets the 'service_container' service.
      *
      * This service is shared.
@@ -2607,7 +3049,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getSession_Storage_NativeService()
     {
-        return $this->services['session.storage.native'] = new \Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage(array('gc_probability' => 1), NULL, $this->get('session.storage.metadata_bag'));
+        return $this->services['session.storage.native'] = new \Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage(array('gc_probability' => 0), NULL, $this->get('session.storage.metadata_bag'));
     }
 
     /**
@@ -2742,6 +3184,597 @@ class appDevDebugProjectContainer extends Container
         $instance->setSourceIp(NULL);
 
         return $instance;
+    }
+
+    /**
+     * Gets the 'sylius.callback.complete_order' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Bundle\OrderBundle\StateMachineCallback\CompleteOrderCallback A Sylius\Bundle\OrderBundle\StateMachineCallback\CompleteOrderCallback instance.
+     */
+    protected function getSylius_Callback_CompleteOrderService()
+    {
+        return $this->services['sylius.callback.complete_order'] = new \Sylius\Bundle\OrderBundle\StateMachineCallback\CompleteOrderCallback();
+    }
+
+    /**
+     * Gets the 'sylius.cart.purger' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Bundle\CartBundle\Purger\ExpiredCartsPurger A Sylius\Bundle\CartBundle\Purger\ExpiredCartsPurger instance.
+     */
+    protected function getSylius_Cart_PurgerService()
+    {
+        return $this->services['sylius.cart.purger'] = new \Sylius\Bundle\CartBundle\Purger\ExpiredCartsPurger($this->get('doctrine.orm.default_entity_manager'), $this->get('sylius.repository.order'));
+    }
+
+    /**
+     * Gets the 'sylius.cart_provider.default' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Bundle\CartBundle\Provider\CartProvider A Sylius\Bundle\CartBundle\Provider\CartProvider instance.
+     */
+    protected function getSylius_CartProvider_DefaultService()
+    {
+        return $this->services['sylius.cart_provider.default'] = new \Sylius\Bundle\CartBundle\Provider\CartProvider($this->get('sylius.context.cart'), $this->get('doctrine.orm.default_entity_manager'), $this->get('sylius.repository.order'), $this->get('debug.event_dispatcher'));
+    }
+
+    /**
+     * Gets the 'sylius.context.cart' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Component\Cart\Context\CartContext A Sylius\Component\Cart\Context\CartContext instance.
+     */
+    protected function getSylius_Context_CartService()
+    {
+        return $this->services['sylius.context.cart'] = new \Sylius\Component\Cart\Context\CartContext(new \Sylius\Component\Storage\SessionStorage($this->get('session')));
+    }
+
+    /**
+     * Gets the 'sylius.controller.adjustment' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Bundle\OrderBundle\Controller\AdjustmentController A Sylius\Bundle\OrderBundle\Controller\AdjustmentController instance.
+     */
+    protected function getSylius_Controller_AdjustmentService()
+    {
+        $this->services['sylius.controller.adjustment'] = $instance = new \Sylius\Bundle\OrderBundle\Controller\AdjustmentController($this->get('sylius.controller.configuration_factory')->createConfiguration('sylius', 'adjustment', NULL));
+
+        $instance->setContainer($this);
+
+        return $instance;
+    }
+
+    /**
+     * Gets the 'sylius.controller.cart' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Bundle\CartBundle\Controller\CartController A Sylius\Bundle\CartBundle\Controller\CartController instance.
+     */
+    protected function getSylius_Controller_CartService()
+    {
+        $this->services['sylius.controller.cart'] = $instance = new \Sylius\Bundle\CartBundle\Controller\CartController($this->get('sylius.controller.configuration_factory')->createConfiguration('sylius', 'cart', 'SyliusCartBundle:Cart'));
+
+        $instance->setContainer($this);
+
+        return $instance;
+    }
+
+    /**
+     * Gets the 'sylius.controller.cart_item' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Bundle\CartBundle\Controller\CartItemController A Sylius\Bundle\CartBundle\Controller\CartItemController instance.
+     */
+    protected function getSylius_Controller_CartItemService()
+    {
+        $this->services['sylius.controller.cart_item'] = $instance = new \Sylius\Bundle\CartBundle\Controller\CartItemController($this->get('sylius.controller.configuration_factory')->createConfiguration('sylius', 'cart_item', 'SyliusCartBundle:CartItem'));
+
+        $instance->setContainer($this);
+
+        return $instance;
+    }
+
+    /**
+     * Gets the 'sylius.controller.comment' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Bundle\OrderBundle\Controller\CommentController A Sylius\Bundle\OrderBundle\Controller\CommentController instance.
+     */
+    protected function getSylius_Controller_CommentService()
+    {
+        $this->services['sylius.controller.comment'] = $instance = new \Sylius\Bundle\OrderBundle\Controller\CommentController($this->get('sylius.controller.configuration_factory')->createConfiguration('sylius', 'comment', NULL));
+
+        $instance->setContainer($this);
+
+        return $instance;
+    }
+
+    /**
+     * Gets the 'sylius.controller.configuration_factory' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Bundle\ResourceBundle\Controller\ConfigurationFactory A Sylius\Bundle\ResourceBundle\Controller\ConfigurationFactory instance.
+     */
+    protected function getSylius_Controller_ConfigurationFactoryService()
+    {
+        return $this->services['sylius.controller.configuration_factory'] = new \Sylius\Bundle\ResourceBundle\Controller\ConfigurationFactory($this->get('sylius.controller.parameters_parser'), array('paginate' => NULL, 'limit' => NULL, 'allowed_paginate' => array(0 => 10, 1 => 20, 2 => 30), 'default_page_size' => 10, 'sortable' => false, 'sorting' => NULL, 'filterable' => false, 'criteria' => NULL));
+    }
+
+    /**
+     * Gets the 'sylius.controller.order' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Bundle\OrderBundle\Controller\OrderController A Sylius\Bundle\OrderBundle\Controller\OrderController instance.
+     */
+    protected function getSylius_Controller_OrderService()
+    {
+        $this->services['sylius.controller.order'] = $instance = new \Sylius\Bundle\OrderBundle\Controller\OrderController($this->get('sylius.controller.configuration_factory')->createConfiguration('sylius', 'order', NULL));
+
+        $instance->setContainer($this);
+
+        return $instance;
+    }
+
+    /**
+     * Gets the 'sylius.controller.order_item' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Bundle\OrderBundle\Controller\OrderItemController A Sylius\Bundle\OrderBundle\Controller\OrderItemController instance.
+     */
+    protected function getSylius_Controller_OrderItemService()
+    {
+        $this->services['sylius.controller.order_item'] = $instance = new \Sylius\Bundle\OrderBundle\Controller\OrderItemController($this->get('sylius.controller.configuration_factory')->createConfiguration('sylius', 'order_item', NULL));
+
+        $instance->setContainer($this);
+
+        return $instance;
+    }
+
+    /**
+     * Gets the 'sylius.controller.parameters' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Bundle\ResourceBundle\Controller\Parameters A Sylius\Bundle\ResourceBundle\Controller\Parameters instance.
+     */
+    protected function getSylius_Controller_ParametersService()
+    {
+        return $this->services['sylius.controller.parameters'] = new \Sylius\Bundle\ResourceBundle\Controller\Parameters();
+    }
+
+    /**
+     * Gets the 'sylius.controller.parameters_parser' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Bundle\ResourceBundle\Controller\ParametersParser A Sylius\Bundle\ResourceBundle\Controller\ParametersParser instance.
+     */
+    protected function getSylius_Controller_ParametersParserService()
+    {
+        return $this->services['sylius.controller.parameters_parser'] = new \Sylius\Bundle\ResourceBundle\Controller\ParametersParser($this->get('sylius.expresssion_language'));
+    }
+
+    /**
+     * Gets the 'sylius.event_subscriber.kernel_controller' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Bundle\ResourceBundle\EventListener\KernelControllerSubscriber A Sylius\Bundle\ResourceBundle\EventListener\KernelControllerSubscriber instance.
+     */
+    protected function getSylius_EventSubscriber_KernelControllerService()
+    {
+        return $this->services['sylius.event_subscriber.kernel_controller'] = new \Sylius\Bundle\ResourceBundle\EventListener\KernelControllerSubscriber($this->get('sylius.controller.parameters_parser'), $this->get('sylius.controller.parameters'), array('paginate' => NULL, 'limit' => NULL, 'allowed_paginate' => array(0 => 10, 1 => 20, 2 => 30), 'default_page_size' => 10, 'sortable' => false, 'sorting' => NULL, 'filterable' => false, 'criteria' => NULL));
+    }
+
+    /**
+     * Gets the 'sylius.event_subscriber.load_odm_metadata' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Bundle\ResourceBundle\EventListener\LoadODMMetadataSubscriber A Sylius\Bundle\ResourceBundle\EventListener\LoadODMMetadataSubscriber instance.
+     */
+    protected function getSylius_EventSubscriber_LoadOdmMetadataService()
+    {
+        return $this->services['sylius.event_subscriber.load_odm_metadata'] = new \Sylius\Bundle\ResourceBundle\EventListener\LoadODMMetadataSubscriber(array('cart' => array('controller' => 'Sylius\\Bundle\\CartBundle\\Controller\\CartController', 'form' => 'Sylius\\Bundle\\CartBundle\\Form\\Type\\CartType'), 'item' => array('controller' => 'Sylius\\Bundle\\CartBundle\\Controller\\CartItemController', 'form' => 'Sylius\\Bundle\\CartBundle\\Form\\Type\\CartItemType'), 'order_item' => array('model' => 'Project\\StoreBundle\\Entity\\CartItem', 'controller' => 'Sylius\\Bundle\\OrderBundle\\Controller\\OrderItemController', 'form' => 'Sylius\\Bundle\\OrderBundle\\Form\\Type\\OrderItemType'), 'order' => array('model' => 'Sylius\\Component\\Cart\\Model\\Cart', 'controller' => 'Sylius\\Bundle\\OrderBundle\\Controller\\OrderController', 'form' => 'Sylius\\Bundle\\OrderBundle\\Form\\Type\\OrderType'), 'order_identity' => array('model' => 'Sylius\\Component\\Order\\Model\\Identity'), 'adjustment' => array('model' => 'Sylius\\Component\\Order\\Model\\Adjustment', 'controller' => 'Sylius\\Bundle\\OrderBundle\\Controller\\AdjustmentController', 'form' => 'Sylius\\Bundle\\OrderBundle\\Form\\Type\\AdjustmentType'), 'comment' => array('model' => 'Sylius\\Component\\Order\\Model\\Comment', 'controller' => 'Sylius\\Bundle\\OrderBundle\\Controller\\CommentController', 'form' => 'Sylius\\Bundle\\OrderBundle\\Form\\Type\\CommentType')));
+    }
+
+    /**
+     * Gets the 'sylius.event_subscriber.load_orm_metadata' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Bundle\ResourceBundle\EventListener\LoadORMMetadataSubscriber A Sylius\Bundle\ResourceBundle\EventListener\LoadORMMetadataSubscriber instance.
+     */
+    protected function getSylius_EventSubscriber_LoadOrmMetadataService()
+    {
+        return $this->services['sylius.event_subscriber.load_orm_metadata'] = new \Sylius\Bundle\ResourceBundle\EventListener\LoadORMMetadataSubscriber(array('cart' => array('controller' => 'Sylius\\Bundle\\CartBundle\\Controller\\CartController', 'form' => 'Sylius\\Bundle\\CartBundle\\Form\\Type\\CartType'), 'item' => array('controller' => 'Sylius\\Bundle\\CartBundle\\Controller\\CartItemController', 'form' => 'Sylius\\Bundle\\CartBundle\\Form\\Type\\CartItemType'), 'order_item' => array('model' => 'Project\\StoreBundle\\Entity\\CartItem', 'controller' => 'Sylius\\Bundle\\OrderBundle\\Controller\\OrderItemController', 'form' => 'Sylius\\Bundle\\OrderBundle\\Form\\Type\\OrderItemType'), 'order' => array('model' => 'Sylius\\Component\\Cart\\Model\\Cart', 'controller' => 'Sylius\\Bundle\\OrderBundle\\Controller\\OrderController', 'form' => 'Sylius\\Bundle\\OrderBundle\\Form\\Type\\OrderType'), 'order_identity' => array('model' => 'Sylius\\Component\\Order\\Model\\Identity'), 'adjustment' => array('model' => 'Sylius\\Component\\Order\\Model\\Adjustment', 'controller' => 'Sylius\\Bundle\\OrderBundle\\Controller\\AdjustmentController', 'form' => 'Sylius\\Bundle\\OrderBundle\\Form\\Type\\AdjustmentType'), 'comment' => array('model' => 'Sylius\\Component\\Order\\Model\\Comment', 'controller' => 'Sylius\\Bundle\\OrderBundle\\Controller\\CommentController', 'form' => 'Sylius\\Bundle\\OrderBundle\\Form\\Type\\CommentType')));
+    }
+
+    /**
+     * Gets the 'sylius.expresssion_language' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Bundle\ResourceBundle\ExpressionLanguage\ExpressionLanguage A Sylius\Bundle\ResourceBundle\ExpressionLanguage\ExpressionLanguage instance.
+     */
+    protected function getSylius_ExpresssionLanguageService()
+    {
+        $this->services['sylius.expresssion_language'] = $instance = new \Sylius\Bundle\ResourceBundle\ExpressionLanguage\ExpressionLanguage();
+
+        $instance->setContainer($this);
+
+        return $instance;
+    }
+
+    /**
+     * Gets the 'sylius.form.extension.collection' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Bundle\ResourceBundle\Form\Extension\CollectionExtension A Sylius\Bundle\ResourceBundle\Form\Extension\CollectionExtension instance.
+     */
+    protected function getSylius_Form_Extension_CollectionService()
+    {
+        return $this->services['sylius.form.extension.collection'] = new \Sylius\Bundle\ResourceBundle\Form\Extension\CollectionExtension();
+    }
+
+    /**
+     * Gets the 'sylius.form.type.adjustment' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Bundle\OrderBundle\Form\Type\AdjustmentType A Sylius\Bundle\OrderBundle\Form\Type\AdjustmentType instance.
+     */
+    protected function getSylius_Form_Type_AdjustmentService()
+    {
+        return $this->services['sylius.form.type.adjustment'] = new \Sylius\Bundle\OrderBundle\Form\Type\AdjustmentType('Sylius\\Component\\Order\\Model\\Adjustment', array(0 => 'sylius'));
+    }
+
+    /**
+     * Gets the 'sylius.form.type.cart' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Bundle\CartBundle\Form\Type\CartType A Sylius\Bundle\CartBundle\Form\Type\CartType instance.
+     */
+    protected function getSylius_Form_Type_CartService()
+    {
+        return $this->services['sylius.form.type.cart'] = new \Sylius\Bundle\CartBundle\Form\Type\CartType('Sylius\\Component\\Cart\\Model\\Cart', array(0 => 'sylius'));
+    }
+
+    /**
+     * Gets the 'sylius.form.type.cart_item' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Bundle\CartBundle\Form\Type\CartItemType A Sylius\Bundle\CartBundle\Form\Type\CartItemType instance.
+     */
+    protected function getSylius_Form_Type_CartItemService()
+    {
+        return $this->services['sylius.form.type.cart_item'] = new \Sylius\Bundle\CartBundle\Form\Type\CartItemType('Project\\StoreBundle\\Entity\\CartItem', array(0 => 'sylius'));
+    }
+
+    /**
+     * Gets the 'sylius.form.type.comment' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Bundle\OrderBundle\Form\Type\CommentType A Sylius\Bundle\OrderBundle\Form\Type\CommentType instance.
+     */
+    protected function getSylius_Form_Type_CommentService()
+    {
+        return $this->services['sylius.form.type.comment'] = new \Sylius\Bundle\OrderBundle\Form\Type\CommentType('Sylius\\Component\\Order\\Model\\Comment', array(0 => 'sylius'));
+    }
+
+    /**
+     * Gets the 'sylius.form.type.entity_hidden' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Bundle\ResourceBundle\Form\Type\EntityHiddenType A Sylius\Bundle\ResourceBundle\Form\Type\EntityHiddenType instance.
+     */
+    protected function getSylius_Form_Type_EntityHiddenService()
+    {
+        return $this->services['sylius.form.type.entity_hidden'] = new \Sylius\Bundle\ResourceBundle\Form\Type\EntityHiddenType($this->get('doctrine'));
+    }
+
+    /**
+     * Gets the 'sylius.form.type.money' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Bundle\MoneyBundle\Form\Type\MoneyType A Sylius\Bundle\MoneyBundle\Form\Type\MoneyType instance.
+     */
+    protected function getSylius_Form_Type_MoneyService()
+    {
+        return $this->services['sylius.form.type.money'] = new \Sylius\Bundle\MoneyBundle\Form\Type\MoneyType('EUR');
+    }
+
+    /**
+     * Gets the 'sylius.form.type.order' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Bundle\OrderBundle\Form\Type\OrderType A Sylius\Bundle\OrderBundle\Form\Type\OrderType instance.
+     */
+    protected function getSylius_Form_Type_OrderService()
+    {
+        return $this->services['sylius.form.type.order'] = new \Sylius\Bundle\OrderBundle\Form\Type\OrderType('Sylius\\Component\\Cart\\Model\\Cart', array(0 => 'sylius'));
+    }
+
+    /**
+     * Gets the 'sylius.form.type.order_item' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Bundle\OrderBundle\Form\Type\OrderItemType A Sylius\Bundle\OrderBundle\Form\Type\OrderItemType instance.
+     */
+    protected function getSylius_Form_Type_OrderItemService()
+    {
+        return $this->services['sylius.form.type.order_item'] = new \Sylius\Bundle\OrderBundle\Form\Type\OrderItemType('Project\\StoreBundle\\Entity\\CartItem', array(0 => 'sylius'));
+    }
+
+    /**
+     * Gets the 'sylius.listener.cart' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Bundle\CartBundle\EventListener\CartListener A Sylius\Bundle\CartBundle\EventListener\CartListener instance.
+     */
+    protected function getSylius_Listener_CartService()
+    {
+        return $this->services['sylius.listener.cart'] = new \Sylius\Bundle\CartBundle\EventListener\CartListener($this->get('doctrine.orm.default_entity_manager'), $this->get('validator'), $this->get('sylius.cart_provider.default'));
+    }
+
+    /**
+     * Gets the 'sylius.listener.cart_flash' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Bundle\CartBundle\EventListener\FlashListener A Sylius\Bundle\CartBundle\EventListener\FlashListener instance.
+     */
+    protected function getSylius_Listener_CartFlashService()
+    {
+        $this->services['sylius.listener.cart_flash'] = $instance = new \Sylius\Bundle\CartBundle\EventListener\FlashListener($this->get('session'), $this->get('translator'));
+
+        $instance->setMessages();
+
+        return $instance;
+    }
+
+    /**
+     * Gets the 'sylius.listener.cart_refresh' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Bundle\CartBundle\EventListener\RefreshCartListener A Sylius\Bundle\CartBundle\EventListener\RefreshCartListener instance.
+     */
+    protected function getSylius_Listener_CartRefreshService()
+    {
+        return $this->services['sylius.listener.cart_refresh'] = new \Sylius\Bundle\CartBundle\EventListener\RefreshCartListener();
+    }
+
+    /**
+     * Gets the 'sylius.listener.order_update' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Bundle\OrderBundle\EventListener\OrderUpdateListener A Sylius\Bundle\OrderBundle\EventListener\OrderUpdateListener instance.
+     */
+    protected function getSylius_Listener_OrderUpdateService()
+    {
+        return $this->services['sylius.listener.order_update'] = new \Sylius\Bundle\OrderBundle\EventListener\OrderUpdateListener();
+    }
+
+    /**
+     * Gets the 'sylius.originator' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Component\Originator\Originator\Originator A Sylius\Component\Originator\Originator\Originator instance.
+     */
+    protected function getSylius_OriginatorService()
+    {
+        return $this->services['sylius.originator'] = new \Sylius\Component\Originator\Originator\Originator($this->get('doctrine'));
+    }
+
+    /**
+     * Gets the 'sylius.repository.adjustment' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository A Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository instance.
+     */
+    protected function getSylius_Repository_AdjustmentService()
+    {
+        return $this->services['sylius.repository.adjustment'] = new \Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository($this->get('doctrine.orm.default_entity_manager'), $this->get('doctrine.orm.default_entity_manager')->getClassMetadata('Sylius\\Component\\Order\\Model\\Adjustment'));
+    }
+
+    /**
+     * Gets the 'sylius.repository.comment' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository A Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository instance.
+     */
+    protected function getSylius_Repository_CommentService()
+    {
+        return $this->services['sylius.repository.comment'] = new \Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository($this->get('doctrine.orm.default_entity_manager'), $this->get('doctrine.orm.default_entity_manager')->getClassMetadata('Sylius\\Component\\Order\\Model\\Comment'));
+    }
+
+    /**
+     * Gets the 'sylius.repository.order' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Bundle\OrderBundle\Doctrine\ORM\OrderRepository A Sylius\Bundle\OrderBundle\Doctrine\ORM\OrderRepository instance.
+     */
+    protected function getSylius_Repository_OrderService()
+    {
+        return $this->services['sylius.repository.order'] = new \Sylius\Bundle\OrderBundle\Doctrine\ORM\OrderRepository($this->get('doctrine.orm.default_entity_manager'), $this->get('doctrine.orm.default_entity_manager')->getClassMetadata('Sylius\\Component\\Cart\\Model\\Cart'));
+    }
+
+    /**
+     * Gets the 'sylius.repository.order_identity' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository A Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository instance.
+     */
+    protected function getSylius_Repository_OrderIdentityService()
+    {
+        return $this->services['sylius.repository.order_identity'] = new \Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository($this->get('doctrine.orm.default_entity_manager'), $this->get('doctrine.orm.default_entity_manager')->getClassMetadata('Sylius\\Component\\Order\\Model\\Identity'));
+    }
+
+    /**
+     * Gets the 'sylius.repository.order_item' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository A Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository instance.
+     */
+    protected function getSylius_Repository_OrderItemService()
+    {
+        return $this->services['sylius.repository.order_item'] = new \Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository($this->get('doctrine.orm.default_entity_manager'), $this->get('doctrine.orm.default_entity_manager')->getClassMetadata('Project\\StoreBundle\\Entity\\CartItem'));
+    }
+
+    /**
+     * Gets the 'sylius.routing.loader.api' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Bundle\ResourceBundle\Routing\ApiLoader A Sylius\Bundle\ResourceBundle\Routing\ApiLoader instance.
+     */
+    protected function getSylius_Routing_Loader_ApiService()
+    {
+        return $this->services['sylius.routing.loader.api'] = new \Sylius\Bundle\ResourceBundle\Routing\ApiLoader();
+    }
+
+    /**
+     * Gets the 'sylius.templating.helper.cart' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Bundle\CartBundle\Templating\Helper\CartHelper A Sylius\Bundle\CartBundle\Templating\Helper\CartHelper instance.
+     */
+    protected function getSylius_Templating_Helper_CartService()
+    {
+        return $this->services['sylius.templating.helper.cart'] = new \Sylius\Bundle\CartBundle\Templating\Helper\CartHelper($this->get('sylius.cart_provider.default'), $this->get('sylius.repository.order_item'), $this->get('form.factory'));
+    }
+
+    /**
+     * Gets the 'sylius.templating.helper.money' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Bundle\MoneyBundle\Templating\Helper\MoneyHelper A Sylius\Bundle\MoneyBundle\Templating\Helper\MoneyHelper instance.
+     */
+    protected function getSylius_Templating_Helper_MoneyService()
+    {
+        return $this->services['sylius.templating.helper.money'] = new \Sylius\Bundle\MoneyBundle\Templating\Helper\MoneyHelper('en', 'EUR');
+    }
+
+    /**
+     * Gets the 'sylius.translatable.listener' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Bundle\TranslationBundle\EventListener\TranslatableListener A Sylius\Bundle\TranslationBundle\EventListener\TranslatableListener instance.
+     */
+    protected function getSylius_Translatable_ListenerService()
+    {
+        return $this->services['sylius.translatable.listener'] = new \Sylius\Bundle\TranslationBundle\EventListener\TranslatableListener(array('translatable' => array('field' => 'translations', 'currentLocale' => 'currentLocale', 'fallbackLocale' => 'fallbackLocale'), 'translation' => array('field' => 'translatable', 'locale' => 'locale')), 'en');
+    }
+
+    /**
+     * Gets the 'sylius.translatable.listener.locale' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Bundle\TranslationBundle\EventListener\LocaleListener A Sylius\Bundle\TranslationBundle\EventListener\LocaleListener instance.
+     */
+    protected function getSylius_Translatable_Listener_LocaleService()
+    {
+        return $this->services['sylius.translatable.listener.locale'] = new \Sylius\Bundle\TranslationBundle\EventListener\LocaleListener($this->get('sylius.translatable.listener'));
+    }
+
+    /**
+     * Gets the 'sylius.twig.extension.resource' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Bundle\ResourceBundle\Twig\ResourceExtension A Sylius\Bundle\ResourceBundle\Twig\ResourceExtension instance.
+     */
+    protected function getSylius_Twig_Extension_ResourceService()
+    {
+        return $this->services['sylius.twig.extension.resource'] = new \Sylius\Bundle\ResourceBundle\Twig\ResourceExtension($this->get('router'), $this->get('sylius.controller.parameters'), 'SyliusResourceBundle:Twig:paginate.html.twig', 'SyliusResourceBundle:Twig:sorting.html.twig');
+    }
+
+    /**
+     * Gets the 'sylius_entity_to_identifier' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \Sylius\Bundle\ResourceBundle\Form\Type\ObjectToIdentifierType A Sylius\Bundle\ResourceBundle\Form\Type\ObjectToIdentifierType instance.
+     */
+    protected function getSyliusEntityToIdentifierService()
+    {
+        return $this->services['sylius_entity_to_identifier'] = new \Sylius\Bundle\ResourceBundle\Form\Type\ObjectToIdentifierType($this->get('doctrine'), 'sylius_entity_to_identifier');
     }
 
     /**
@@ -3493,6 +4526,191 @@ class appDevDebugProjectContainer extends Container
         $instance->addResource('xlf', ($this->targetDirs[3].'/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.fr.xlf'), 'fr', 'security');
         $instance->addResource('xlf', ($this->targetDirs[3].'/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.ar.xlf'), 'ar', 'security');
         $instance->addResource('xlf', ($this->targetDirs[3].'/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.da.xlf'), 'da', 'security');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/flashes.ca.yml'), 'ca', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/flashes.en.yml'), 'en', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/flashes.fi.yml'), 'fi', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/flashes.fr.yml'), 'fr', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/flashes.sr_Cyrl.yml'), 'sr_Cyrl', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/messages.bg.yml'), 'bg', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/messages.he.yml'), 'he', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/messages.pl.yml'), 'pl', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/messages.fi.yml'), 'fi', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/flashes.da.yml'), 'da', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/flashes.sr_Latn.yml'), 'sr_Latn', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/flashes.de.yml'), 'de', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/messages.et.yml'), 'et', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/messages.en.yml'), 'en', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/flashes.el.yml'), 'el', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/flashes.it.yml'), 'it', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/messages.ro.yml'), 'ro', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/messages.da.yml'), 'da', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/flashes.ms.yml'), 'ms', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/flashes.sr.yml'), 'sr', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/messages.vi.yml'), 'vi', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/flashes.id.yml'), 'id', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/messages.sr.yml'), 'sr', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/messages.be.yml'), 'be', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/flashes.vi.yml'), 'vi', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/flashes.et.yml'), 'et', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/messages.it.yml'), 'it', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/messages.th.yml'), 'th', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/flashes.af.yml'), 'af', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/flashes.he.yml'), 'he', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/messages.nl.yml'), 'nl', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/messages.ko.yml'), 'ko', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/messages.pt.yml'), 'pt', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/flashes.ko.yml'), 'ko', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/flashes.sk.yml'), 'sk', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/flashes.th.yml'), 'th', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/messages.no.yml'), 'no', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/flashes.tr.yml'), 'tr', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/flashes.zh.yml'), 'zh', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/messages.es.yml'), 'es', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/messages.sv.yml'), 'sv', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/messages.cs.yml'), 'cs', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/flashes.sv.yml'), 'sv', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/messages.ms.yml'), 'ms', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/flashes.nl.yml'), 'nl', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/flashes.cs.yml'), 'cs', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/flashes.ro.yml'), 'ro', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/messages.de.yml'), 'de', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/messages.uk.yml'), 'uk', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/messages.ja.yml'), 'ja', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/flashes.uk.yml'), 'uk', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/flashes.es.yml'), 'es', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/flashes.pt.yml'), 'pt', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/flashes.be.yml'), 'be', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/messages.sk.yml'), 'sk', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/messages.tr.yml'), 'tr', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/messages.fr.yml'), 'fr', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/flashes.ar.yml'), 'ar', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/flashes.ja.yml'), 'ja', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/messages.zh.yml'), 'zh', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/flashes.pl.yml'), 'pl', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/flashes.bg.yml'), 'bg', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/flashes.hu.yml'), 'hu', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/flashes.hr.yml'), 'hr', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/messages.ar.yml'), 'ar', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/messages.id.yml'), 'id', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/flashes.sl.yml'), 'sl', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/flashes.no.yml'), 'no', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/messages.ru.yml'), 'ru', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/messages.af.yml'), 'af', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/messages.hu.yml'), 'hu', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/messages.sl.yml'), 'sl', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/messages.el.yml'), 'el', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/messages.hr.yml'), 'hr', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/messages.ca.yml'), 'ca', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/translations/flashes.ru.yml'), 'ru', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/validators.el.yml'), 'el', 'validators');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/validators.fi.yml'), 'fi', 'validators');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/validators.af.yml'), 'af', 'validators');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/validators.sk.yml'), 'sk', 'validators');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/messages.bg.yml'), 'bg', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/messages.he.yml'), 'he', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/messages.pl.yml'), 'pl', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/messages.fi.yml'), 'fi', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/messages.et.yml'), 'et', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/validators.th.yml'), 'th', 'validators');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/messages.ro.yml'), 'ro', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/messages.da.yml'), 'da', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/validators.sl.yml'), 'sl', 'validators');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/validators.id.yml'), 'id', 'validators');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/messages.vi.yml'), 'vi', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/validators.sv.yml'), 'sv', 'validators');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/messages.sr.yml'), 'sr', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/validators.ar.yml'), 'ar', 'validators');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/validators.no.yml'), 'no', 'validators');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/validators.ja.yml'), 'ja', 'validators');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/messages.be.yml'), 'be', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/validators.pl.yml'), 'pl', 'validators');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/validators.da.yml'), 'da', 'validators');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/messages.it.yml'), 'it', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/messages.th.yml'), 'th', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/validators.nl.yml'), 'nl', 'validators');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/validators.ca.yml'), 'ca', 'validators');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/messages.nl.yml'), 'nl', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/validators.bg.yml'), 'bg', 'validators');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/messages.ko.yml'), 'ko', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/messages.pt.yml'), 'pt', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/messages.no.yml'), 'no', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/messages.es.yml'), 'es', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/messages.sv.yml'), 'sv', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/validators.sr.yml'), 'sr', 'validators');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/messages.cs.yml'), 'cs', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/messages.ms.yml'), 'ms', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/validators.be.yml'), 'be', 'validators');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/validators.ko.yml'), 'ko', 'validators');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/messages.de.yml'), 'de', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/validators.tr.yml'), 'tr', 'validators');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/validators.fr.yml'), 'fr', 'validators');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/validators.he.yml'), 'he', 'validators');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/messages.uk.yml'), 'uk', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/validators.ru.yml'), 'ru', 'validators');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/messages.ja.yml'), 'ja', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/validators.hu.yml'), 'hu', 'validators');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/validators.cs.yml'), 'cs', 'validators');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/messages.sk.yml'), 'sk', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/validators.uk.yml'), 'uk', 'validators');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/messages.tr.yml'), 'tr', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/messages.fr.yml'), 'fr', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/validators.de.yml'), 'de', 'validators');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/validators.hr.yml'), 'hr', 'validators');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/validators.zh.yml'), 'zh', 'validators');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/messages.zh.yml'), 'zh', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/validators.es.yml'), 'es', 'validators');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/validators.pt.yml'), 'pt', 'validators');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/validators.ro.yml'), 'ro', 'validators');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/messages.ar.yml'), 'ar', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/messages.id.yml'), 'id', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/messages.ru.yml'), 'ru', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/messages.af.yml'), 'af', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/messages.hu.yml'), 'hu', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/messages.sl.yml'), 'sl', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/messages.el.yml'), 'el', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/messages.hr.yml'), 'hr', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/validators.it.yml'), 'it', 'validators');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/validators.ms.yml'), 'ms', 'validators');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/messages.ca.yml'), 'ca', 'messages');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/validators.vi.yml'), 'vi', 'validators');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/money-bundle/Resources/translations/validators.et.yml'), 'et', 'validators');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/cart-bundle/Resources/translations/flashes.ca.yml'), 'ca', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/cart-bundle/Resources/translations/flashes.en.yml'), 'en', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/cart-bundle/Resources/translations/flashes.fi.yml'), 'fi', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/cart-bundle/Resources/translations/flashes.fr.yml'), 'fr', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/cart-bundle/Resources/translations/flashes.da.yml'), 'da', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/cart-bundle/Resources/translations/flashes.de.yml'), 'de', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/cart-bundle/Resources/translations/flashes.el.yml'), 'el', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/cart-bundle/Resources/translations/flashes.it.yml'), 'it', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/cart-bundle/Resources/translations/flashes.ms.yml'), 'ms', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/cart-bundle/Resources/translations/flashes.sr.yml'), 'sr', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/cart-bundle/Resources/translations/flashes.id.yml'), 'id', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/cart-bundle/Resources/translations/flashes.vi.yml'), 'vi', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/cart-bundle/Resources/translations/flashes.et.yml'), 'et', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/cart-bundle/Resources/translations/flashes.af.yml'), 'af', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/cart-bundle/Resources/translations/flashes.he.yml'), 'he', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/cart-bundle/Resources/translations/flashes.ko.yml'), 'ko', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/cart-bundle/Resources/translations/flashes.sk.yml'), 'sk', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/cart-bundle/Resources/translations/flashes.th.yml'), 'th', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/cart-bundle/Resources/translations/flashes.tr.yml'), 'tr', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/cart-bundle/Resources/translations/flashes.zh.yml'), 'zh', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/cart-bundle/Resources/translations/flashes.sv.yml'), 'sv', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/cart-bundle/Resources/translations/flashes.nl.yml'), 'nl', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/cart-bundle/Resources/translations/flashes.cs.yml'), 'cs', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/cart-bundle/Resources/translations/flashes.ro.yml'), 'ro', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/cart-bundle/Resources/translations/flashes.uk.yml'), 'uk', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/cart-bundle/Resources/translations/flashes.es.yml'), 'es', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/cart-bundle/Resources/translations/flashes.pt.yml'), 'pt', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/cart-bundle/Resources/translations/flashes.be.yml'), 'be', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/cart-bundle/Resources/translations/flashes.ar.yml'), 'ar', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/cart-bundle/Resources/translations/flashes.ja.yml'), 'ja', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/cart-bundle/Resources/translations/flashes.pl.yml'), 'pl', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/cart-bundle/Resources/translations/flashes.bg.yml'), 'bg', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/cart-bundle/Resources/translations/flashes.hu.yml'), 'hu', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/cart-bundle/Resources/translations/flashes.hr.yml'), 'hr', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/cart-bundle/Resources/translations/flashes.sl.yml'), 'sl', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/cart-bundle/Resources/translations/flashes.no.yml'), 'no', 'flashes');
+        $instance->addResource('yml', ($this->targetDirs[3].'/vendor/sylius/cart-bundle/Resources/translations/flashes.ru.yml'), 'ru', 'flashes');
         $instance->addResource('xlf', ($this->targetDirs[3].'/src/Project/StoreBundle/Resources/translations/messages.fr.xlf'), 'fr', 'messages');
         $instance->addResource('yml', ($this->targetDirs[3].'/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.ca.yml'), 'ca', 'FOSUserBundle');
         $instance->addResource('yml', ($this->targetDirs[3].'/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.el.yml'), 'el', 'validators');
@@ -3599,6 +4817,9 @@ class appDevDebugProjectContainer extends Container
     {
         $this->services['twig'] = $instance = new \Twig_Environment($this->get('twig.loader'), array('debug' => true, 'strict_variables' => true, 'exception_controller' => 'twig.controller.exception:showAction', 'form_themes' => array(0 => 'form_div_layout.html.twig'), 'autoescape' => array(0 => 'Symfony\\Bundle\\TwigBundle\\TwigDefaultEscapingStrategy', 1 => 'guess'), 'cache' => (__DIR__.'/twig'), 'charset' => 'UTF-8', 'paths' => array()));
 
+        $instance->addExtension($this->get('sylius.twig.extension.resource'));
+        $instance->addExtension(new \Sylius\Bundle\MoneyBundle\Twig\MoneyExtension($this->get('sylius.templating.helper.money')));
+        $instance->addExtension(new \Sylius\Bundle\CartBundle\Twig\CartExtension($this->get('sylius.templating.helper.cart')));
         $instance->addExtension(new \Symfony\Bundle\SecurityBundle\Twig\Extension\LogoutUrlExtension($this->get('templating.helper.logout_url')));
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\SecurityExtension($this->get('security.context', ContainerInterface::NULL_ON_INVALID_REFERENCE)));
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\TranslationExtension($this->get('translator')));
@@ -3672,6 +4893,8 @@ class appDevDebugProjectContainer extends Container
     {
         $this->services['twig.loader'] = $instance = new \Symfony\Bundle\TwigBundle\Loader\FilesystemLoader($this->get('templating.locator'), $this->get('templating.name_parser'));
 
+        $instance->addPath(($this->targetDirs[3].'/vendor/sylius/resource-bundle/Resources/views'), 'SyliusResource');
+        $instance->addPath(($this->targetDirs[3].'/vendor/sylius/cart-bundle/Resources/views'), 'SyliusCart');
         $instance->addPath(($this->targetDirs[3].'/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/views'), 'Framework');
         $instance->addPath(($this->targetDirs[3].'/vendor/symfony/symfony/src/Symfony/Bundle/SecurityBundle/Resources/views'), 'Security');
         $instance->addPath(($this->targetDirs[3].'/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/views'), 'Twig');
@@ -3742,7 +4965,7 @@ class appDevDebugProjectContainer extends Container
         $instance->setConstraintValidatorFactory(new \Symfony\Bundle\FrameworkBundle\Validator\ConstraintValidatorFactory($this, array('validator.expression' => 'validator.expression', 'Symfony\\Component\\Validator\\Constraints\\EmailValidator' => 'validator.email', 'security.validator.user_password' => 'security.validator.user_password', 'doctrine.orm.validator.unique' => 'doctrine.orm.validator.unique')));
         $instance->setTranslator($this->get('translator'));
         $instance->setTranslationDomain('validators');
-        $instance->addXmlMappings(array(0 => ($this->targetDirs[3].'/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/config/validation.xml'), 1 => ($this->targetDirs[3].'/vendor/friendsofsymfony/user-bundle/Resources/config/validation.xml')));
+        $instance->addXmlMappings(array(0 => ($this->targetDirs[3].'/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/config/validation.xml'), 1 => ($this->targetDirs[3].'/vendor/sylius/order-bundle/Resources/config/validation.xml'), 2 => ($this->targetDirs[3].'/vendor/sylius/cart-bundle/Resources/config/validation.xml'), 3 => ($this->targetDirs[3].'/vendor/friendsofsymfony/user-bundle/Resources/config/validation.xml')));
         $instance->enableAnnotationMapping($this->get('annotation_reader'));
         $instance->addMethodMapping('loadValidatorMetadata');
         $instance->setApiVersion(3);
@@ -3971,7 +5194,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getSecurity_Authentication_ManagerService()
     {
-        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($this->get('fos_user.user_manager'), $this->get('security.user_checker'), 'main', $this->get('security.encoder_factory'), true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('54e9068014d09')), true);
+        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($this->get('fos_user.user_manager'), $this->get('security.user_checker'), 'main', $this->get('security.encoder_factory'), true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('54ea5069c056e')), true);
 
         $instance->setEventDispatcher($this->get('debug.event_dispatcher'));
 
@@ -4156,6 +5379,11 @@ class appDevDebugProjectContainer extends Container
             'kernel.cache_dir' => __DIR__,
             'kernel.logs_dir' => ($this->targetDirs[2].'/logs'),
             'kernel.bundles' => array(
+                'SyliusTranslationBundle' => 'Sylius\\Bundle\\TranslationBundle\\SyliusTranslationBundle',
+                'SyliusResourceBundle' => 'Sylius\\Bundle\\ResourceBundle\\SyliusResourceBundle',
+                'SyliusMoneyBundle' => 'Sylius\\Bundle\\MoneyBundle\\SyliusMoneyBundle',
+                'SyliusOrderBundle' => 'Sylius\\Bundle\\OrderBundle\\SyliusOrderBundle',
+                'SyliusCartBundle' => 'Sylius\\Bundle\\CartBundle\\SyliusCartBundle',
                 'FrameworkBundle' => 'Symfony\\Bundle\\FrameworkBundle\\FrameworkBundle',
                 'SecurityBundle' => 'Symfony\\Bundle\\SecurityBundle\\SecurityBundle',
                 'TwigBundle' => 'Symfony\\Bundle\\TwigBundle\\TwigBundle',
@@ -4166,6 +5394,7 @@ class appDevDebugProjectContainer extends Container
                 'SensioFrameworkExtraBundle' => 'Sensio\\Bundle\\FrameworkExtraBundle\\SensioFrameworkExtraBundle',
                 'ProjectStoreBundle' => 'Project\\StoreBundle\\ProjectStoreBundle',
                 'FOSUserBundle' => 'FOS\\UserBundle\\FOSUserBundle',
+                'FOSRestBundle' => 'FOS\\RestBundle\\FOSRestBundle',
                 'DebugBundle' => 'Symfony\\Bundle\\DebugBundle\\DebugBundle',
                 'WebProfilerBundle' => 'Symfony\\Bundle\\WebProfilerBundle\\WebProfilerBundle',
                 'SensioDistributionBundle' => 'Sensio\\Bundle\\DistributionBundle\\SensioDistributionBundle',
@@ -4185,6 +5414,157 @@ class appDevDebugProjectContainer extends Container
             'mailer_password' => NULL,
             'locale' => 'en',
             'secret' => 'ThisTokenIsNotSoSecretChangeIt',
+            'sylius.translation.mapping' => array(
+                'translatable' => array(
+                    'field' => 'translations',
+                    'currentLocale' => 'currentLocale',
+                    'fallbackLocale' => 'fallbackLocale',
+                ),
+                'translation' => array(
+                    'field' => 'translatable',
+                    'locale' => 'locale',
+                ),
+            ),
+            'sylius.locale' => 'en',
+            'sylius.translation.default.mapping' => array(
+                'translatable' => array(
+                    'field' => 'translations',
+                    'currentLocale' => 'currentLocale',
+                    'fallbackLocale' => 'fallbackLocale',
+                ),
+                'translation' => array(
+                    'field' => 'translatable',
+                    'locale' => 'locale',
+                ),
+            ),
+            'sylius.translatable.listener.class' => 'Sylius\\Bundle\\TranslationBundle\\EventListener\\TranslatableListener',
+            'sylius.translatable.listener.locale.class' => 'Sylius\\Bundle\\TranslationBundle\\EventListener\\LocaleListener',
+            'sylius.config.classes' => array(
+                'cart' => array(
+                    'controller' => 'Sylius\\Bundle\\CartBundle\\Controller\\CartController',
+                    'form' => 'Sylius\\Bundle\\CartBundle\\Form\\Type\\CartType',
+                ),
+                'item' => array(
+                    'controller' => 'Sylius\\Bundle\\CartBundle\\Controller\\CartItemController',
+                    'form' => 'Sylius\\Bundle\\CartBundle\\Form\\Type\\CartItemType',
+                ),
+                'order_item' => array(
+                    'model' => 'Project\\StoreBundle\\Entity\\CartItem',
+                    'controller' => 'Sylius\\Bundle\\OrderBundle\\Controller\\OrderItemController',
+                    'form' => 'Sylius\\Bundle\\OrderBundle\\Form\\Type\\OrderItemType',
+                ),
+                'order' => array(
+                    'model' => 'Sylius\\Component\\Cart\\Model\\Cart',
+                    'controller' => 'Sylius\\Bundle\\OrderBundle\\Controller\\OrderController',
+                    'form' => 'Sylius\\Bundle\\OrderBundle\\Form\\Type\\OrderType',
+                ),
+                'order_identity' => array(
+                    'model' => 'Sylius\\Component\\Order\\Model\\Identity',
+                ),
+                'adjustment' => array(
+                    'model' => 'Sylius\\Component\\Order\\Model\\Adjustment',
+                    'controller' => 'Sylius\\Bundle\\OrderBundle\\Controller\\AdjustmentController',
+                    'form' => 'Sylius\\Bundle\\OrderBundle\\Form\\Type\\AdjustmentType',
+                ),
+                'comment' => array(
+                    'model' => 'Sylius\\Component\\Order\\Model\\Comment',
+                    'controller' => 'Sylius\\Bundle\\OrderBundle\\Controller\\CommentController',
+                    'form' => 'Sylius\\Bundle\\OrderBundle\\Form\\Type\\CommentType',
+                ),
+            ),
+            'sylius.controller.configuration_factory.class' => 'Sylius\\Bundle\\ResourceBundle\\Controller\\ConfigurationFactory',
+            'sylius.controller.parameters_parser.class' => 'Sylius\\Bundle\\ResourceBundle\\Controller\\ParametersParser',
+            'sylius.controller.parameters.class' => 'Sylius\\Bundle\\ResourceBundle\\Controller\\Parameters',
+            'sylius.expression_language.class' => 'Sylius\\Bundle\\ResourceBundle\\ExpressionLanguage\\ExpressionLanguage',
+            'sylius.form.extension.collection.class' => 'Sylius\\Bundle\\ResourceBundle\\Form\\Extension\\CollectionExtension',
+            'sylius.form.type.entity_hidden.class' => 'Sylius\\Bundle\\ResourceBundle\\Form\\Type\\EntityHiddenType',
+            'sylius.form.type.object_to_identifier.class' => 'Sylius\\Bundle\\ResourceBundle\\Form\\Type\\ObjectToIdentifierType',
+            'sylius.form.type.resource_choice.class' => 'Sylius\\Bundle\\ResourceBundle\\Form\\Type\\ResourceChoiceType',
+            'sylius.event_subscriber.load_orm_metadata.class' => 'Sylius\\Bundle\\ResourceBundle\\EventListener\\LoadORMMetadataSubscriber',
+            'sylius.event_subscriber.load_odm_metadata.class' => 'Sylius\\Bundle\\ResourceBundle\\EventListener\\LoadODMMetadataSubscriber',
+            'sylius.event_subscriber.kernel_controller.class' => 'Sylius\\Bundle\\ResourceBundle\\EventListener\\KernelControllerSubscriber',
+            'sylius.event_subscriber.kernel_request.class' => 'Sylius\\Bundle\\ResourceBundle\\EventListener\\KernelRequestSubscriber',
+            'sylius.state_machine.class' => 'Sylius\\Component\\Resource\\StateMachine\\StateMachine',
+            'symfony.expression.language.class' => 'Sylius\\Bundle\\ResourceBundle\\ExpressionLanguage\\ExpressionLanguage',
+            'sylius.storage.cookie.class' => 'Sylius\\Component\\Storage\\CookieStorage',
+            'sylius.storage.doctrine_cache.class' => 'Sylius\\Component\\Storage\\DoctrineCacheStorage',
+            'sylius.storage.session.class' => 'Sylius\\Component\\Storage\\SessionStorage',
+            'sylius.routing.loader.api.class' => 'Sylius\\Bundle\\ResourceBundle\\Routing\\ApiLoader',
+            'sylius.twig.extension.resource.class' => 'Sylius\\Bundle\\ResourceBundle\\Twig\\ResourceExtension',
+            'sylius.twig.extension.resource.pagination_template' => 'SyliusResourceBundle:Twig:paginate.html.twig',
+            'sylius.twig.extension.resource.sorting_template' => 'SyliusResourceBundle:Twig:sorting.html.twig',
+            'sylius.resource.settings' => array(
+                'paginate' => NULL,
+                'limit' => NULL,
+                'allowed_paginate' => array(
+                    0 => 10,
+                    1 => 20,
+                    2 => 30,
+                ),
+                'default_page_size' => 10,
+                'sortable' => false,
+                'sorting' => NULL,
+                'filterable' => false,
+                'criteria' => NULL,
+            ),
+            'sylius.money.locale' => 'en',
+            'sylius.money.currency' => 'EUR',
+            'sylius.form.type.money.class' => 'Sylius\\Bundle\\MoneyBundle\\Form\\Type\\MoneyType',
+            'sylius.templating.helper.money.class' => 'Sylius\\Bundle\\MoneyBundle\\Templating\\Helper\\MoneyHelper',
+            'sylius.twig.extension.money.class' => 'Sylius\\Bundle\\MoneyBundle\\Twig\\MoneyExtension',
+            'sylius.listener.order_update.class' => 'Sylius\\Bundle\\OrderBundle\\EventListener\\OrderUpdateListener',
+            'sylius.callback.complete_order.class' => 'Sylius\\Bundle\\OrderBundle\\StateMachineCallback\\CompleteOrderCallback',
+            'sylius.originator.class' => 'Sylius\\Component\\Originator\\Originator\\Originator',
+            'sylius.repository.order.class' => 'Sylius\\Bundle\\OrderBundle\\Doctrine\\ORM\\OrderRepository',
+            'sylius_order.driver' => 'doctrine/orm',
+            'sylius_order.driver.doctrine/orm' => true,
+            'sylius_order.object_manager' => 'default',
+            'sylius.model.order_item.class' => 'Project\\StoreBundle\\Entity\\CartItem',
+            'sylius.controller.order_item.class' => 'Sylius\\Bundle\\OrderBundle\\Controller\\OrderItemController',
+            'sylius.form.type.order_item.class' => 'Sylius\\Bundle\\OrderBundle\\Form\\Type\\OrderItemType',
+            'sylius.model.order.class' => 'Sylius\\Component\\Cart\\Model\\Cart',
+            'sylius.controller.order.class' => 'Sylius\\Bundle\\OrderBundle\\Controller\\OrderController',
+            'sylius.form.type.order.class' => 'Sylius\\Bundle\\OrderBundle\\Form\\Type\\OrderType',
+            'sylius.model.order_identity.class' => 'Sylius\\Component\\Order\\Model\\Identity',
+            'sylius.model.adjustment.class' => 'Sylius\\Component\\Order\\Model\\Adjustment',
+            'sylius.controller.adjustment.class' => 'Sylius\\Bundle\\OrderBundle\\Controller\\AdjustmentController',
+            'sylius.form.type.adjustment.class' => 'Sylius\\Bundle\\OrderBundle\\Form\\Type\\AdjustmentType',
+            'sylius.model.comment.class' => 'Sylius\\Component\\Order\\Model\\Comment',
+            'sylius.controller.comment.class' => 'Sylius\\Bundle\\OrderBundle\\Controller\\CommentController',
+            'sylius.form.type.comment.class' => 'Sylius\\Bundle\\OrderBundle\\Form\\Type\\CommentType',
+            'sylius.validation_group.order' => array(
+                0 => 'sylius',
+            ),
+            'sylius.validation_group.order_item' => array(
+                0 => 'sylius',
+            ),
+            'sylius.validation_group.adjustment' => array(
+                0 => 'sylius',
+            ),
+            'sylius.validation_group.comment' => array(
+                0 => 'sylius',
+            ),
+            'sylius.order.allow_guest_order' => false,
+            'sylius.context.cart.class' => 'Sylius\\Component\\Cart\\Context\\CartContext',
+            'sylius.model.cart.class' => 'Sylius\\Component\\Cart\\Model\\Cart',
+            'sylius.model.cart_item.class' => 'Project\\StoreBundle\\Entity\\CartItem',
+            'sylius.cart_provider.default.class' => 'Sylius\\Bundle\\CartBundle\\Provider\\CartProvider',
+            'sylius.listener.cart.class' => 'Sylius\\Bundle\\CartBundle\\EventListener\\CartListener',
+            'sylius.listener.cart_flash.class' => 'Sylius\\Bundle\\CartBundle\\EventListener\\FlashListener',
+            'sylius.listener.cart_refresh.class' => 'Sylius\\Bundle\\CartBundle\\EventListener\\RefreshCartListener',
+            'sylius.cart.purger.class' => 'Sylius\\Bundle\\CartBundle\\Purger\\ExpiredCartsPurger',
+            'sylius.templating.helper.cart.class' => 'Sylius\\Bundle\\CartBundle\\Templating\\Helper\\CartHelper',
+            'sylius.twig.extension.cart.class' => 'Sylius\\Bundle\\CartBundle\\Twig\\CartExtension',
+            'sylius.controller.cart.class' => 'Sylius\\Bundle\\CartBundle\\Controller\\CartController',
+            'sylius.form.type.cart.class' => 'Sylius\\Bundle\\CartBundle\\Form\\Type\\CartType',
+            'sylius.controller.cart_item.class' => 'Sylius\\Bundle\\CartBundle\\Controller\\CartItemController',
+            'sylius.form.type.cart_item.class' => 'Sylius\\Bundle\\CartBundle\\Form\\Type\\CartItemType',
+            'sylius.validation_group.cart' => array(
+                0 => 'sylius',
+            ),
+            'sylius.validation_group.cart_item' => array(
+                0 => 'sylius',
+            ),
             'controller_resolver.class' => 'Symfony\\Bundle\\FrameworkBundle\\Controller\\ControllerResolver',
             'controller_name_converter.class' => 'Symfony\\Bundle\\FrameworkBundle\\Controller\\ControllerNameParser',
             'response_listener.class' => 'Symfony\\Component\\HttpKernel\\EventListener\\ResponseListener',
@@ -4254,7 +5634,7 @@ class appDevDebugProjectContainer extends Container
             'session.handler.write_check.class' => 'Symfony\\Component\\HttpFoundation\\Session\\Storage\\Handler\\WriteCheckSessionHandler',
             'session_listener.class' => 'Symfony\\Bundle\\FrameworkBundle\\EventListener\\SessionListener',
             'session.storage.options' => array(
-                'gc_probability' => 1,
+                'gc_probability' => 0,
             ),
             'session.save_path' => NULL,
             'session.metadata.update_threshold' => '0',
@@ -4364,6 +5744,9 @@ class appDevDebugProjectContainer extends Container
             'annotations.reader.class' => 'Doctrine\\Common\\Annotations\\AnnotationReader',
             'annotations.cached_reader.class' => 'Doctrine\\Common\\Annotations\\CachedReader',
             'annotations.file_cache_reader.class' => 'Doctrine\\Common\\Annotations\\FileCacheReader',
+            'serializer.class' => 'Symfony\\Component\\Serializer\\Serializer',
+            'serializer.encoder.xml.class' => 'Symfony\\Component\\Serializer\\Encoder\\XmlEncoder',
+            'serializer.encoder.json.class' => 'Symfony\\Component\\Serializer\\Encoder\\JsonEncoder',
             'debug.debug_handlers_listener.class' => 'Symfony\\Component\\HttpKernel\\EventListener\\DebugHandlersListener',
             'debug.stopwatch.class' => 'Symfony\\Component\\Stopwatch\\Stopwatch',
             'debug.error_handler.throw_at' => -1,
@@ -4785,6 +6168,63 @@ class appDevDebugProjectContainer extends Container
                 0 => 'ResetPassword',
                 1 => 'Default',
             ),
+            'fos_rest.serializer.exclusion_strategy.version' => '',
+            'fos_rest.serializer.exclusion_strategy.groups' => '',
+            'fos_rest.view_handler.jsonp.callback_param' => '',
+            'fos_rest.view.exception_wrapper_handler' => 'FOS\\RestBundle\\View\\ExceptionWrapperHandler',
+            'fos_rest.view_handler.default.class' => 'FOS\\RestBundle\\View\\ViewHandler',
+            'fos_rest.view_handler.jsonp.class' => 'FOS\\RestBundle\\View\\JsonpHandler',
+            'fos_rest.serializer.exception_wrapper_serialize_handler.class' => 'FOS\\RestBundle\\Serializer\\ExceptionWrapperSerializeHandler',
+            'fos_rest.routing.loader.controller.class' => 'FOS\\RestBundle\\Routing\\Loader\\RestRouteLoader',
+            'fos_rest.routing.loader.yaml_collection.class' => 'FOS\\RestBundle\\Routing\\Loader\\RestYamlCollectionLoader',
+            'fos_rest.routing.loader.xml_collection.class' => 'FOS\\RestBundle\\Routing\\Loader\\RestXmlCollectionLoader',
+            'fos_rest.routing.loader.processor.class' => 'FOS\\RestBundle\\Routing\\Loader\\RestRouteProcessor',
+            'fos_rest.routing.loader.reader.controller.class' => 'FOS\\RestBundle\\Routing\\Loader\\Reader\\RestControllerReader',
+            'fos_rest.routing.loader.reader.action.class' => 'FOS\\RestBundle\\Routing\\Loader\\Reader\\RestActionReader',
+            'fos_rest.format_negotiator.class' => 'FOS\\RestBundle\\Util\\FormatNegotiator',
+            'fos_rest.inflector.class' => 'FOS\\RestBundle\\Util\\Inflector\\DoctrineInflector',
+            'fos_rest.request_matcher.class' => 'Symfony\\Component\\HttpFoundation\\RequestMatcher',
+            'fos_rest.violation_formatter.class' => 'FOS\\RestBundle\\Util\\ViolationFormatter',
+            'fos_rest.request.param_fetcher.class' => 'FOS\\RestBundle\\Request\\ParamFetcher',
+            'fos_rest.request.param_fetcher.reader.class' => 'FOS\\RestBundle\\Request\\ParamReader',
+            'fos_rest.cache_dir' => (__DIR__.'/fos_rest'),
+            'fos_rest.serializer.serialize_null' => false,
+            'fos_rest.formats' => array(
+                'json' => false,
+                'xml' => false,
+                'html' => true,
+            ),
+            'fos_rest.default_engine' => 'twig',
+            'fos_rest.force_redirects' => array(
+                'html' => 302,
+            ),
+            'fos_rest.failed_validation' => 400,
+            'fos_rest.empty_content' => 204,
+            'fos_rest.serialize_null' => false,
+            'fos_rest.routing.loader.default_format' => NULL,
+            'fos_rest.routing.loader.include_format' => true,
+            'fos_rest.exception.codes' => array(
+
+            ),
+            'fos_rest.exception.messages' => array(
+
+            ),
+            'fos_rest.normalizer.camel_keys.class' => 'FOS\\RestBundle\\Normalizer\\CamelKeysNormalizer',
+            'fos_rest.decoder.json.class' => 'FOS\\RestBundle\\Decoder\\JsonDecoder',
+            'fos_rest.decoder.jsontoform.class' => 'FOS\\RestBundle\\Decoder\\JsonToFormDecoder',
+            'fos_rest.decoder.xml.class' => 'FOS\\RestBundle\\Decoder\\XmlDecoder',
+            'fos_rest.decoder_provider.class' => 'FOS\\RestBundle\\Decoder\\ContainerDecoderProvider',
+            'fos_rest.body_listener.class' => 'FOS\\RestBundle\\EventListener\\BodyListener',
+            'fos_rest.throw_exception_on_unsupported_content_type' => false,
+            'fos_rest.body_default_format' => NULL,
+            'fos_rest.decoders' => array(
+                'json' => 'fos_rest.decoder.json',
+                'xml' => 'fos_rest.decoder.xml',
+            ),
+            'fos_rest.mime_types' => array(
+
+            ),
+            'fos_rest.converter.request_body.validation_errors_argument' => 'validationErrors',
             'web_profiler.controller.profiler.class' => 'Symfony\\Bundle\\WebProfilerBundle\\Controller\\ProfilerController',
             'web_profiler.controller.router.class' => 'Symfony\\Bundle\\WebProfilerBundle\\Controller\\RouterController',
             'web_profiler.controller.exception.class' => 'Symfony\\Bundle\\WebProfilerBundle\\Controller\\ExceptionController',

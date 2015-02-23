@@ -46,20 +46,23 @@ class __TwigTemplate_1e53e6308f06d1453d830568cac192a84f6f7047349679fb189735d465f
         echo "\t\t<div class=\"row\">
 \t\t\t<div class=\"col-md-2\">
 \t\t\t\t<select class=\"form-control\" onchange=\"location = this.options[this.selectedIndex].value;\">
-\t\t\t\t\t<option value=\"0\">Gatunek</option>
 \t\t\t\t\t<option value=\"";
-        // line 10
+        // line 9
         echo $this->env->getExtension('routing')->getPath("project_store_homepage");
-        echo "\">Wszystkie</option>
+        echo "\" selected>Wszystkie</option>
 \t\t  \t\t\t";
-        // line 11
+        // line 10
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["genres"]) ? $context["genres"] : $this->getContext($context, "genres")));
         foreach ($context['_seq'] as $context["_key"] => $context["genre"]) {
-            // line 12
+            // line 11
             echo "\t\t\t\t  \t\t<option value=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("project_store_genre", array("name" => $this->getAttribute($context["genre"], "name", array()))), "html", null, true);
-            echo "\">";
+            echo "\" ";
+            if (($this->getAttribute($context["genre"], "name", array()) == (isset($context["selected"]) ? $context["selected"] : $this->getContext($context, "selected")))) {
+                echo "selected=\"selected\"";
+            }
+            echo ">";
             echo twig_escape_filter($this->env, $this->getAttribute($context["genre"], "name", array()), "html", null, true);
             echo "</option>
 \t\t\t\t  \t";
@@ -67,21 +70,32 @@ class __TwigTemplate_1e53e6308f06d1453d830568cac192a84f6f7047349679fb189735d465f
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['genre'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 14
+        // line 13
         echo "\t\t\t\t</select>
 \t\t\t\t<br>
 \t\t\t</div>
-\t\t\t<div class=\"col-md-2\">
+\t\t\t<div class=\"col-md-3\">
 \t\t\t\t<select class=\"form-control\" onchange=\"location = this.options[this.selectedIndex].value;\">
-\t\t\t\t\t<option value=\"0\">Sortuj</option>
 \t\t\t\t\t<option value=\"";
-        // line 20
+        // line 18
+        echo $this->env->getExtension('routing')->getPath("project_store_homepage");
+        echo "\" ";
+        if (((isset($context["selected"]) ? $context["selected"] : $this->getContext($context, "selected")) == "dodania")) {
+            echo "selected=\"selected\"";
+        }
+        echo ">W kolejności dodania</option>
+\t\t\t\t\t<option value=\"";
+        // line 19
         echo $this->env->getExtension('routing')->getPath("project_store_homepage");
         echo "\">Najczesciej wypożyczane</option>
 \t\t  \t\t\t<option value=\"";
-        // line 21
-        echo $this->env->getExtension('routing')->getPath("project_store_homepage");
-        echo "\">Najczęsciej recenzowane</option>
+        // line 20
+        echo $this->env->getExtension('routing')->getPath("project_store_recenzowane");
+        echo "\" ";
+        if (((isset($context["selected"]) ? $context["selected"] : $this->getContext($context, "selected")) == "recenzowane")) {
+            echo "selected=\"selected\"";
+        }
+        echo ">Najczęsciej recenzowane</option>
 \t\t\t\t</select>
 \t\t\t\t<br>
 \t\t\t</div>
@@ -89,22 +103,22 @@ class __TwigTemplate_1e53e6308f06d1453d830568cac192a84f6f7047349679fb189735d465f
 
 \t\t<div class=\"row\">
 \t\t\t";
-        // line 28
+        // line 27
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["movies"]) ? $context["movies"] : $this->getContext($context, "movies")));
         foreach ($context['_seq'] as $context["_key"] => $context["movie"]) {
-            // line 29
-            echo "\t\t\t\t\t<div class=\"col-xs-6 col-lg-3\">
+            // line 28
+            echo "\t\t\t\t\t<div class=\"col-xs-7 col-lg-3\">
 \t\t\t\t\t<a href=\"";
-            // line 30
+            // line 29
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("project_store_movie", array("slug" => $this->getAttribute($context["movie"], "title", array()))), "html", null, true);
             echo "\">
 \t\t\t\t\t<img src=\"";
-            // line 31
+            // line 30
             echo twig_escape_filter($this->env, $this->getAttribute($context["movie"], "cover", array()), "html", null, true);
             echo "\">
 \t\t\t\t\t<br><h5 color=\"black\">";
-            // line 32
+            // line 31
             echo twig_escape_filter($this->env, $this->getAttribute($context["movie"], "title", array()), "html", null, true);
             echo "</h3></a>
 \t\t\t\t\t</div>
@@ -113,7 +127,7 @@ class __TwigTemplate_1e53e6308f06d1453d830568cac192a84f6f7047349679fb189735d465f
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['movie'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 35
+        // line 34
         echo "\t\t</div>
 ";
     }
@@ -130,6 +144,6 @@ class __TwigTemplate_1e53e6308f06d1453d830568cac192a84f6f7047349679fb189735d465f
 
     public function getDebugInfo()
     {
-        return array (  117 => 35,  108 => 32,  104 => 31,  100 => 30,  97 => 29,  93 => 28,  83 => 21,  79 => 20,  71 => 14,  60 => 12,  56 => 11,  52 => 10,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
+        return array (  131 => 34,  122 => 31,  118 => 30,  114 => 29,  111 => 28,  107 => 27,  93 => 20,  89 => 19,  81 => 18,  74 => 13,  59 => 11,  55 => 10,  51 => 9,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
     }
 }

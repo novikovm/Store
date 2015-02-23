@@ -1,0 +1,21 @@
+Project\StoreBundle\Entity\OrderMovie:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        completedAt:
+            type: datetime
+        number:
+            type: string
+            length: 255
+        items:
+            type: string
+            length: 255
+        items_number:
+            type: integer
+    lifecycleCallbacks: {  }

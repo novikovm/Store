@@ -8,6 +8,11 @@
     <parameter key="kernel.cache_dir">/home/studenci/r12/s172926/public_html/app/cache/dev</parameter>
     <parameter key="kernel.logs_dir">/home/studenci/r12/s172926/public_html/app/logs</parameter>
     <parameter key="kernel.bundles" type="collection">
+      <parameter key="SyliusTranslationBundle">Sylius\Bundle\TranslationBundle\SyliusTranslationBundle</parameter>
+      <parameter key="SyliusResourceBundle">Sylius\Bundle\ResourceBundle\SyliusResourceBundle</parameter>
+      <parameter key="SyliusMoneyBundle">Sylius\Bundle\MoneyBundle\SyliusMoneyBundle</parameter>
+      <parameter key="SyliusOrderBundle">Sylius\Bundle\OrderBundle\SyliusOrderBundle</parameter>
+      <parameter key="SyliusCartBundle">Sylius\Bundle\CartBundle\SyliusCartBundle</parameter>
       <parameter key="FrameworkBundle">Symfony\Bundle\FrameworkBundle\FrameworkBundle</parameter>
       <parameter key="SecurityBundle">Symfony\Bundle\SecurityBundle\SecurityBundle</parameter>
       <parameter key="TwigBundle">Symfony\Bundle\TwigBundle\TwigBundle</parameter>
@@ -18,6 +23,7 @@
       <parameter key="SensioFrameworkExtraBundle">Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle</parameter>
       <parameter key="ProjectStoreBundle">Project\StoreBundle\ProjectStoreBundle</parameter>
       <parameter key="FOSUserBundle">FOS\UserBundle\FOSUserBundle</parameter>
+      <parameter key="FOSRestBundle">FOS\RestBundle\FOSRestBundle</parameter>
       <parameter key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
@@ -37,6 +43,157 @@
     <parameter key="mailer_password">null</parameter>
     <parameter key="locale">en</parameter>
     <parameter key="secret">ThisTokenIsNotSoSecretChangeIt</parameter>
+    <parameter key="sylius.translation.mapping" type="collection">
+      <parameter key="translatable" type="collection">
+        <parameter key="field">translations</parameter>
+        <parameter key="currentLocale">currentLocale</parameter>
+        <parameter key="fallbackLocale">fallbackLocale</parameter>
+      </parameter>
+      <parameter key="translation" type="collection">
+        <parameter key="field">translatable</parameter>
+        <parameter key="locale">locale</parameter>
+      </parameter>
+    </parameter>
+    <parameter key="sylius.locale">en</parameter>
+    <parameter key="sylius.translation.default.mapping" type="collection">
+      <parameter key="translatable" type="collection">
+        <parameter key="field">translations</parameter>
+        <parameter key="currentLocale">currentLocale</parameter>
+        <parameter key="fallbackLocale">fallbackLocale</parameter>
+      </parameter>
+      <parameter key="translation" type="collection">
+        <parameter key="field">translatable</parameter>
+        <parameter key="locale">locale</parameter>
+      </parameter>
+    </parameter>
+    <parameter key="sylius.translatable.listener.class">Sylius\Bundle\TranslationBundle\EventListener\TranslatableListener</parameter>
+    <parameter key="sylius.translatable.listener.locale.class">Sylius\Bundle\TranslationBundle\EventListener\LocaleListener</parameter>
+    <parameter key="sylius.config.classes" type="collection">
+      <parameter key="cart" type="collection">
+        <parameter key="controller">Sylius\Bundle\CartBundle\Controller\CartController</parameter>
+        <parameter key="form">Sylius\Bundle\CartBundle\Form\Type\CartType</parameter>
+      </parameter>
+      <parameter key="item" type="collection">
+        <parameter key="controller">Sylius\Bundle\CartBundle\Controller\CartItemController</parameter>
+        <parameter key="form">Sylius\Bundle\CartBundle\Form\Type\CartItemType</parameter>
+      </parameter>
+      <parameter key="order_item" type="collection">
+        <parameter key="model">Project\StoreBundle\Entity\CartItem</parameter>
+        <parameter key="controller">Sylius\Bundle\OrderBundle\Controller\OrderItemController</parameter>
+        <parameter key="form">Sylius\Bundle\OrderBundle\Form\Type\OrderItemType</parameter>
+      </parameter>
+      <parameter key="order" type="collection">
+        <parameter key="model">Sylius\Component\Cart\Model\Cart</parameter>
+        <parameter key="controller">Sylius\Bundle\OrderBundle\Controller\OrderController</parameter>
+        <parameter key="form">Sylius\Bundle\OrderBundle\Form\Type\OrderType</parameter>
+      </parameter>
+      <parameter key="order_identity" type="collection">
+        <parameter key="model">Sylius\Component\Order\Model\Identity</parameter>
+      </parameter>
+      <parameter key="adjustment" type="collection">
+        <parameter key="model">Sylius\Component\Order\Model\Adjustment</parameter>
+        <parameter key="controller">Sylius\Bundle\OrderBundle\Controller\AdjustmentController</parameter>
+        <parameter key="form">Sylius\Bundle\OrderBundle\Form\Type\AdjustmentType</parameter>
+      </parameter>
+      <parameter key="comment" type="collection">
+        <parameter key="model">Sylius\Component\Order\Model\Comment</parameter>
+        <parameter key="controller">Sylius\Bundle\OrderBundle\Controller\CommentController</parameter>
+        <parameter key="form">Sylius\Bundle\OrderBundle\Form\Type\CommentType</parameter>
+      </parameter>
+    </parameter>
+    <parameter key="sylius.controller.configuration_factory.class">Sylius\Bundle\ResourceBundle\Controller\ConfigurationFactory</parameter>
+    <parameter key="sylius.controller.parameters_parser.class">Sylius\Bundle\ResourceBundle\Controller\ParametersParser</parameter>
+    <parameter key="sylius.controller.parameters.class">Sylius\Bundle\ResourceBundle\Controller\Parameters</parameter>
+    <parameter key="sylius.expression_language.class">Sylius\Bundle\ResourceBundle\ExpressionLanguage\ExpressionLanguage</parameter>
+    <parameter key="sylius.form.extension.collection.class">Sylius\Bundle\ResourceBundle\Form\Extension\CollectionExtension</parameter>
+    <parameter key="sylius.form.type.entity_hidden.class">Sylius\Bundle\ResourceBundle\Form\Type\EntityHiddenType</parameter>
+    <parameter key="sylius.form.type.object_to_identifier.class">Sylius\Bundle\ResourceBundle\Form\Type\ObjectToIdentifierType</parameter>
+    <parameter key="sylius.form.type.resource_choice.class">Sylius\Bundle\ResourceBundle\Form\Type\ResourceChoiceType</parameter>
+    <parameter key="sylius.event_subscriber.load_orm_metadata.class">Sylius\Bundle\ResourceBundle\EventListener\LoadORMMetadataSubscriber</parameter>
+    <parameter key="sylius.event_subscriber.load_odm_metadata.class">Sylius\Bundle\ResourceBundle\EventListener\LoadODMMetadataSubscriber</parameter>
+    <parameter key="sylius.event_subscriber.kernel_controller.class">Sylius\Bundle\ResourceBundle\EventListener\KernelControllerSubscriber</parameter>
+    <parameter key="sylius.event_subscriber.kernel_request.class">Sylius\Bundle\ResourceBundle\EventListener\KernelRequestSubscriber</parameter>
+    <parameter key="sylius.state_machine.class">Sylius\Component\Resource\StateMachine\StateMachine</parameter>
+    <parameter key="symfony.expression.language.class">Sylius\Bundle\ResourceBundle\ExpressionLanguage\ExpressionLanguage</parameter>
+    <parameter key="sylius.storage.cookie.class">Sylius\Component\Storage\CookieStorage</parameter>
+    <parameter key="sylius.storage.doctrine_cache.class">Sylius\Component\Storage\DoctrineCacheStorage</parameter>
+    <parameter key="sylius.storage.session.class">Sylius\Component\Storage\SessionStorage</parameter>
+    <parameter key="sylius.routing.loader.api.class">Sylius\Bundle\ResourceBundle\Routing\ApiLoader</parameter>
+    <parameter key="sylius.twig.extension.resource.class">Sylius\Bundle\ResourceBundle\Twig\ResourceExtension</parameter>
+    <parameter key="sylius.twig.extension.resource.pagination_template">SyliusResourceBundle:Twig:paginate.html.twig</parameter>
+    <parameter key="sylius.twig.extension.resource.sorting_template">SyliusResourceBundle:Twig:sorting.html.twig</parameter>
+    <parameter key="sylius.resource.settings" type="collection">
+      <parameter key="paginate">null</parameter>
+      <parameter key="limit">null</parameter>
+      <parameter key="allowed_paginate" type="collection">
+        <parameter>10</parameter>
+        <parameter>20</parameter>
+        <parameter>30</parameter>
+      </parameter>
+      <parameter key="default_page_size">10</parameter>
+      <parameter key="sortable">false</parameter>
+      <parameter key="sorting">null</parameter>
+      <parameter key="filterable">false</parameter>
+      <parameter key="criteria">null</parameter>
+    </parameter>
+    <parameter key="sylius.money.locale">en</parameter>
+    <parameter key="sylius.money.currency">EUR</parameter>
+    <parameter key="sylius.form.type.money.class">Sylius\Bundle\MoneyBundle\Form\Type\MoneyType</parameter>
+    <parameter key="sylius.templating.helper.money.class">Sylius\Bundle\MoneyBundle\Templating\Helper\MoneyHelper</parameter>
+    <parameter key="sylius.twig.extension.money.class">Sylius\Bundle\MoneyBundle\Twig\MoneyExtension</parameter>
+    <parameter key="sylius.listener.order_update.class">Sylius\Bundle\OrderBundle\EventListener\OrderUpdateListener</parameter>
+    <parameter key="sylius.callback.complete_order.class">Sylius\Bundle\OrderBundle\StateMachineCallback\CompleteOrderCallback</parameter>
+    <parameter key="sylius.originator.class">Sylius\Component\Originator\Originator\Originator</parameter>
+    <parameter key="sylius.repository.order.class">Sylius\Bundle\OrderBundle\Doctrine\ORM\OrderRepository</parameter>
+    <parameter key="sylius_order.driver">doctrine/orm</parameter>
+    <parameter key="sylius_order.driver.doctrine/orm">true</parameter>
+    <parameter key="sylius_order.object_manager">default</parameter>
+    <parameter key="sylius.model.order_item.class">Project\StoreBundle\Entity\CartItem</parameter>
+    <parameter key="sylius.controller.order_item.class">Sylius\Bundle\OrderBundle\Controller\OrderItemController</parameter>
+    <parameter key="sylius.form.type.order_item.class">Sylius\Bundle\OrderBundle\Form\Type\OrderItemType</parameter>
+    <parameter key="sylius.model.order.class">Sylius\Component\Cart\Model\Cart</parameter>
+    <parameter key="sylius.controller.order.class">Sylius\Bundle\OrderBundle\Controller\OrderController</parameter>
+    <parameter key="sylius.form.type.order.class">Sylius\Bundle\OrderBundle\Form\Type\OrderType</parameter>
+    <parameter key="sylius.model.order_identity.class">Sylius\Component\Order\Model\Identity</parameter>
+    <parameter key="sylius.model.adjustment.class">Sylius\Component\Order\Model\Adjustment</parameter>
+    <parameter key="sylius.controller.adjustment.class">Sylius\Bundle\OrderBundle\Controller\AdjustmentController</parameter>
+    <parameter key="sylius.form.type.adjustment.class">Sylius\Bundle\OrderBundle\Form\Type\AdjustmentType</parameter>
+    <parameter key="sylius.model.comment.class">Sylius\Component\Order\Model\Comment</parameter>
+    <parameter key="sylius.controller.comment.class">Sylius\Bundle\OrderBundle\Controller\CommentController</parameter>
+    <parameter key="sylius.form.type.comment.class">Sylius\Bundle\OrderBundle\Form\Type\CommentType</parameter>
+    <parameter key="sylius.validation_group.order" type="collection">
+      <parameter>sylius</parameter>
+    </parameter>
+    <parameter key="sylius.validation_group.order_item" type="collection">
+      <parameter>sylius</parameter>
+    </parameter>
+    <parameter key="sylius.validation_group.adjustment" type="collection">
+      <parameter>sylius</parameter>
+    </parameter>
+    <parameter key="sylius.validation_group.comment" type="collection">
+      <parameter>sylius</parameter>
+    </parameter>
+    <parameter key="sylius.order.allow_guest_order">false</parameter>
+    <parameter key="sylius.context.cart.class">Sylius\Component\Cart\Context\CartContext</parameter>
+    <parameter key="sylius.model.cart.class">Sylius\Component\Cart\Model\Cart</parameter>
+    <parameter key="sylius.model.cart_item.class">Project\StoreBundle\Entity\CartItem</parameter>
+    <parameter key="sylius.cart_provider.default.class">Sylius\Bundle\CartBundle\Provider\CartProvider</parameter>
+    <parameter key="sylius.listener.cart.class">Sylius\Bundle\CartBundle\EventListener\CartListener</parameter>
+    <parameter key="sylius.listener.cart_flash.class">Sylius\Bundle\CartBundle\EventListener\FlashListener</parameter>
+    <parameter key="sylius.listener.cart_refresh.class">Sylius\Bundle\CartBundle\EventListener\RefreshCartListener</parameter>
+    <parameter key="sylius.cart.purger.class">Sylius\Bundle\CartBundle\Purger\ExpiredCartsPurger</parameter>
+    <parameter key="sylius.templating.helper.cart.class">Sylius\Bundle\CartBundle\Templating\Helper\CartHelper</parameter>
+    <parameter key="sylius.twig.extension.cart.class">Sylius\Bundle\CartBundle\Twig\CartExtension</parameter>
+    <parameter key="sylius.controller.cart.class">Sylius\Bundle\CartBundle\Controller\CartController</parameter>
+    <parameter key="sylius.form.type.cart.class">Sylius\Bundle\CartBundle\Form\Type\CartType</parameter>
+    <parameter key="sylius.controller.cart_item.class">Sylius\Bundle\CartBundle\Controller\CartItemController</parameter>
+    <parameter key="sylius.form.type.cart_item.class">Sylius\Bundle\CartBundle\Form\Type\CartItemType</parameter>
+    <parameter key="sylius.validation_group.cart" type="collection">
+      <parameter>sylius</parameter>
+    </parameter>
+    <parameter key="sylius.validation_group.cart_item" type="collection">
+      <parameter>sylius</parameter>
+    </parameter>
     <parameter key="controller_resolver.class">Symfony\Bundle\FrameworkBundle\Controller\ControllerResolver</parameter>
     <parameter key="controller_name_converter.class">Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser</parameter>
     <parameter key="response_listener.class">Symfony\Component\HttpKernel\EventListener\ResponseListener</parameter>
@@ -102,7 +259,7 @@
     <parameter key="session.handler.write_check.class">Symfony\Component\HttpFoundation\Session\Storage\Handler\WriteCheckSessionHandler</parameter>
     <parameter key="session_listener.class">Symfony\Bundle\FrameworkBundle\EventListener\SessionListener</parameter>
     <parameter key="session.storage.options" type="collection">
-      <parameter key="gc_probability">1</parameter>
+      <parameter key="gc_probability">0</parameter>
     </parameter>
     <parameter key="session.save_path">null</parameter>
     <parameter key="session.metadata.update_threshold">0</parameter>
@@ -212,6 +369,9 @@
     <parameter key="annotations.reader.class">Doctrine\Common\Annotations\AnnotationReader</parameter>
     <parameter key="annotations.cached_reader.class">Doctrine\Common\Annotations\CachedReader</parameter>
     <parameter key="annotations.file_cache_reader.class">Doctrine\Common\Annotations\FileCacheReader</parameter>
+    <parameter key="serializer.class">Symfony\Component\Serializer\Serializer</parameter>
+    <parameter key="serializer.encoder.xml.class">Symfony\Component\Serializer\Encoder\XmlEncoder</parameter>
+    <parameter key="serializer.encoder.json.class">Symfony\Component\Serializer\Encoder\JsonEncoder</parameter>
     <parameter key="debug.debug_handlers_listener.class">Symfony\Component\HttpKernel\EventListener\DebugHandlersListener</parameter>
     <parameter key="debug.stopwatch.class">Symfony\Component\Stopwatch\Stopwatch</parameter>
     <parameter key="debug.error_handler.throw_at">-1</parameter>
@@ -619,6 +779,57 @@
       <parameter>ResetPassword</parameter>
       <parameter>Default</parameter>
     </parameter>
+    <parameter key="fos_rest.serializer.exclusion_strategy.version"></parameter>
+    <parameter key="fos_rest.serializer.exclusion_strategy.groups"></parameter>
+    <parameter key="fos_rest.view_handler.jsonp.callback_param"></parameter>
+    <parameter key="fos_rest.view.exception_wrapper_handler">FOS\RestBundle\View\ExceptionWrapperHandler</parameter>
+    <parameter key="fos_rest.view_handler.default.class">FOS\RestBundle\View\ViewHandler</parameter>
+    <parameter key="fos_rest.view_handler.jsonp.class">FOS\RestBundle\View\JsonpHandler</parameter>
+    <parameter key="fos_rest.serializer.exception_wrapper_serialize_handler.class">FOS\RestBundle\Serializer\ExceptionWrapperSerializeHandler</parameter>
+    <parameter key="fos_rest.routing.loader.controller.class">FOS\RestBundle\Routing\Loader\RestRouteLoader</parameter>
+    <parameter key="fos_rest.routing.loader.yaml_collection.class">FOS\RestBundle\Routing\Loader\RestYamlCollectionLoader</parameter>
+    <parameter key="fos_rest.routing.loader.xml_collection.class">FOS\RestBundle\Routing\Loader\RestXmlCollectionLoader</parameter>
+    <parameter key="fos_rest.routing.loader.processor.class">FOS\RestBundle\Routing\Loader\RestRouteProcessor</parameter>
+    <parameter key="fos_rest.routing.loader.reader.controller.class">FOS\RestBundle\Routing\Loader\Reader\RestControllerReader</parameter>
+    <parameter key="fos_rest.routing.loader.reader.action.class">FOS\RestBundle\Routing\Loader\Reader\RestActionReader</parameter>
+    <parameter key="fos_rest.format_negotiator.class">FOS\RestBundle\Util\FormatNegotiator</parameter>
+    <parameter key="fos_rest.inflector.class">FOS\RestBundle\Util\Inflector\DoctrineInflector</parameter>
+    <parameter key="fos_rest.request_matcher.class">Symfony\Component\HttpFoundation\RequestMatcher</parameter>
+    <parameter key="fos_rest.violation_formatter.class">FOS\RestBundle\Util\ViolationFormatter</parameter>
+    <parameter key="fos_rest.request.param_fetcher.class">FOS\RestBundle\Request\ParamFetcher</parameter>
+    <parameter key="fos_rest.request.param_fetcher.reader.class">FOS\RestBundle\Request\ParamReader</parameter>
+    <parameter key="fos_rest.cache_dir">/home/studenci/r12/s172926/public_html/app/cache/dev/fos_rest</parameter>
+    <parameter key="fos_rest.serializer.serialize_null">false</parameter>
+    <parameter key="fos_rest.formats" type="collection">
+      <parameter key="json">false</parameter>
+      <parameter key="xml">false</parameter>
+      <parameter key="html">true</parameter>
+    </parameter>
+    <parameter key="fos_rest.default_engine">twig</parameter>
+    <parameter key="fos_rest.force_redirects" type="collection">
+      <parameter key="html">302</parameter>
+    </parameter>
+    <parameter key="fos_rest.failed_validation">400</parameter>
+    <parameter key="fos_rest.empty_content">204</parameter>
+    <parameter key="fos_rest.serialize_null">false</parameter>
+    <parameter key="fos_rest.routing.loader.default_format">null</parameter>
+    <parameter key="fos_rest.routing.loader.include_format">true</parameter>
+    <parameter key="fos_rest.exception.codes" type="collection"/>
+    <parameter key="fos_rest.exception.messages" type="collection"/>
+    <parameter key="fos_rest.normalizer.camel_keys.class">FOS\RestBundle\Normalizer\CamelKeysNormalizer</parameter>
+    <parameter key="fos_rest.decoder.json.class">FOS\RestBundle\Decoder\JsonDecoder</parameter>
+    <parameter key="fos_rest.decoder.jsontoform.class">FOS\RestBundle\Decoder\JsonToFormDecoder</parameter>
+    <parameter key="fos_rest.decoder.xml.class">FOS\RestBundle\Decoder\XmlDecoder</parameter>
+    <parameter key="fos_rest.decoder_provider.class">FOS\RestBundle\Decoder\ContainerDecoderProvider</parameter>
+    <parameter key="fos_rest.body_listener.class">FOS\RestBundle\EventListener\BodyListener</parameter>
+    <parameter key="fos_rest.throw_exception_on_unsupported_content_type">false</parameter>
+    <parameter key="fos_rest.body_default_format">null</parameter>
+    <parameter key="fos_rest.decoders" type="collection">
+      <parameter key="json">fos_rest.decoder.json</parameter>
+      <parameter key="xml">fos_rest.decoder.xml</parameter>
+    </parameter>
+    <parameter key="fos_rest.mime_types" type="collection"/>
+    <parameter key="fos_rest.converter.request_body.validation_errors_argument">validationErrors</parameter>
     <parameter key="web_profiler.controller.profiler.class">Symfony\Bundle\WebProfilerBundle\Controller\ProfilerController</parameter>
     <parameter key="web_profiler.controller.router.class">Symfony\Bundle\WebProfilerBundle\Controller\RouterController</parameter>
     <parameter key="web_profiler.controller.exception.class">Symfony\Bundle\WebProfilerBundle\Controller\ExceptionController</parameter>
@@ -695,6 +906,375 @@
     </parameter>
   </parameters>
   <services>
+    <service id="get_set_method_normalizer" class="Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer">
+      <tag name="serializer.normalizer"/>
+    </service>
+    <service id="app.cart_item_resolver" class="Project\StoreBundle\Cart\ItemResolver">
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
+    </service>
+    <service id="sylius.translatable.listener" class="Sylius\Bundle\TranslationBundle\EventListener\TranslatableListener">
+      <tag name="doctrine.event_subscriber" connection="default"/>
+      <tag name="doctrine.event_subscriber" priority="99"/>
+      <argument type="collection">
+        <argument key="translatable" type="collection">
+          <argument key="field">translations</argument>
+          <argument key="currentLocale">currentLocale</argument>
+          <argument key="fallbackLocale">fallbackLocale</argument>
+        </argument>
+        <argument key="translation" type="collection">
+          <argument key="field">translatable</argument>
+          <argument key="locale">locale</argument>
+        </argument>
+      </argument>
+      <argument>en</argument>
+    </service>
+    <service id="sylius.translatable.listener.locale" class="Sylius\Bundle\TranslationBundle\EventListener\LocaleListener">
+      <tag name="kernel.event_subscriber" priority="98"/>
+      <argument type="service" id="sylius.translatable.listener"/>
+    </service>
+    <service id="sylius.controller.configuration_factory" class="Sylius\Bundle\ResourceBundle\Controller\ConfigurationFactory">
+      <argument type="service" id="sylius.controller.parameters_parser"/>
+      <argument type="collection">
+        <argument key="paginate">null</argument>
+        <argument key="limit">null</argument>
+        <argument key="allowed_paginate" type="collection">
+          <argument>10</argument>
+          <argument>20</argument>
+          <argument>30</argument>
+        </argument>
+        <argument key="default_page_size">10</argument>
+        <argument key="sortable">false</argument>
+        <argument key="sorting">null</argument>
+        <argument key="filterable">false</argument>
+        <argument key="criteria">null</argument>
+      </argument>
+    </service>
+    <service id="sylius.controller.parameters_parser" class="Sylius\Bundle\ResourceBundle\Controller\ParametersParser">
+      <argument type="service" id="sylius.expresssion_language"/>
+    </service>
+    <service id="sylius.controller.parameters" class="Sylius\Bundle\ResourceBundle\Controller\Parameters"/>
+    <service id="sylius.expresssion_language" class="Sylius\Bundle\ResourceBundle\ExpressionLanguage\ExpressionLanguage">
+      <call method="setContainer">
+        <argument type="service" id="service_container"/>
+      </call>
+    </service>
+    <service id="sylius.event_subscriber.load_orm_metadata" class="Sylius\Bundle\ResourceBundle\EventListener\LoadORMMetadataSubscriber">
+      <tag name="doctrine.event_subscriber"/>
+      <argument type="collection">
+        <argument key="cart" type="collection">
+          <argument key="controller">Sylius\Bundle\CartBundle\Controller\CartController</argument>
+          <argument key="form">Sylius\Bundle\CartBundle\Form\Type\CartType</argument>
+        </argument>
+        <argument key="item" type="collection">
+          <argument key="controller">Sylius\Bundle\CartBundle\Controller\CartItemController</argument>
+          <argument key="form">Sylius\Bundle\CartBundle\Form\Type\CartItemType</argument>
+        </argument>
+        <argument key="order_item" type="collection">
+          <argument key="model">Project\StoreBundle\Entity\CartItem</argument>
+          <argument key="controller">Sylius\Bundle\OrderBundle\Controller\OrderItemController</argument>
+          <argument key="form">Sylius\Bundle\OrderBundle\Form\Type\OrderItemType</argument>
+        </argument>
+        <argument key="order" type="collection">
+          <argument key="model">Sylius\Component\Cart\Model\Cart</argument>
+          <argument key="controller">Sylius\Bundle\OrderBundle\Controller\OrderController</argument>
+          <argument key="form">Sylius\Bundle\OrderBundle\Form\Type\OrderType</argument>
+        </argument>
+        <argument key="order_identity" type="collection">
+          <argument key="model">Sylius\Component\Order\Model\Identity</argument>
+        </argument>
+        <argument key="adjustment" type="collection">
+          <argument key="model">Sylius\Component\Order\Model\Adjustment</argument>
+          <argument key="controller">Sylius\Bundle\OrderBundle\Controller\AdjustmentController</argument>
+          <argument key="form">Sylius\Bundle\OrderBundle\Form\Type\AdjustmentType</argument>
+        </argument>
+        <argument key="comment" type="collection">
+          <argument key="model">Sylius\Component\Order\Model\Comment</argument>
+          <argument key="controller">Sylius\Bundle\OrderBundle\Controller\CommentController</argument>
+          <argument key="form">Sylius\Bundle\OrderBundle\Form\Type\CommentType</argument>
+        </argument>
+      </argument>
+    </service>
+    <service id="sylius.event_subscriber.load_odm_metadata" class="Sylius\Bundle\ResourceBundle\EventListener\LoadODMMetadataSubscriber">
+      <tag name="doctrine_mongodb.odm.event_subscriber"/>
+      <argument type="collection">
+        <argument key="cart" type="collection">
+          <argument key="controller">Sylius\Bundle\CartBundle\Controller\CartController</argument>
+          <argument key="form">Sylius\Bundle\CartBundle\Form\Type\CartType</argument>
+        </argument>
+        <argument key="item" type="collection">
+          <argument key="controller">Sylius\Bundle\CartBundle\Controller\CartItemController</argument>
+          <argument key="form">Sylius\Bundle\CartBundle\Form\Type\CartItemType</argument>
+        </argument>
+        <argument key="order_item" type="collection">
+          <argument key="model">Project\StoreBundle\Entity\CartItem</argument>
+          <argument key="controller">Sylius\Bundle\OrderBundle\Controller\OrderItemController</argument>
+          <argument key="form">Sylius\Bundle\OrderBundle\Form\Type\OrderItemType</argument>
+        </argument>
+        <argument key="order" type="collection">
+          <argument key="model">Sylius\Component\Cart\Model\Cart</argument>
+          <argument key="controller">Sylius\Bundle\OrderBundle\Controller\OrderController</argument>
+          <argument key="form">Sylius\Bundle\OrderBundle\Form\Type\OrderType</argument>
+        </argument>
+        <argument key="order_identity" type="collection">
+          <argument key="model">Sylius\Component\Order\Model\Identity</argument>
+        </argument>
+        <argument key="adjustment" type="collection">
+          <argument key="model">Sylius\Component\Order\Model\Adjustment</argument>
+          <argument key="controller">Sylius\Bundle\OrderBundle\Controller\AdjustmentController</argument>
+          <argument key="form">Sylius\Bundle\OrderBundle\Form\Type\AdjustmentType</argument>
+        </argument>
+        <argument key="comment" type="collection">
+          <argument key="model">Sylius\Component\Order\Model\Comment</argument>
+          <argument key="controller">Sylius\Bundle\OrderBundle\Controller\CommentController</argument>
+          <argument key="form">Sylius\Bundle\OrderBundle\Form\Type\CommentType</argument>
+        </argument>
+      </argument>
+    </service>
+    <service id="sylius.event_subscriber.kernel_controller" class="Sylius\Bundle\ResourceBundle\EventListener\KernelControllerSubscriber">
+      <tag name="kernel.event_subscriber"/>
+      <argument type="service" id="sylius.controller.parameters_parser"/>
+      <argument type="service" id="sylius.controller.parameters"/>
+      <argument type="collection">
+        <argument key="paginate">null</argument>
+        <argument key="limit">null</argument>
+        <argument key="allowed_paginate" type="collection">
+          <argument>10</argument>
+          <argument>20</argument>
+          <argument>30</argument>
+        </argument>
+        <argument key="default_page_size">10</argument>
+        <argument key="sortable">false</argument>
+        <argument key="sorting">null</argument>
+        <argument key="filterable">false</argument>
+        <argument key="criteria">null</argument>
+      </argument>
+    </service>
+    <service id="sylius.form.type.entity_hidden" class="Sylius\Bundle\ResourceBundle\Form\Type\EntityHiddenType">
+      <tag name="form.type" alias="entity_hidden"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="sylius.form.extension.collection" class="Sylius\Bundle\ResourceBundle\Form\Extension\CollectionExtension">
+      <tag name="form.type_extension" alias="collection"/>
+    </service>
+    <service id="sylius.routing.loader.api" class="Sylius\Bundle\ResourceBundle\Routing\ApiLoader">
+      <tag name="routing.loader"/>
+    </service>
+    <service id="sylius.twig.extension.resource" class="Sylius\Bundle\ResourceBundle\Twig\ResourceExtension">
+      <tag name="twig.extension"/>
+      <tag name="kernel.event_listener" event="kernel.request" method="fetchRequest"/>
+      <argument type="service" id="router"/>
+      <argument type="service" id="sylius.controller.parameters"/>
+      <argument>SyliusResourceBundle:Twig:paginate.html.twig</argument>
+      <argument>SyliusResourceBundle:Twig:sorting.html.twig</argument>
+    </service>
+    <service id="sylius.form.type.money" class="Sylius\Bundle\MoneyBundle\Form\Type\MoneyType">
+      <tag name="form.type" alias="sylius_money"/>
+      <argument>EUR</argument>
+    </service>
+    <service id="sylius.templating.helper.money" class="Sylius\Bundle\MoneyBundle\Templating\Helper\MoneyHelper">
+      <tag name="templating.helper" alias="sylius_money"/>
+      <argument>en</argument>
+      <argument>EUR</argument>
+    </service>
+    <service id="sylius.controller.comment" class="Sylius\Bundle\OrderBundle\Controller\CommentController">
+      <argument type="service">
+        <service class="Sylius\Bundle\ResourceBundle\Controller\Configuration" factory-method="createConfiguration" factory-service="sylius.controller.configuration_factory" public="false">
+          <argument>sylius</argument>
+          <argument>comment</argument>
+          <argument>null</argument>
+        </service>
+      </argument>
+      <call method="setContainer">
+        <argument type="service" id="service_container"/>
+      </call>
+    </service>
+    <service id="sylius.form.type.adjustment" class="Sylius\Bundle\OrderBundle\Form\Type\AdjustmentType">
+      <tag name="form.type" alias="sylius_adjustment"/>
+      <argument>Sylius\Component\Order\Model\Adjustment</argument>
+      <argument type="collection">
+        <argument>sylius</argument>
+      </argument>
+    </service>
+    <service id="sylius.form.type.comment" class="Sylius\Bundle\OrderBundle\Form\Type\CommentType">
+      <tag name="form.type" alias="sylius_comment"/>
+      <argument>Sylius\Component\Order\Model\Comment</argument>
+      <argument type="collection">
+        <argument>sylius</argument>
+      </argument>
+    </service>
+    <service id="sylius.form.type.order" class="Sylius\Bundle\OrderBundle\Form\Type\OrderType">
+      <tag name="form.type" alias="sylius_order"/>
+      <argument>Sylius\Component\Cart\Model\Cart</argument>
+      <argument type="collection">
+        <argument>sylius</argument>
+      </argument>
+    </service>
+    <service id="sylius.form.type.order_item" class="Sylius\Bundle\OrderBundle\Form\Type\OrderItemType">
+      <tag name="form.type" alias="sylius_order_item"/>
+      <argument>Project\StoreBundle\Entity\CartItem</argument>
+      <argument type="collection">
+        <argument>sylius</argument>
+      </argument>
+    </service>
+    <service id="sylius.originator" class="Sylius\Component\Originator\Originator\Originator">
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="sylius.callback.complete_order" class="Sylius\Bundle\OrderBundle\StateMachineCallback\CompleteOrderCallback"/>
+    <service id="sylius.listener.order_update" class="Sylius\Bundle\OrderBundle\EventListener\OrderUpdateListener">
+      <tag name="kernel.event_listener" event="sylius.order.pre_update" method="recalculateOrderTotal"/>
+    </service>
+    <service id="sylius.controller.order_item" class="Sylius\Bundle\OrderBundle\Controller\OrderItemController">
+      <argument type="service">
+        <service class="Sylius\Bundle\ResourceBundle\Controller\Configuration" factory-method="createConfiguration" factory-service="sylius.controller.configuration_factory" public="false">
+          <argument>sylius</argument>
+          <argument>order_item</argument>
+          <argument>null</argument>
+        </service>
+      </argument>
+      <call method="setContainer">
+        <argument type="service" id="service_container"/>
+      </call>
+    </service>
+    <service id="sylius.repository.order_item" class="Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository">
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
+      <argument type="service">
+        <service class="Doctrine\ORM\Mapping\ClassMetadata" factory-method="getClassMetadata" factory-service="doctrine.orm.default_entity_manager" public="false">
+          <argument>Project\StoreBundle\Entity\CartItem</argument>
+        </service>
+      </argument>
+    </service>
+    <service id="sylius.controller.order" class="Sylius\Bundle\OrderBundle\Controller\OrderController">
+      <argument type="service">
+        <service class="Sylius\Bundle\ResourceBundle\Controller\Configuration" factory-method="createConfiguration" factory-service="sylius.controller.configuration_factory" public="false">
+          <argument>sylius</argument>
+          <argument>order</argument>
+          <argument>null</argument>
+        </service>
+      </argument>
+      <call method="setContainer">
+        <argument type="service" id="service_container"/>
+      </call>
+    </service>
+    <service id="sylius.repository.order" class="Sylius\Bundle\OrderBundle\Doctrine\ORM\OrderRepository">
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
+      <argument type="service">
+        <service class="Doctrine\ORM\Mapping\ClassMetadata" factory-method="getClassMetadata" factory-service="doctrine.orm.default_entity_manager" public="false">
+          <argument>Sylius\Component\Cart\Model\Cart</argument>
+        </service>
+      </argument>
+    </service>
+    <service id="sylius.repository.order_identity" class="Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository">
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
+      <argument type="service">
+        <service class="Doctrine\ORM\Mapping\ClassMetadata" factory-method="getClassMetadata" factory-service="doctrine.orm.default_entity_manager" public="false">
+          <argument>Sylius\Component\Order\Model\Identity</argument>
+        </service>
+      </argument>
+    </service>
+    <service id="sylius.controller.adjustment" class="Sylius\Bundle\OrderBundle\Controller\AdjustmentController">
+      <argument type="service">
+        <service class="Sylius\Bundle\ResourceBundle\Controller\Configuration" factory-method="createConfiguration" factory-service="sylius.controller.configuration_factory" public="false">
+          <argument>sylius</argument>
+          <argument>adjustment</argument>
+          <argument>null</argument>
+        </service>
+      </argument>
+      <call method="setContainer">
+        <argument type="service" id="service_container"/>
+      </call>
+    </service>
+    <service id="sylius.repository.adjustment" class="Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository">
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
+      <argument type="service">
+        <service class="Doctrine\ORM\Mapping\ClassMetadata" factory-method="getClassMetadata" factory-service="doctrine.orm.default_entity_manager" public="false">
+          <argument>Sylius\Component\Order\Model\Adjustment</argument>
+        </service>
+      </argument>
+    </service>
+    <service id="sylius.repository.comment" class="Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository">
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
+      <argument type="service">
+        <service class="Doctrine\ORM\Mapping\ClassMetadata" factory-method="getClassMetadata" factory-service="doctrine.orm.default_entity_manager" public="false">
+          <argument>Sylius\Component\Order\Model\Comment</argument>
+        </service>
+      </argument>
+    </service>
+    <service id="sylius.controller.cart" class="Sylius\Bundle\CartBundle\Controller\CartController">
+      <argument type="service">
+        <service class="Sylius\Bundle\ResourceBundle\Controller\Configuration" factory-method="createConfiguration" factory-service="sylius.controller.configuration_factory" public="false">
+          <argument>sylius</argument>
+          <argument>cart</argument>
+          <argument>SyliusCartBundle:Cart</argument>
+        </service>
+      </argument>
+      <call method="setContainer">
+        <argument type="service" id="service_container"/>
+      </call>
+    </service>
+    <service id="sylius.controller.cart_item" class="Sylius\Bundle\CartBundle\Controller\CartItemController">
+      <argument type="service">
+        <service class="Sylius\Bundle\ResourceBundle\Controller\Configuration" factory-method="createConfiguration" factory-service="sylius.controller.configuration_factory" public="false">
+          <argument>sylius</argument>
+          <argument>cart_item</argument>
+          <argument>SyliusCartBundle:CartItem</argument>
+        </service>
+      </argument>
+      <call method="setContainer">
+        <argument type="service" id="service_container"/>
+      </call>
+    </service>
+    <service id="sylius.context.cart" class="Sylius\Component\Cart\Context\CartContext">
+      <argument type="service">
+        <service class="Sylius\Component\Storage\SessionStorage" public="false">
+          <argument type="service" id="session"/>
+        </service>
+      </argument>
+    </service>
+    <service id="sylius.form.type.cart" class="Sylius\Bundle\CartBundle\Form\Type\CartType">
+      <tag name="form.type" alias="sylius_cart"/>
+      <argument>Sylius\Component\Cart\Model\Cart</argument>
+      <argument type="collection">
+        <argument>sylius</argument>
+      </argument>
+    </service>
+    <service id="sylius.form.type.cart_item" class="Sylius\Bundle\CartBundle\Form\Type\CartItemType">
+      <tag name="form.type" alias="sylius_cart_item"/>
+      <argument>Project\StoreBundle\Entity\CartItem</argument>
+      <argument type="collection">
+        <argument>sylius</argument>
+      </argument>
+    </service>
+    <service id="sylius.cart_provider.default" class="Sylius\Bundle\CartBundle\Provider\CartProvider">
+      <argument type="service" id="sylius.context.cart"/>
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
+      <argument type="service" id="sylius.repository.order"/>
+      <argument type="service" id="debug.event_dispatcher"/>
+    </service>
+    <service id="sylius.listener.cart" class="Sylius\Bundle\CartBundle\EventListener\CartListener">
+      <tag name="kernel.event_subscriber"/>
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
+      <argument type="service" id="validator"/>
+      <argument type="service" id="sylius.cart_provider.default"/>
+    </service>
+    <service id="sylius.listener.cart_flash" class="Sylius\Bundle\CartBundle\EventListener\FlashListener">
+      <tag name="kernel.event_subscriber"/>
+      <argument type="service" id="session"/>
+      <argument type="service" id="translator"/>
+      <call method="setMessages"/>
+    </service>
+    <service id="sylius.listener.cart_refresh" class="Sylius\Bundle\CartBundle\EventListener\RefreshCartListener">
+      <tag name="kernel.event_listener" event="sylius.cart_change" method="refreshCart" priority="255"/>
+    </service>
+    <service id="sylius.cart.purger" class="Sylius\Bundle\CartBundle\Purger\ExpiredCartsPurger">
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
+      <argument type="service" id="sylius.repository.order"/>
+    </service>
+    <service id="sylius.templating.helper.cart" class="Sylius\Bundle\CartBundle\Templating\Helper\CartHelper">
+      <tag name="templating.helper" alias="sylius_cart"/>
+      <argument type="service" id="sylius.cart_provider.default"/>
+      <argument type="service" id="sylius.repository.order_item"/>
+      <argument type="service" id="form.factory"/>
+    </service>
     <service id="controller_name_converter" class="Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser" public="false">
       <tag name="monolog.logger" channel="request"/>
       <argument type="service" id="kernel"/>
@@ -1603,6 +2183,1116 @@
         <argument>security</argument>
       </call>
       <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/flashes.ca.yml</argument>
+        <argument>ca</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/flashes.en.yml</argument>
+        <argument>en</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/flashes.fi.yml</argument>
+        <argument>fi</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/flashes.fr.yml</argument>
+        <argument>fr</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/flashes.sr_Cyrl.yml</argument>
+        <argument>sr_Cyrl</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/messages.bg.yml</argument>
+        <argument>bg</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/messages.he.yml</argument>
+        <argument>he</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/messages.pl.yml</argument>
+        <argument>pl</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/messages.fi.yml</argument>
+        <argument>fi</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/flashes.da.yml</argument>
+        <argument>da</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/flashes.sr_Latn.yml</argument>
+        <argument>sr_Latn</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/flashes.de.yml</argument>
+        <argument>de</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/messages.et.yml</argument>
+        <argument>et</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/messages.en.yml</argument>
+        <argument>en</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/flashes.el.yml</argument>
+        <argument>el</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/flashes.it.yml</argument>
+        <argument>it</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/messages.ro.yml</argument>
+        <argument>ro</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/messages.da.yml</argument>
+        <argument>da</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/flashes.ms.yml</argument>
+        <argument>ms</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/flashes.sr.yml</argument>
+        <argument>sr</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/messages.vi.yml</argument>
+        <argument>vi</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/flashes.id.yml</argument>
+        <argument>id</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/messages.sr.yml</argument>
+        <argument>sr</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/messages.be.yml</argument>
+        <argument>be</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/flashes.vi.yml</argument>
+        <argument>vi</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/flashes.et.yml</argument>
+        <argument>et</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/messages.it.yml</argument>
+        <argument>it</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/messages.th.yml</argument>
+        <argument>th</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/flashes.af.yml</argument>
+        <argument>af</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/flashes.he.yml</argument>
+        <argument>he</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/messages.nl.yml</argument>
+        <argument>nl</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/messages.ko.yml</argument>
+        <argument>ko</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/messages.pt.yml</argument>
+        <argument>pt</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/flashes.ko.yml</argument>
+        <argument>ko</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/flashes.sk.yml</argument>
+        <argument>sk</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/flashes.th.yml</argument>
+        <argument>th</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/messages.no.yml</argument>
+        <argument>no</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/flashes.tr.yml</argument>
+        <argument>tr</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/flashes.zh.yml</argument>
+        <argument>zh</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/messages.es.yml</argument>
+        <argument>es</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/messages.sv.yml</argument>
+        <argument>sv</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/messages.cs.yml</argument>
+        <argument>cs</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/flashes.sv.yml</argument>
+        <argument>sv</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/messages.ms.yml</argument>
+        <argument>ms</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/flashes.nl.yml</argument>
+        <argument>nl</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/flashes.cs.yml</argument>
+        <argument>cs</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/flashes.ro.yml</argument>
+        <argument>ro</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/messages.de.yml</argument>
+        <argument>de</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/messages.uk.yml</argument>
+        <argument>uk</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/messages.ja.yml</argument>
+        <argument>ja</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/flashes.uk.yml</argument>
+        <argument>uk</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/flashes.es.yml</argument>
+        <argument>es</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/flashes.pt.yml</argument>
+        <argument>pt</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/flashes.be.yml</argument>
+        <argument>be</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/messages.sk.yml</argument>
+        <argument>sk</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/messages.tr.yml</argument>
+        <argument>tr</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/messages.fr.yml</argument>
+        <argument>fr</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/flashes.ar.yml</argument>
+        <argument>ar</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/flashes.ja.yml</argument>
+        <argument>ja</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/messages.zh.yml</argument>
+        <argument>zh</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/flashes.pl.yml</argument>
+        <argument>pl</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/flashes.bg.yml</argument>
+        <argument>bg</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/flashes.hu.yml</argument>
+        <argument>hu</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/flashes.hr.yml</argument>
+        <argument>hr</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/messages.ar.yml</argument>
+        <argument>ar</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/messages.id.yml</argument>
+        <argument>id</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/flashes.sl.yml</argument>
+        <argument>sl</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/flashes.no.yml</argument>
+        <argument>no</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/messages.ru.yml</argument>
+        <argument>ru</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/messages.af.yml</argument>
+        <argument>af</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/messages.hu.yml</argument>
+        <argument>hu</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/messages.sl.yml</argument>
+        <argument>sl</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/messages.el.yml</argument>
+        <argument>el</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/messages.hr.yml</argument>
+        <argument>hr</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/messages.ca.yml</argument>
+        <argument>ca</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/translations/flashes.ru.yml</argument>
+        <argument>ru</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/validators.el.yml</argument>
+        <argument>el</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/validators.fi.yml</argument>
+        <argument>fi</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/validators.af.yml</argument>
+        <argument>af</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/validators.sk.yml</argument>
+        <argument>sk</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/messages.bg.yml</argument>
+        <argument>bg</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/messages.he.yml</argument>
+        <argument>he</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/messages.pl.yml</argument>
+        <argument>pl</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/messages.fi.yml</argument>
+        <argument>fi</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/messages.et.yml</argument>
+        <argument>et</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/validators.th.yml</argument>
+        <argument>th</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/messages.ro.yml</argument>
+        <argument>ro</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/messages.da.yml</argument>
+        <argument>da</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/validators.sl.yml</argument>
+        <argument>sl</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/validators.id.yml</argument>
+        <argument>id</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/messages.vi.yml</argument>
+        <argument>vi</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/validators.sv.yml</argument>
+        <argument>sv</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/messages.sr.yml</argument>
+        <argument>sr</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/validators.ar.yml</argument>
+        <argument>ar</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/validators.no.yml</argument>
+        <argument>no</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/validators.ja.yml</argument>
+        <argument>ja</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/messages.be.yml</argument>
+        <argument>be</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/validators.pl.yml</argument>
+        <argument>pl</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/validators.da.yml</argument>
+        <argument>da</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/messages.it.yml</argument>
+        <argument>it</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/messages.th.yml</argument>
+        <argument>th</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/validators.nl.yml</argument>
+        <argument>nl</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/validators.ca.yml</argument>
+        <argument>ca</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/messages.nl.yml</argument>
+        <argument>nl</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/validators.bg.yml</argument>
+        <argument>bg</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/messages.ko.yml</argument>
+        <argument>ko</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/messages.pt.yml</argument>
+        <argument>pt</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/messages.no.yml</argument>
+        <argument>no</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/messages.es.yml</argument>
+        <argument>es</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/messages.sv.yml</argument>
+        <argument>sv</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/validators.sr.yml</argument>
+        <argument>sr</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/messages.cs.yml</argument>
+        <argument>cs</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/messages.ms.yml</argument>
+        <argument>ms</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/validators.be.yml</argument>
+        <argument>be</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/validators.ko.yml</argument>
+        <argument>ko</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/messages.de.yml</argument>
+        <argument>de</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/validators.tr.yml</argument>
+        <argument>tr</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/validators.fr.yml</argument>
+        <argument>fr</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/validators.he.yml</argument>
+        <argument>he</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/messages.uk.yml</argument>
+        <argument>uk</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/validators.ru.yml</argument>
+        <argument>ru</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/messages.ja.yml</argument>
+        <argument>ja</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/validators.hu.yml</argument>
+        <argument>hu</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/validators.cs.yml</argument>
+        <argument>cs</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/messages.sk.yml</argument>
+        <argument>sk</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/validators.uk.yml</argument>
+        <argument>uk</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/messages.tr.yml</argument>
+        <argument>tr</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/messages.fr.yml</argument>
+        <argument>fr</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/validators.de.yml</argument>
+        <argument>de</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/validators.hr.yml</argument>
+        <argument>hr</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/validators.zh.yml</argument>
+        <argument>zh</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/messages.zh.yml</argument>
+        <argument>zh</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/validators.es.yml</argument>
+        <argument>es</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/validators.pt.yml</argument>
+        <argument>pt</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/validators.ro.yml</argument>
+        <argument>ro</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/messages.ar.yml</argument>
+        <argument>ar</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/messages.id.yml</argument>
+        <argument>id</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/messages.ru.yml</argument>
+        <argument>ru</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/messages.af.yml</argument>
+        <argument>af</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/messages.hu.yml</argument>
+        <argument>hu</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/messages.sl.yml</argument>
+        <argument>sl</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/messages.el.yml</argument>
+        <argument>el</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/messages.hr.yml</argument>
+        <argument>hr</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/validators.it.yml</argument>
+        <argument>it</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/validators.ms.yml</argument>
+        <argument>ms</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/messages.ca.yml</argument>
+        <argument>ca</argument>
+        <argument>messages</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/validators.vi.yml</argument>
+        <argument>vi</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/money-bundle/Resources/translations/validators.et.yml</argument>
+        <argument>et</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/cart-bundle/Resources/translations/flashes.ca.yml</argument>
+        <argument>ca</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/cart-bundle/Resources/translations/flashes.en.yml</argument>
+        <argument>en</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/cart-bundle/Resources/translations/flashes.fi.yml</argument>
+        <argument>fi</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/cart-bundle/Resources/translations/flashes.fr.yml</argument>
+        <argument>fr</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/cart-bundle/Resources/translations/flashes.da.yml</argument>
+        <argument>da</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/cart-bundle/Resources/translations/flashes.de.yml</argument>
+        <argument>de</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/cart-bundle/Resources/translations/flashes.el.yml</argument>
+        <argument>el</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/cart-bundle/Resources/translations/flashes.it.yml</argument>
+        <argument>it</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/cart-bundle/Resources/translations/flashes.ms.yml</argument>
+        <argument>ms</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/cart-bundle/Resources/translations/flashes.sr.yml</argument>
+        <argument>sr</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/cart-bundle/Resources/translations/flashes.id.yml</argument>
+        <argument>id</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/cart-bundle/Resources/translations/flashes.vi.yml</argument>
+        <argument>vi</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/cart-bundle/Resources/translations/flashes.et.yml</argument>
+        <argument>et</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/cart-bundle/Resources/translations/flashes.af.yml</argument>
+        <argument>af</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/cart-bundle/Resources/translations/flashes.he.yml</argument>
+        <argument>he</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/cart-bundle/Resources/translations/flashes.ko.yml</argument>
+        <argument>ko</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/cart-bundle/Resources/translations/flashes.sk.yml</argument>
+        <argument>sk</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/cart-bundle/Resources/translations/flashes.th.yml</argument>
+        <argument>th</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/cart-bundle/Resources/translations/flashes.tr.yml</argument>
+        <argument>tr</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/cart-bundle/Resources/translations/flashes.zh.yml</argument>
+        <argument>zh</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/cart-bundle/Resources/translations/flashes.sv.yml</argument>
+        <argument>sv</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/cart-bundle/Resources/translations/flashes.nl.yml</argument>
+        <argument>nl</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/cart-bundle/Resources/translations/flashes.cs.yml</argument>
+        <argument>cs</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/cart-bundle/Resources/translations/flashes.ro.yml</argument>
+        <argument>ro</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/cart-bundle/Resources/translations/flashes.uk.yml</argument>
+        <argument>uk</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/cart-bundle/Resources/translations/flashes.es.yml</argument>
+        <argument>es</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/cart-bundle/Resources/translations/flashes.pt.yml</argument>
+        <argument>pt</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/cart-bundle/Resources/translations/flashes.be.yml</argument>
+        <argument>be</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/cart-bundle/Resources/translations/flashes.ar.yml</argument>
+        <argument>ar</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/cart-bundle/Resources/translations/flashes.ja.yml</argument>
+        <argument>ja</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/cart-bundle/Resources/translations/flashes.pl.yml</argument>
+        <argument>pl</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/cart-bundle/Resources/translations/flashes.bg.yml</argument>
+        <argument>bg</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/cart-bundle/Resources/translations/flashes.hu.yml</argument>
+        <argument>hu</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/cart-bundle/Resources/translations/flashes.hr.yml</argument>
+        <argument>hr</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/cart-bundle/Resources/translations/flashes.sl.yml</argument>
+        <argument>sl</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/cart-bundle/Resources/translations/flashes.no.yml</argument>
+        <argument>no</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/cart-bundle/Resources/translations/flashes.ru.yml</argument>
+        <argument>ru</argument>
+        <argument>flashes</argument>
+      </call>
+      <call method="addResource">
         <argument>xlf</argument>
         <argument>/home/studenci/r12/s172926/public_html/src/Project/StoreBundle/Resources/translations/messages.fr.xlf</argument>
         <argument>fr</argument>
@@ -2252,7 +3942,7 @@
     </service>
     <service id="session.storage.native" class="Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage">
       <argument type="collection">
-        <argument key="gc_probability">1</argument>
+        <argument key="gc_probability">0</argument>
       </argument>
       <argument>null</argument>
       <argument type="service" id="session.storage.metadata_bag"/>
@@ -2285,6 +3975,14 @@
           <service class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension" public="false">
             <argument type="service" id="service_container"/>
             <argument type="collection">
+              <argument key="entity_hidden">sylius.form.type.entity_hidden</argument>
+              <argument key="sylius_money">sylius.form.type.money</argument>
+              <argument key="sylius_adjustment">sylius.form.type.adjustment</argument>
+              <argument key="sylius_comment">sylius.form.type.comment</argument>
+              <argument key="sylius_order">sylius.form.type.order</argument>
+              <argument key="sylius_order_item">sylius.form.type.order_item</argument>
+              <argument key="sylius_cart">sylius.form.type.cart</argument>
+              <argument key="sylius_cart_item">sylius.form.type.cart_item</argument>
               <argument key="form">form.type.form</argument>
               <argument key="birthday">form.type.birthday</argument>
               <argument key="checkbox">form.type.checkbox</argument>
@@ -2321,8 +4019,12 @@
               <argument key="fos_user_registration">fos_user.registration.form.type</argument>
               <argument key="fos_user_change_password">fos_user.change_password.form.type</argument>
               <argument key="fos_user_resetting">fos_user.resetting.form.type</argument>
+              <argument key="sylius_entity_to_identifier">sylius_entity_to_identifier</argument>
             </argument>
             <argument type="collection">
+              <argument key="collection" type="collection">
+                <argument>sylius.form.extension.collection</argument>
+              </argument>
               <argument key="form" type="collection">
                 <argument>form.type_extension.form.http_foundation</argument>
                 <argument>form.type_extension.form.validator</argument>
@@ -2583,6 +4285,8 @@
       <call method="addXmlMappings">
         <argument type="collection">
           <argument>/home/studenci/r12/s172926/public_html/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/config/validation.xml</argument>
+          <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/order-bundle/Resources/config/validation.xml</argument>
+          <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/cart-bundle/Resources/config/validation.xml</argument>
           <argument>/home/studenci/r12/s172926/public_html/vendor/friendsofsymfony/user-bundle/Resources/config/validation.xml</argument>
         </argument>
       </call>
@@ -2765,6 +4469,9 @@
       <argument type="service">
         <service class="Symfony\Component\Config\Loader\LoaderResolver" public="false">
           <call method="addLoader">
+            <argument type="service" id="sylius.routing.loader.api"/>
+          </call>
+          <call method="addLoader">
             <argument type="service">
               <service class="Symfony\Component\Routing\Loader\XmlFileLoader" public="false">
                 <tag name="routing.loader"/>
@@ -2833,6 +4540,15 @@
               </service>
             </argument>
           </call>
+          <call method="addLoader">
+            <argument type="service" id="fos_rest.routing.loader.controller"/>
+          </call>
+          <call method="addLoader">
+            <argument type="service" id="fos_rest.routing.loader.yaml_collection"/>
+          </call>
+          <call method="addLoader">
+            <argument type="service" id="fos_rest.routing.loader.xml_collection"/>
+          </call>
         </service>
       </argument>
     </service>
@@ -2851,6 +4567,23 @@
       <argument type="service" id="router.request_context" on-invalid="ignore"/>
       <argument type="service" id="monolog.logger.request" on-invalid="ignore"/>
       <argument type="service" id="request_stack"/>
+    </service>
+    <service id="serializer" class="Symfony\Component\Serializer\Serializer">
+      <argument type="collection">
+        <argument type="service" id="get_set_method_normalizer"/>
+      </argument>
+      <argument type="collection">
+        <argument type="service">
+          <service class="Symfony\Component\Serializer\Encoder\XmlEncoder" public="false">
+            <tag name="serializer.encoder"/>
+          </service>
+        </argument>
+        <argument type="service">
+          <service class="Symfony\Component\Serializer\Encoder\JsonEncoder" public="false">
+            <tag name="serializer.encoder"/>
+          </service>
+        </argument>
+      </argument>
     </service>
     <service id="debug.debug_handlers_listener" class="Symfony\Component\HttpKernel\EventListener\DebugHandlersListener">
       <tag name="kernel.event_subscriber"/>
@@ -2873,6 +4606,30 @@
       <argument type="service" id="debug.stopwatch"/>
       <argument type="service" id="monolog.logger.event" on-invalid="null"/>
       <call method="addListenerService">
+        <argument>kernel.request</argument>
+        <argument type="collection">
+          <argument>sylius.twig.extension.resource</argument>
+          <argument>fetchRequest</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListenerService">
+        <argument>sylius.order.pre_update</argument>
+        <argument type="collection">
+          <argument>sylius.listener.order_update</argument>
+          <argument>recalculateOrderTotal</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListenerService">
+        <argument>sylius.cart_change</argument>
+        <argument type="collection">
+          <argument>sylius.listener.cart_refresh</argument>
+          <argument>refreshCart</argument>
+        </argument>
+        <argument>255</argument>
+      </call>
+      <call method="addListenerService">
         <argument>kernel.controller</argument>
         <argument type="collection">
           <argument>data_collector.router</argument>
@@ -2887,6 +4644,30 @@
           <argument>onKernelRequest</argument>
         </argument>
         <argument>0</argument>
+      </call>
+      <call method="addListenerService">
+        <argument>kernel.request</argument>
+        <argument type="collection">
+          <argument>fos_rest.body_listener</argument>
+          <argument>onKernelRequest</argument>
+        </argument>
+        <argument>10</argument>
+      </call>
+      <call method="addSubscriberService">
+        <argument>sylius.translatable.listener.locale</argument>
+        <argument>Sylius\Bundle\TranslationBundle\EventListener\LocaleListener</argument>
+      </call>
+      <call method="addSubscriberService">
+        <argument>sylius.event_subscriber.kernel_controller</argument>
+        <argument>Sylius\Bundle\ResourceBundle\EventListener\KernelControllerSubscriber</argument>
+      </call>
+      <call method="addSubscriberService">
+        <argument>sylius.listener.cart</argument>
+        <argument>Sylius\Bundle\CartBundle\EventListener\CartListener</argument>
+      </call>
+      <call method="addSubscriberService">
+        <argument>sylius.listener.cart_flash</argument>
+        <argument>Sylius\Bundle\CartBundle\EventListener\FlashListener</argument>
       </call>
       <call method="addSubscriberService">
         <argument>response_listener</argument>
@@ -3036,7 +4817,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>54e9068014d09</argument>
+            <argument>54ea5069c056e</argument>
           </service>
         </argument>
       </argument>
@@ -3315,7 +5096,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>54e9068014d09</argument>
+            <argument>54ea5069c056e</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -3424,6 +5205,25 @@
         <argument key="charset">UTF-8</argument>
         <argument key="paths" type="collection"/>
       </argument>
+      <call method="addExtension">
+        <argument type="service" id="sylius.twig.extension.resource"/>
+      </call>
+      <call method="addExtension">
+        <argument type="service">
+          <service class="Sylius\Bundle\MoneyBundle\Twig\MoneyExtension" public="false">
+            <tag name="twig.extension"/>
+            <argument type="service" id="sylius.templating.helper.money"/>
+          </service>
+        </argument>
+      </call>
+      <call method="addExtension">
+        <argument type="service">
+          <service class="Sylius\Bundle\CartBundle\Twig\CartExtension" public="false">
+            <tag name="twig.extension"/>
+            <argument type="service" id="sylius.templating.helper.cart"/>
+          </service>
+        </argument>
+      </call>
       <call method="addExtension">
         <argument type="service">
           <service class="Symfony\Bundle\SecurityBundle\Twig\Extension\LogoutUrlExtension" public="false">
@@ -3773,10 +5573,61 @@
         <service class="Symfony\Bridge\Doctrine\ContainerAwareEventManager" public="false">
           <argument type="service" id="service_container"/>
           <call method="addEventSubscriber">
+            <argument type="service" id="sylius.translatable.listener"/>
+          </call>
+          <call method="addEventSubscriber">
+            <argument type="service" id="sylius.event_subscriber.load_orm_metadata"/>
+          </call>
+          <call method="addEventSubscriber">
             <argument type="service">
               <service class="FOS\UserBundle\Doctrine\Orm\UserListener" public="false">
                 <tag name="doctrine.event_subscriber"/>
                 <argument type="service" id="service_container"/>
+              </service>
+            </argument>
+          </call>
+          <call method="addEventListener">
+            <argument type="collection">
+              <argument>loadClassMetadata</argument>
+            </argument>
+            <argument type="service">
+              <service class="Doctrine\ORM\Tools\ResolveTargetEntityListener" public="false">
+                <tag name="doctrine.event_listener" event="loadClassMetadata"/>
+                <call method="addResolveTargetEntity">
+                  <argument>Sylius\Component\Order\Model\AdjustmentInterface</argument>
+                  <argument>Sylius\Component\Order\Model\Adjustment</argument>
+                  <argument type="collection"/>
+                </call>
+                <call method="addResolveTargetEntity">
+                  <argument>Sylius\Component\Order\Model\CommentInterface</argument>
+                  <argument>Sylius\Component\Order\Model\Comment</argument>
+                  <argument type="collection"/>
+                </call>
+                <call method="addResolveTargetEntity">
+                  <argument>Sylius\Component\Order\Model\OrderInterface</argument>
+                  <argument>Sylius\Component\Cart\Model\Cart</argument>
+                  <argument type="collection"/>
+                </call>
+                <call method="addResolveTargetEntity">
+                  <argument>Sylius\Component\Order\Model\OrderItemInterface</argument>
+                  <argument>Project\StoreBundle\Entity\CartItem</argument>
+                  <argument type="collection"/>
+                </call>
+                <call method="addResolveTargetEntity">
+                  <argument>Sylius\Component\Order\Model\IdentityInterface</argument>
+                  <argument>Sylius\Component\Order\Model\Identity</argument>
+                  <argument type="collection"/>
+                </call>
+                <call method="addResolveTargetEntity">
+                  <argument>Sylius\Component\Cart\Model\CartInterface</argument>
+                  <argument>Sylius\Component\Cart\Model\Cart</argument>
+                  <argument type="collection"/>
+                </call>
+                <call method="addResolveTargetEntity">
+                  <argument>Sylius\Component\Cart\Model\CartItemInterface</argument>
+                  <argument>Project\StoreBundle\Entity\CartItem</argument>
+                  <argument type="collection"/>
+                </call>
               </service>
             </argument>
           </call>
@@ -3853,6 +5704,36 @@
                     </service>
                   </argument>
                   <argument>Project\StoreBundle\Entity</argument>
+                </call>
+                <call method="addDriver">
+                  <argument type="service">
+                    <service class="Doctrine\ORM\Mapping\Driver\XmlDriver">
+                      <argument type="service">
+                        <service class="Doctrine\Common\Persistence\Mapping\Driver\SymfonyFileLocator">
+                          <argument type="collection">
+                            <argument key="/home/studenci/r12/s172926/public_html/vendor/sylius/order-bundle/Resources/config/doctrine/model">Sylius\Component\Order\Model</argument>
+                          </argument>
+                          <argument>.orm.xml</argument>
+                        </service>
+                      </argument>
+                    </service>
+                  </argument>
+                  <argument>Sylius\Component\Order\Model</argument>
+                </call>
+                <call method="addDriver">
+                  <argument type="service">
+                    <service class="Doctrine\ORM\Mapping\Driver\XmlDriver">
+                      <argument type="service">
+                        <service class="Doctrine\Common\Persistence\Mapping\Driver\SymfonyFileLocator">
+                          <argument type="collection">
+                            <argument key="/home/studenci/r12/s172926/public_html/vendor/sylius/cart-bundle/Resources/config/doctrine/model">Sylius\Component\Cart\Model</argument>
+                          </argument>
+                          <argument>.orm.xml</argument>
+                        </service>
+                      </argument>
+                    </service>
+                  </argument>
+                  <argument>Sylius\Component\Cart\Model</argument>
                 </call>
                 <call method="addDriver">
                   <argument type="service">
@@ -4034,6 +5915,92 @@
       <argument type="service" id="router"/>
       <argument>86400</argument>
     </service>
+    <service id="fos_rest.view.exception_wrapper_handler" class="FOS\RestBundle\View\ExceptionWrapperHandler"/>
+    <service id="fos_rest.serializer.exception_wrapper_serialize_handler" class="FOS\RestBundle\Serializer\ExceptionWrapperSerializeHandler">
+      <tag name="jms_serializer.subscribing_handler"/>
+    </service>
+    <service id="fos_rest.routing.loader.controller" class="FOS\RestBundle\Routing\Loader\RestRouteLoader">
+      <tag name="routing.loader"/>
+      <argument type="service" id="service_container"/>
+      <argument type="service" id="file_locator"/>
+      <argument type="service" id="controller_name_converter"/>
+      <argument type="service" id="fos_rest.routing.loader.reader.controller"/>
+      <argument>null</argument>
+    </service>
+    <service id="fos_rest.routing.loader.processor" class="FOS\RestBundle\Routing\Loader\RestRouteProcessor"/>
+    <service id="fos_rest.routing.loader.yaml_collection" class="FOS\RestBundle\Routing\Loader\RestYamlCollectionLoader">
+      <tag name="routing.loader"/>
+      <argument type="service" id="file_locator"/>
+      <argument type="service" id="fos_rest.routing.loader.processor"/>
+      <argument>true</argument>
+      <argument type="collection">
+        <argument key="json">false</argument>
+        <argument key="xml">false</argument>
+        <argument key="html">true</argument>
+      </argument>
+      <argument>null</argument>
+    </service>
+    <service id="fos_rest.routing.loader.xml_collection" class="FOS\RestBundle\Routing\Loader\RestXmlCollectionLoader">
+      <tag name="routing.loader"/>
+      <argument type="service" id="file_locator"/>
+      <argument type="service" id="fos_rest.routing.loader.processor"/>
+      <argument>true</argument>
+      <argument type="collection">
+        <argument key="json">false</argument>
+        <argument key="xml">false</argument>
+        <argument key="html">true</argument>
+      </argument>
+      <argument>null</argument>
+    </service>
+    <service id="fos_rest.routing.loader.reader.controller" class="FOS\RestBundle\Routing\Loader\Reader\RestControllerReader">
+      <argument type="service" id="fos_rest.routing.loader.reader.action"/>
+      <argument type="service" id="annotation_reader"/>
+    </service>
+    <service id="fos_rest.routing.loader.reader.action" class="FOS\RestBundle\Routing\Loader\Reader\RestActionReader">
+      <argument type="service" id="annotation_reader"/>
+      <argument type="service" id="fos_rest.request.param_fetcher.reader"/>
+      <argument type="service" id="fos_rest.inflector.doctrine"/>
+      <argument>true</argument>
+      <argument type="collection">
+        <argument key="json">false</argument>
+        <argument key="xml">false</argument>
+        <argument key="html">true</argument>
+      </argument>
+    </service>
+    <service id="fos_rest.format_negotiator" class="FOS\RestBundle\Util\FormatNegotiator"/>
+    <service id="fos_rest.exception_format_negotiator" class="FOS\RestBundle\Util\FormatNegotiator"/>
+    <service id="fos_rest.inflector.doctrine" class="FOS\RestBundle\Util\Inflector\DoctrineInflector"/>
+    <service id="fos_rest.violation_formatter" class="FOS\RestBundle\Util\ViolationFormatter"/>
+    <service id="fos_rest.request.param_fetcher" class="FOS\RestBundle\Request\ParamFetcher" scope="request">
+      <argument type="service" id="fos_rest.request.param_fetcher.reader"/>
+      <argument type="service" id="request"/>
+      <argument type="service" id="fos_rest.violation_formatter"/>
+      <argument type="service" id="validator" on-invalid="null"/>
+    </service>
+    <service id="fos_rest.request.param_fetcher.reader" class="FOS\RestBundle\Request\ParamReader">
+      <argument type="service" id="annotation_reader"/>
+    </service>
+    <service id="fos_rest.normalizer.camel_keys" class="FOS\RestBundle\Normalizer\CamelKeysNormalizer"/>
+    <service id="fos_rest.decoder.json" class="FOS\RestBundle\Decoder\JsonDecoder"/>
+    <service id="fos_rest.decoder.jsontoform" class="FOS\RestBundle\Decoder\JsonToFormDecoder"/>
+    <service id="fos_rest.decoder.xml" class="FOS\RestBundle\Decoder\XmlDecoder"/>
+    <service id="fos_rest.decoder_provider" class="FOS\RestBundle\Decoder\ContainerDecoderProvider">
+      <argument type="collection">
+        <argument key="json">fos_rest.decoder.json</argument>
+        <argument key="xml">fos_rest.decoder.xml</argument>
+      </argument>
+      <call method="setContainer">
+        <argument type="service" id="service_container"/>
+      </call>
+    </service>
+    <service id="fos_rest.body_listener" class="FOS\RestBundle\EventListener\BodyListener">
+      <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" priority="10"/>
+      <argument type="service" id="fos_rest.decoder_provider"/>
+      <argument>false</argument>
+      <call method="setDefaultFormat">
+        <argument>null</argument>
+      </call>
+    </service>
     <service id="data_collector.dump" class="Symfony\Component\HttpKernel\DataCollector\DumpDataCollector">
       <tag name="data_collector" id="dump" template="@Debug/Profiler/dump.html.twig"/>
       <argument type="service" id="debug.stopwatch" on-invalid="ignore"/>
@@ -4159,6 +6126,11 @@
     <service id="sensio_distribution.security_checker.command" class="SensioLabs\Security\Command\SecurityCheckerCommand">
       <tag name="console.command"/>
       <argument type="service" id="sensio_distribution.security_checker"/>
+    </service>
+    <service id="sylius_entity_to_identifier" class="Sylius\Bundle\ResourceBundle\Form\Type\ObjectToIdentifierType">
+      <tag name="form.type" alias="sylius_entity_to_identifier"/>
+      <argument type="service" id="doctrine"/>
+      <argument>sylius_entity_to_identifier</argument>
     </service>
     <service id="monolog.logger.request" class="Symfony\Bridge\Monolog\Logger">
       <argument>request</argument>
@@ -4303,6 +6275,8 @@
       </call>
       <call method="setHelpers">
         <argument type="collection">
+          <argument key="sylius_money">sylius.templating.helper.money</argument>
+          <argument key="sylius_cart">sylius.templating.helper.cart</argument>
           <argument key="slots">templating.helper.slots</argument>
           <argument key="assets">templating.helper.assets</argument>
           <argument key="request">templating.helper.request</argument>
@@ -4377,6 +6351,14 @@
       <tag name="twig.loader"/>
       <argument type="service" id="templating.locator"/>
       <argument type="service" id="templating.name_parser"/>
+      <call method="addPath">
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/resource-bundle/Resources/views</argument>
+        <argument>SyliusResource</argument>
+      </call>
+      <call method="addPath">
+        <argument>/home/studenci/r12/s172926/public_html/vendor/sylius/cart-bundle/Resources/views</argument>
+        <argument>SyliusCart</argument>
+      </call>
       <call method="addPath">
         <argument>/home/studenci/r12/s172926/public_html/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/views</argument>
         <argument>Framework</argument>
@@ -4527,6 +6509,43 @@
       </argument>
       <argument>Project\StoreBundle\Entity\User</argument>
     </service>
+    <service id="fos_rest.view_handler" class="FOS\RestBundle\View\ViewHandler">
+      <argument type="collection">
+        <argument key="json">false</argument>
+        <argument key="xml">false</argument>
+        <argument key="html">true</argument>
+      </argument>
+      <argument>400</argument>
+      <argument>204</argument>
+      <argument>false</argument>
+      <argument type="collection">
+        <argument key="html">302</argument>
+      </argument>
+      <argument>twig</argument>
+      <call method="setExclusionStrategyGroups">
+        <argument></argument>
+      </call>
+      <call method="setExclusionStrategyVersion">
+        <argument></argument>
+      </call>
+      <call method="setSerializeNullStrategy">
+        <argument>false</argument>
+      </call>
+      <call method="setContainer">
+        <argument type="service" id="service_container"/>
+      </call>
+    </service>
+    <service id="sylius.manager.order_item" alias="doctrine.orm.default_entity_manager"/>
+    <service id="sylius.manager.order" alias="doctrine.orm.default_entity_manager"/>
+    <service id="sylius.manager.order_identity" alias="doctrine.orm.default_entity_manager"/>
+    <service id="sylius.manager.adjustment" alias="doctrine.orm.default_entity_manager"/>
+    <service id="sylius.manager.comment" alias="doctrine.orm.default_entity_manager"/>
+    <service id="sylius.manager.cart" alias="doctrine.orm.default_entity_manager"/>
+    <service id="sylius.manager.cart_item" alias="doctrine.orm.default_entity_manager"/>
+    <service id="sylius.repository.cart" alias="sylius.repository.order"/>
+    <service id="sylius.repository.cart_item" alias="sylius.repository.order_item"/>
+    <service id="sylius.cart_provider" alias="sylius.cart_provider.default"/>
+    <service id="sylius.cart_resolver" alias="app.cart_item_resolver"/>
     <service id="session.storage" alias="session.storage.native"/>
     <service id="event_dispatcher" alias="debug.event_dispatcher"/>
     <service id="debug.templating.engine.twig" alias="templating"/>
@@ -4542,7 +6561,12 @@
     <service id="doctrine.orm.default_result_cache" alias="doctrine_cache.providers.doctrine.orm.default_result_cache"/>
     <service id="doctrine.orm.default_query_cache" alias="doctrine_cache.providers.doctrine.orm.default_query_cache"/>
     <service id="fos_user.util.username_canonicalizer" alias="fos_user.util.email_canonicalizer"/>
+    <service id="fos_rest.router" alias="router"/>
+    <service id="fos_rest.templating" alias="templating"/>
+    <service id="fos_rest.exception_handler" alias="fos_rest.view.exception_wrapper_handler"/>
+    <service id="fos_rest.inflector" alias="fos_rest.inflector.doctrine"/>
     <service id="sensio.distribution.webconfigurator" alias="sensio_distribution.webconfigurator"/>
     <service id="console.command.sensiolabs_security_command_securitycheckercommand" alias="sensio_distribution.security_checker.command"/>
+    <service id="fos_rest.serializer" alias="serializer"/>
   </services>
 </container>

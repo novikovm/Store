@@ -41,6 +41,11 @@ class Recenzja
     private $movie;
 
 
+    public function __construct()
+    {
+        $this->setDataUtworzenia(new \DateTime());
+    }
+
     /**
      * Get id
      *

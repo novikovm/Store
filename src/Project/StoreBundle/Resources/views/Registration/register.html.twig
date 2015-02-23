@@ -8,14 +8,13 @@
 {% block navbar %}
   {% if is_granted('ROLE_USER') %}
           <div class="row">
-            <p>
-              Jesteś zalogowany jako {{app.user.username}}. 
-              <a href="{{path('fos_user_security_logout')}}" class="btn btn-primary">Wyloguj</a>
-            </p>
-          </div>
+			<p>
+			Witaj, <strong>{{app.user.username}}</strong>
+			<a href="{{path('fos_user_security_logout')}}" class="btn btn-primary">Wyloguj</a>
+			</p>
+			</div>
           {% else %}
             <p>
-              Nie jesteś zalogowany - 
               <a href="{{path('fos_user_security_login')}}" class="btn btn-primary">Zaloguj</a>
             </p>
           {% endif %}

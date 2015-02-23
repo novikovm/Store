@@ -1,0 +1,33 @@
+{% extends 'ProjectStoreBundle::layout.html.twig' %}
+
+{% block header %}Lista filmów:{% endblock %}
+
+{% block content %}
+		
+		{% if app.session.flashBag.has('success') %}
+	        <div class="alert alert-success">
+	            {% for msg in app.session.flashBag.get('success') %}
+	                {{ msg }}
+	            {% endfor %}
+	        </div>
+	    {% endif %}
+
+		<div class="row">
+			<div class="col-md-2">
+				<img src="{{ movie.cover }}"><br>
+			</div>
+			<div class="col-md-5">
+				<p>{{ movie.description }}</p><br>
+				<p>Aktorzy:<br>{{ movie.actors }}</p>
+			</div>
+			<div class="col-md-2">
+				<p>Cena: {{ movie.price }} zł</p><br>
+				<a href="{{path('project_store_koszyk')}}" class="btn btn-primary">Wypożycz</a>
+
+				{% if is_granted('ROLE_USER') %}
+					<a href="{{path('project_store_recenzja_add', {'slug': movie.title})}}" class="btn btn-primary">Dodaj recenzję</a>
+				{% endif %}
+
+			</div>
+		</div>
+{% endblock %}

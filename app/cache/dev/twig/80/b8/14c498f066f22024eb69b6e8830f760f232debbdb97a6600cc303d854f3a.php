@@ -90,9 +90,12 @@ class __TwigTemplate_80b814c498f066f22024eb69b6e8830f760f232debbdb97a6600cc303d8
 \t\t\t\t<p>Cena: ";
         // line 24
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["movie"]) ? $context["movie"] : $this->getContext($context, "movie")), "price", array()), "html", null, true);
-        echo " zł</p><br>
-\t\t\t\t<button type=\"button\" class=\"btn btn-default\">Wypożycz</button><br>
-
+        echo " zł<br></p>
+\t\t\t\t<p><a href=\"";
+        // line 25
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("sylius_cart_item_add", array("productId" => $this->getAttribute((isset($context["movie"]) ? $context["movie"] : $this->getContext($context, "movie")), "id", array()))), "html", null, true);
+        echo "\" \" class=\"btn btn-primary\">Wypożycz</a></p>
+\t\t\t\t
 \t\t\t\t";
         // line 27
         if ($this->env->getExtension('security')->isGranted("ROLE_USER")) {
@@ -121,6 +124,6 @@ class __TwigTemplate_80b814c498f066f22024eb69b6e8830f760f232debbdb97a6600cc303d8
 
     public function getDebugInfo()
     {
-        return array (  106 => 30,  100 => 28,  98 => 27,  92 => 24,  86 => 21,  82 => 20,  76 => 17,  71 => 14,  67 => 12,  58 => 10,  54 => 9,  51 => 8,  49 => 7,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
+        return array (  109 => 30,  103 => 28,  101 => 27,  96 => 25,  92 => 24,  86 => 21,  82 => 20,  76 => 17,  71 => 14,  67 => 12,  58 => 10,  54 => 9,  51 => 8,  49 => 7,  46 => 6,  43 => 5,  37 => 3,  11 => 1,);
     }
 }

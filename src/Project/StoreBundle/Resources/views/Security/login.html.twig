@@ -7,18 +7,18 @@
 {% block header %}Zaloguj{% endblock %}
 
 {% block navbar %}
-	{% if is_granted('ROLE_USER') %}
-					<div class="row">
-						<p>
-							Jesteś zalogowany jako {{app.user.username}}. 
-							<a href="{{path('fos_user_security_logout')}}" class="btn btn-primary">Wyloguj</a>
-						</p>
-					</div>
-					{% else %}
-						<p>
-							Jeśli nie masz konta - <a href="{{path('fos_user_registration_register')}}" class="btn btn-primary">Zarejestruj się</a>
-						</p>
-					{% endif %}
+	<br>{% if is_granted('ROLE_USER') %}
+			<div class="row">
+			<p>
+			Witaj, <strong>{{app.user.username}}</strong>
+			<a href="{{path('fos_user_security_logout')}}" class="btn btn-primary">Wyloguj</a>
+			</p>
+			</div>
+		{% else %}
+			<p>
+			<a href="{{path('fos_user_registration_register')}}" class="btn btn-primary">Zarejestruj się</a>
+			</p>
+		{% endif %}
 {% endblock %}
 
 {% block fos_user_content %}
@@ -41,5 +41,8 @@
 
 	    <input type="submit" id="_submit" name="_submit" value="Zaloguj się" class="btn btn-lg btn-primary"/>
 	</form>
+	<br><p>
+		Jeśli nie masz konta - <a href="{{path('fos_user_registration_register')}}" class="btn btn-primary">Zarejestruj się</a>
+	</p>
 	</div>
 {% endblock fos_user_content %}

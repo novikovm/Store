@@ -122,6 +122,26 @@ $catalogue = new MessageCatalogue('en', array (
     'Account is disabled.' => 'Account is disabled.',
     'Account is locked.' => 'Account is locked.',
   ),
+  'flashes' => 
+  array (
+    'sylius.resource.create' => '%resource% has been successfully created.',
+    'sylius.resource.update' => '%resource% has been successfully updated.',
+    'sylius.resource.delete' => '%resource% has been successfully deleted.',
+    'sylius.resource.move' => '%resource% has been successfully moved.',
+    'sylius.resource.generate' => '%resource%s have been successfully generated.',
+    'sylius.resource.revert' => '%resource% has been successfully reverted.',
+    'sylius.cart.cart_save_completed' => 'The cart has been successfully updated.',
+    'sylius.cart.cart_clear_completed' => 'The cart has been successfully cleared.',
+    'sylius.cart.item_add_completed' => 'Item has been added to cart.',
+    'sylius.cart.item_remove_completed' => 'Item has been removed from cart.',
+    'sylius.cart.item_add_error' => 'Error occurred while adding item to cart.',
+    'sylius.cart.item_remove_error' => 'Error occurred while removing item from cart.',
+  ),
+  'messages' => 
+  array (
+    'form.collection.add' => 'Add',
+    'form.collection.delete' => 'Delete',
+  ),
   'FOSUserBundle' => 
   array (
     'group.edit.submit' => 'Update group',

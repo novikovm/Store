@@ -51,31 +51,31 @@ class __TwigTemplate_2ebe768b89eb797c15a2471b946e90c50c495c59c76b1cd48838843b8f9
     public function block_navbar($context, array $blocks = array())
     {
         // line 10
-        echo "\t";
+        echo "\t<br>";
         if ($this->env->getExtension('security')->isGranted("ROLE_USER")) {
             // line 11
-            echo "\t\t\t\t\t<div class=\"row\">
-\t\t\t\t\t\t<p>
-\t\t\t\t\t\t\tJesteś zalogowany jako ";
+            echo "\t\t\t<div class=\"row\">
+\t\t\t<p>
+\t\t\tWitaj, <strong>";
             // line 13
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "username", array()), "html", null, true);
-            echo ". 
-\t\t\t\t\t\t\t<a href=\"";
+            echo "</strong>
+\t\t\t<a href=\"";
             // line 14
             echo $this->env->getExtension('routing')->getPath("fos_user_security_logout");
             echo "\" class=\"btn btn-primary\">Wyloguj</a>
-\t\t\t\t\t\t</p>
-\t\t\t\t\t</div>
-\t\t\t\t\t";
+\t\t\t</p>
+\t\t\t</div>
+\t\t";
         } else {
             // line 18
-            echo "\t\t\t\t\t\t<p>
-\t\t\t\t\t\t\tJeśli nie masz konta - <a href=\"";
+            echo "\t\t\t<p>
+\t\t\t<a href=\"";
             // line 19
             echo $this->env->getExtension('routing')->getPath("fos_user_registration_register");
             echo "\" class=\"btn btn-primary\">Zarejestruj się</a>
-\t\t\t\t\t\t</p>
-\t\t\t\t\t";
+\t\t\t</p>
+\t\t";
         }
     }
 
@@ -124,6 +124,12 @@ class __TwigTemplate_2ebe768b89eb797c15a2471b946e90c50c495c59c76b1cd48838843b8f9
 
 \t    <input type=\"submit\" id=\"_submit\" name=\"_submit\" value=\"Zaloguj się\" class=\"btn btn-lg btn-primary\"/>
 \t</form>
+\t<br><p>
+\t\tJeśli nie masz konta - <a href=\"";
+        // line 45
+        echo $this->env->getExtension('routing')->getPath("fos_user_registration_register");
+        echo "\" class=\"btn btn-primary\">Zarejestruj się</a>
+\t</p>
 \t</div>
 ";
     }
@@ -140,6 +146,6 @@ class __TwigTemplate_2ebe768b89eb797c15a2471b946e90c50c495c59c76b1cd48838843b8f9
 
     public function getDebugInfo()
     {
-        return array (  122 => 40,  115 => 36,  110 => 34,  106 => 33,  101 => 31,  98 => 30,  92 => 28,  90 => 27,  86 => 25,  83 => 24,  75 => 19,  72 => 18,  65 => 14,  61 => 13,  57 => 11,  54 => 10,  51 => 9,  45 => 7,  39 => 5,  11 => 1,);
+        return array (  130 => 45,  122 => 40,  115 => 36,  110 => 34,  106 => 33,  101 => 31,  98 => 30,  92 => 28,  90 => 27,  86 => 25,  83 => 24,  75 => 19,  72 => 18,  65 => 14,  61 => 13,  57 => 11,  54 => 10,  51 => 9,  45 => 7,  39 => 5,  11 => 1,);
     }
 }

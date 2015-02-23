@@ -53,14 +53,14 @@ class __TwigTemplate_0a272354094ea36fb098d1aadb9ce4639d7e2226347e5f4ce986d793e04
                 echo "                <span class=\"sf-toolbar-info-class sf-toolbar-info-with-next-pointer\">";
                 echo $this->env->getExtension('code')->abbrClass($this->getAttribute($this->getAttribute((isset($context["collector"]) ? $context["collector"] : $this->getContext($context, "collector")), "controller", array()), "class", array()));
                 echo "</span>
-                <span class=\"sf-toolbar-info-method\" onclick=\"";
+                <span class=\"sf-toolbar-info-method\"";
                 // line 9
                 if ((isset($context["link"]) ? $context["link"] : $this->getContext($context, "link"))) {
-                    echo "window.location='";
+                    echo " onclick=\"window.location='";
                     echo twig_escape_filter($this->env, twig_escape_filter($this->env, (isset($context["link"]) ? $context["link"] : $this->getContext($context, "link")), "js"), "html", null, true);
-                    echo "';window.event.stopPropagation();return false;";
+                    echo "';window.event.stopPropagation();return false;\"";
                 }
-                echo "\">
+                echo ">
                     ";
                 // line 10
                 echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["collector"]) ? $context["collector"] : $this->getContext($context, "collector")), "controller", array()), "method", array()), "html", null, true);

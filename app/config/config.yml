@@ -23,8 +23,11 @@ framework:
         # handler_id set to null will use default session handler from php.ini
         handler_id:  ~
         save_path: null
+        gc_probability: 0
     fragments:       ~
     http_method_override: true
+    serializer:
+        enabled: true
 
 # Twig Configuration
 twig:
@@ -77,3 +80,36 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: Project\StoreBundle\Entity\User
+
+fos_rest:
+    serializer:
+        version:              null
+        groups:               []
+        serialize_null:       false
+
+sylius_cart:
+    resolver: app.cart_item_resolver # The id of our newly created service.
+    classes: ~ # This key can be empty but it must be present in the configuration.
+
+sylius_order:
+    driver: doctrine/orm # Configure the doctrine orm driver used in documentation.
+    classes:
+        # order: ~
+        order_item:
+            model: Project\StoreBundle\Entity\CartItem # If you have created a custom CartItem entity.
+
+sylius_money: ~
+
+sylius_translation:
+    default_mapping:
+        translatable:
+            field: translations
+            currentLocale: currentLocale
+            fallbackLocale: fallbackLocale
+        translation:
+            field: translatable
+            locale: locale
+
+parameters:
+    sylius.translation.mapping: %sylius.translation.default.mapping%
+    sylius.locale: %locale%

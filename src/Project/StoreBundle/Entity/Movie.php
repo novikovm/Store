@@ -41,7 +41,7 @@ class Movie
     private $cover;
 
     /**
-     * @var decimal
+     * @var integer
      */
     private $price;
 

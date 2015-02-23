@@ -1,0 +1,11 @@
+Project\StoreBundle\Entity\CartItem:
+    type: entity
+    table: app_cart_item
+    manyToOne:
+        product:
+            targetEntity: Movie
+            joinColumn:
+                name: product_id
+                referencedColumnName: id
+
+    lifecycleCallbacks: {  }
